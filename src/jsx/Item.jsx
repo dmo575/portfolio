@@ -1,10 +1,10 @@
 function Item() {
 
     return (
-        <div className="container">
+        <div className="container-fluid">
             <div className="row">
                 <div className="col">
-                    <div className="card flex-md-row">
+                    <div className="card flex-lg-row">
                         <img className="card-img-left" src="https://fastly.picsum.photos/id/868/300/300.jpg?hmac=FRXOODu7hXi9LJcWd_pVbtr7X8cRbO4mwPNLW8F3ZaY"/>
                         <div className="card-body d-flex flex-column">
                             <h1 className="card-title">Project Title</h1>
