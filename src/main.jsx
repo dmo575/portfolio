@@ -1,12 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.css';
-import Item from './jsx/Item';
+import Skeleton from './jsx/Skeleton.jsx';
+import Item from './jsx/Item.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <div className="container">
-      <Item/>
-    </div>
+    <Item/>
   </React.StrictMode>,
 )
