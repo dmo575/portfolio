@@ -42,46 +42,50 @@ function Skeleton() {
 
     useEffect(() => {
 
-        // triggered whenever the screen size changes, makes sure that the renderSize state gets updated
-        function handleResize() {
-
-            let currSize = GetCurrSize();
-            fadeInPixelPos = GetFadeInPixelPos();
-
-            if(renderSizeRef != currSize) {
-                setRenderSize(currSize);
-            }
-        };
-
         // triggered whenever we scroll the page, makes sure to update fade-in-actors opacity
-        function handleScroll() {
+        function handleFadeIn() {
+
             // get all fade-in-actors
             const actors = document.querySelectorAll(".fade-in-actor");
-
+            
             // update their opacity based on current y offset
             actors.forEach((e) => {
 
                 const currY = e.getBoundingClientRect().top;
-
+                
                 // if the top of this element is above the window's bottom edge:
                 if(currY <= window.innerHeight) {
-
+                    
                     const rangeVal = window.innerHeight - fadeInPixelPos.current;
                     const valInRange = window.innerHeight - currY;
                     const percentage = (100 / rangeVal) * valInRange;
-
+                    
                     e.style.opacity = percentage / 100;
                 }
             });
 
         };
 
+        // triggered whenever the screen size changes, makes sure that the renderSize state gets updated
+        function handleResize() {
+
+            let currSize = GetCurrSize();
+            fadeInPixelPos.current = GetFadeInPixelPos();
+            
+            if(renderSizeRef != currSize) {
+                setRenderSize(currSize);
+            }
+
+            // we trigger handleFadeIn here because some times resizing moves elements in the page and want to update the fade in status of those elements
+            handleFadeIn();
+        };
+
         window.addEventListener("resize", handleResize);
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleFadeIn);
 
         return () => {
             window.removeEventListener("resize", handleResize);
-            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("scroll", handleFadeIn);
         };
     }, []);
 
