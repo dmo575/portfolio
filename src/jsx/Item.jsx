@@ -14,7 +14,7 @@ function UpdateSrcImg() {
 }
 
 
-function Item({srcImg, title, txt}) {
+function Item({srcImg, title, txt, dir}) {
 
     /*
     // holds the src image we use for the item and a value that tells us which image it is (large version or short version)
@@ -43,10 +43,12 @@ function Item({srcImg, title, txt}) {
 
     }, []);*/
 
+    const img = <img className={`card-img-${dir}`} src={srcImg}/>;
+
 
     return (
         <div id="test" className="card flex-lg-row card-custom fade-in-actor">
-            <img className="card-img-left" src={srcImg}/>
+            {dir === "left" || window.innerWidth < breakpoints.lg ? img : <></>}
             <div className="card-body d-flex flex-column">
                 <h1 className="card-title">{title}</h1>
                 <p className="card-text flex-grow-1">{txt}</p>
@@ -62,34 +64,7 @@ function Item({srcImg, title, txt}) {
                     <a className="btn btn-primary">Links + Info</a>
                 </div>
             </div>
-        </div>
-    );
-
-
-    return (
-        <div className="container-fluid gx-0 card-container">
-            <div className="row">
-                <div className="col">
-                    <div className="card flex-lg-row">
-                        <img className="card-img-left" src={srcImg}/>
-                        <div className="card-body d-flex flex-column">
-                            <h1 className="card-title">{title}</h1>
-                            <p className="card-text flex-grow-1">{txt}</p>
-                            <div className="card-text d-flex justify-content-between">
-                                <div className="d-flex flex-grow-1 justify-content-start">
-                                    <img src="https://api.iconify.design/basil:adobe-photoshop-solid.svg"/>
-                                    <img src="https://api.iconify.design/basil:adobe-photoshop-outline.svg"/>
-                                    <img src="https://api.iconify.design/basil:adobe-photoshop-solid.svg"/>
-                                    <img src="https://api.iconify.design/basil:adobe-photoshop-solid.svg"/>
-                                    <img src="https://api.iconify.design/basil:adobe-photoshop-solid.svg"/>
-                                    <img src="https://api.iconify.design/basil:adobe-photoshop-solid.svg"/>
-                                </div>                                
-                                <a className="btn btn-primary">Links + Info</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {dir === "right" && window.innerWidth >= breakpoints.lg ? img : <></>}
         </div>
     );
 }

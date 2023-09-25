@@ -40,31 +40,30 @@ function Skeleton() {
     const renderSizeRef = useRef(renderSize);
     let fadeInPixelPos = useRef(GetFadeInPixelPos());
 
-    useEffect(() => {
+    // updates the fade-in-actor elements opacity
+    function handleFadeIn() {
 
-        // triggered whenever we scroll the page, makes sure to update fade-in-actors opacity
-        function handleFadeIn() {
+        // get all fade-in-actors
+        const actors = document.querySelectorAll(".fade-in-actor");
+        
+        // update their opacity based on current y offset
+        actors.forEach((e) => {
 
-            // get all fade-in-actors
-            const actors = document.querySelectorAll(".fade-in-actor");
+            const currY = e.getBoundingClientRect().top;
             
-            // update their opacity based on current y offset
-            actors.forEach((e) => {
-
-                const currY = e.getBoundingClientRect().top;
+            // if the top of this element is above the window's bottom edge:
+            if(currY <= window.innerHeight) {
                 
-                // if the top of this element is above the window's bottom edge:
-                if(currY <= window.innerHeight) {
-                    
-                    const rangeVal = window.innerHeight - fadeInPixelPos.current;
-                    const valInRange = window.innerHeight - currY;
-                    const percentage = (100 / rangeVal) * valInRange;
-                    
-                    e.style.opacity = percentage / 100;
-                }
-            });
+                const rangeVal = window.innerHeight - fadeInPixelPos.current;
+                const valInRange = window.innerHeight - currY;
+                const percentage = (100 / rangeVal) * valInRange;
+                
+                e.style.opacity = percentage / 100;
+            }
+        });
+    };
 
-        };
+    useEffect(() => {
 
         // triggered whenever the screen size changes, makes sure that the renderSize state gets updated
         function handleResize() {
@@ -79,6 +78,8 @@ function Skeleton() {
             // we trigger handleFadeIn here because some times resizing moves elements in the page and want to update the fade in status of those elements
             handleFadeIn();
         };
+
+        handleFadeIn();
 
         window.addEventListener("resize", handleResize);
         window.addEventListener("scroll", handleFadeIn);
@@ -99,13 +100,13 @@ function Skeleton() {
 
             <div className={`row row-cols-${renderSize == breakpoints.md ? '2': '1'}`}>
                 <div className="col card-separator">
-                    <Item srcImg={renderSize <= breakpoints.md ? data.imgS : data.imgL} title={data.title} txt={data.txt}/>
+                    <Item srcImg={renderSize <= breakpoints.md ? data.imgS : data.imgL} title={data.title} txt={data.txt} dir="left"/>
                 </div>
                 <div className="col card-separator">
-                    <Item srcImg={renderSize <= breakpoints.md ? data.imgS : data.imgL} title={data.title} txt={data.txt + data.txt}/>
+                    <Item srcImg={renderSize <= breakpoints.md ? data.imgS : data.imgL} title={data.title} txt={data.txt + data.txt} dir="right"/>
                 </div>
                 <div className="col card-separator">
-                    <Item srcImg={renderSize <= breakpoints.md ? data.imgS : data.imgL} title={data.title} txt={data.txt}/>
+                    <Item srcImg={renderSize <= breakpoints.md ? data.imgS : data.imgL} title={data.title} txt={data.txt} dir="left"/>
                 </div>
             </div>
        
