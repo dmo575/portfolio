@@ -8,6 +8,7 @@ function Skeleton() {
                 <div className="col"></div>
                 <div className="col-md-12">
                     <Item/>
+                    <Item/>
                 </div>
                 <div className="col"></div>
             </div>
