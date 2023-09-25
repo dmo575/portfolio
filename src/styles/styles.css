@@ -1,5 +1,24 @@
 .thumbnail-img {
-    min-width: 100%;
+    /*min-width: 100%;
     height: auto;
-    object-fit: cover;
+    object-fit: cover;*/
 }
+
+/* USED, provides some marging between card columns */
+.card-separator {
+    margin-bottom: 2rem;
+}
+
+.card-container {
+    min-height: 100%;
+}
+
+/* USED, allows the cards with less txt content to be the same size as their vertical siblings */
+.card-custom {
+    min-height: 100%;
+}
+
+.fade-in-actor {
+    opacity: 0;
+}
+

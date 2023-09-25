@@ -45,7 +45,29 @@ function Item({srcImg, title, txt}) {
 
 
     return (
-        <div className="container-fluid gx-0">
+        <div id="test" className="card flex-lg-row card-custom fade-in-actor">
+            <img className="card-img-left" src={srcImg}/>
+            <div className="card-body d-flex flex-column">
+                <h1 className="card-title">{title}</h1>
+                <p className="card-text flex-grow-1">{txt}</p>
+                <div className="card-text d-flex justify-content-between">
+                    <div className="d-flex flex-grow-1 justify-content-start">
+                        <img src="https://api.iconify.design/basil:adobe-photoshop-solid.svg"/>
+                        <img src="https://api.iconify.design/basil:adobe-photoshop-outline.svg"/>
+                        <img src="https://api.iconify.design/basil:adobe-photoshop-solid.svg"/>
+                        <img src="https://api.iconify.design/basil:adobe-photoshop-solid.svg"/>
+                        <img src="https://api.iconify.design/basil:adobe-photoshop-solid.svg"/>
+                        <img src="https://api.iconify.design/basil:adobe-photoshop-solid.svg"/>
+                    </div>                                
+                    <a className="btn btn-primary">Links + Info</a>
+                </div>
+            </div>
+        </div>
+    );
+
+
+    return (
+        <div className="container-fluid gx-0 card-container">
             <div className="row">
                 <div className="col">
                     <div className="card flex-lg-row">
