@@ -1,16 +1,6 @@
-.thumbnail-img {
-    /*min-width: 100%;
-    height: auto;
-    object-fit: cover;*/
-}
-
 /* USED, provides some marging between card columns */
 .card-separator {
     margin-bottom: 2rem;
-}
-
-.card-container {
-    min-height: 100%;
 }
 
 /* USED, allows the cards with less txt content to be the same size as their vertical siblings */
@@ -18,7 +8,31 @@
     min-height: 100%;
 }
 
+/* USED, add to any component you want to give the fade-in animation on scroll to*/
 .fade-in-actor {
     opacity: 0;
 }
 
+/*  */
+#works-title-cont {
+    display: flex;
+    justify-content: center;
+    
+    width: 100%;
+    height: 0rem;/* mod this prop for cutoff behavior */
+    max-height: 100%;
+
+    overflow-y: hidden;
+}
+
+/* set the font size for the Works title here */
+#works-title {
+    font-size: 9rem;
+}
+
+.separator {
+    width: 80%;
+    border: 2px solid black;
+    border-radius: 100%; /* this is what allows me to create that neat line shape */
+    margin-bottom: 5rem;
+}

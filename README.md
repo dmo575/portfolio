@@ -2,6 +2,6 @@
 
 
 Potfolio webpage that uses the following technologies:
-Builder     - Vitejs
+Bundler     - Vitejs
 Frontend    - React, Bootstraps
 Backend     - Flask
