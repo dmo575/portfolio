@@ -42,7 +42,7 @@ function WorksTitle() {
     return (
         <>
             {/* ROW - "works" title element */}
-            <div className="row">
+            <div id="works" className="row">
                 <div id="works-title-col" className="col">
                     <div id="works-title-cont">
                         <p id="works-title">Works</p>

@@ -44,3 +44,35 @@
     border-radius: 100%; /* this is what allows me to create that neat line shape */
     margin-bottom: 5rem;
 }
+
+.footer-column-socials {
+    display: flex;
+}
+
+footer{
+    font-size: 0.8rem;
+    background-color: beige;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer p.footer-title {
+    margin-bottom: 0.5rem;
+}
+
+
+.icon {
+    width: 2rem;
+    height: auto;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    filter: invert(35%);
+}
+
+.icon.icon-footer {
+    width: 1rem;
+    height: auto;
+}
