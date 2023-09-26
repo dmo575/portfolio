@@ -30,4 +30,5 @@ export const icon_npm = "https://api.iconify.design/simple-icons:npm.svg";
 // other
 export const icon_server = "";
 export const icon_git = "https://api.iconify.design/simple-icons:git.svg";
-
+export const icon_download = "https://api.iconify.design/uiw:download.svg";
+export const icon_hash = "https://api.iconify.design/bi:hash.svg";

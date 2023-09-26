@@ -20,7 +20,7 @@ function Item({srcImg, title, txt, dir}) {
                         <img src="https://api.iconify.design/basil:adobe-photoshop-solid.svg"/>
                         <img src="https://api.iconify.design/basil:adobe-photoshop-solid.svg"/>
                     </div>                                
-                    <a className="btn btn-primary">Links + Info</a>
+                    <a className="btn rounded-5 btn-dark">Links + Info</a>
                 </div>
             </div>
             {dir === "right" && window.innerWidth >= breakpoints.lg ? img : <></>}

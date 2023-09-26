@@ -53,6 +53,8 @@ footer{
     font-size: 0.8rem;
     background-color: beige;
     width: 100%;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
 }
 
 footer p {
@@ -87,7 +89,15 @@ footer p.footer-title {
     border-radius: 2rem;
 }
 
+.profile-section-marging {
+    margin-bottom: 10rem;
+    margin-top: 3rem;
+}
 
+.navbar-marging {
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+}
 
 
 
