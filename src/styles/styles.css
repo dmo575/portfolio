@@ -30,6 +30,14 @@
     font-size: 9rem;
 }
 
+/* for SM, we will reuce the works title font size (we also reduce the */
+@media (max-width: 767px) {
+
+    #works-title {
+        font-size: 5rem;
+    }
+}
+
 .separator {
     width: 80%;
     border: 2px solid black;
