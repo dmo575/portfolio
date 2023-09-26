@@ -76,3 +76,29 @@ footer p.footer-title {
     width: 1rem;
     height: auto;
 }
+
+.icon.icon-navbar {
+    width: 1rem;
+    height: auto;
+    margin-bottom: 0.2rem;
+}
+
+#navbar-btn {
+    border-radius: 2rem;
+}
+
+
+
+
+
+
+
+
+.test-floater {
+    float: right;
+    margin: 2rem;
+}
+
+.test-div {
+    padding: 1rem;
+}

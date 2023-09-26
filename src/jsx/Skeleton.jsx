@@ -1,7 +1,7 @@
 import { useState, useEffect, createContext, useRef } from "react";
 import Item from "./Item.jsx";
 import WorksTitle from "./WorksTitle.jsx";
-import { GetPerCurrToTarget_Bottom } from "./toolFuncs.js";
+import { GetPerCurrToTarget_Bottom, GetCurrGeneralSize } from "./toolFuncs.js";
 import * as breakpoints from "./bsbp.jsx";
 
 
@@ -14,20 +14,6 @@ const data = {
     imgS: "https://fastly.picsum.photos/id/230/600/300.jpg?hmac=xaOtfLjlm4OwQVWYD4xcugIiy5Ebr_qNu7ymvmI2jv4",
     title: "Project Title",
     txt: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum, cupiditate architecto obcaecati repellendus id ab tempore assumenda natus, voluptatem dolorem voluptas explicabo voluptates doloribus veniam! Assumenda optio tempora debitis dicta necessitatibus, dolore quasi similique reprehenderit illum sapiente provident cupiditate accusantium consectetur deleniti asperiores, itaque quam quos tempore. Unde, id dignissimos?"
-}
-
-/* calculates which general size the screen finds itself under: sm (xs, sm), md (md), lg (lg, xl ,xxl) */
-function GetCurrGeneralSize() {
-    let currSize = window.innerWidth;
-
-    if(currSize < breakpoints.md) {
-        return breakpoints.sm;
-    }
-    else if(currSize < breakpoints.lg) {
-        return breakpoints.md;
-    }
-
-    return breakpoints.lg;
 }
 
 // converts the fadeInPoint from a percentage to a real pixel unit for the current screen
@@ -104,7 +90,7 @@ function Skeleton() {
             </PivotContext.Provider>
 
             {/* ROW - project cards */}
-            <div className={`row row-cols-${generalSize == breakpoints.md ? '2': '1'}`}>
+            <div className={`row row-cols-${generalSize == breakpoints.md ? '2': '1'} d-flex justify-content-center`}>
                 <div className="col card-separator">
                     <Item srcImg={generalSize <= breakpoints.md ? data.imgS : data.imgL} title={data.title} txt={data.txt} dir="left"/>
                 </div>

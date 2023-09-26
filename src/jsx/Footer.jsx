@@ -25,6 +25,11 @@ function Footer() {
                     <a href="#works">Works</a>
                 </div>
             </div>
+            <div className="row">
+                <div className="col d-flex justify-content-center">
+                    Thank you for visiting !
+                </div>
+            </div>
         </footer>
     );
 }
