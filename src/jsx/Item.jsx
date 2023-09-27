@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import * as breakpoints from "./bsbp.jsx";
+import * as breakpoints from "./bsbp.js";
 
 function Item({srcImg, title, txt, dir}) {
 

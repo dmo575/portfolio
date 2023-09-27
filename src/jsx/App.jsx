@@ -1,6 +1,6 @@
-import { useState, createContext, useEffect, useRef, useCallback } from "react";
-import * as breakpoints from "./bsbp.jsx";
-import { GetCurrGeneralSize, GetPerCurrToTarget_Bottom } from "./toolFuncs";
+import { useState, createContext, useEffect, useRef } from "react";
+import * as breakpoints from "./bsbp.js";
+import { GetPerCurrToTarget_Bottom } from "./toolFuncs";
 
 import Navbar from "./Navbar.jsx";
 import ProfileSection from "./ProfileSection.jsx";
@@ -17,9 +17,23 @@ function GetBottomPivotPos() {
     return  window.innerHeight - ((window.innerHeight / 100) * bottomPivotLocPer);
 }
 
+/* returns current breakpoint (only uses sm-, md and lg+) */
+function GetCurrentBreakpoint() {
+    let currSize = window.innerWidth;
+
+    if(currSize < breakpoints.md) {
+        return breakpoints.sm;
+    }
+    else if(currSize < breakpoints.lg) {
+        return breakpoints.md;
+    }
+
+    return breakpoints.lg;
+}
+
 function App() {
 
-    const [breakpointState, setBreakpointState] = useState(GetCurrGeneralSize());
+    const [breakpointState, setBreakpointState] = useState(GetCurrentBreakpoint());
     const breakpointStateRef = useRef();
     const bottomPivot = useRef(GetBottomPivotPos());
 
@@ -46,7 +60,7 @@ function App() {
 
     function handleResize() {
 
-        const newSize = GetCurrGeneralSize();
+        const newSize = GetCurrentBreakpoint();
         bottomPivot.current = GetBottomPivotPos();
 
         if(newSize != breakpointStateRef.current) {

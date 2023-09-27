@@ -1,8 +1,6 @@
-import { useState, useEffect, useContext, useRef } from "react";
+import { useContext } from "react";
 import Item from "./Item.jsx";
-import WorksTitle from "./WorksTitle.jsx";
-import { GetPerCurrToTarget_Bottom, GetCurrGeneralSize } from "./toolFuncs.js";
-import * as breakpoints from "./bsbp.jsx";
+import * as breakpoints from "./bsbp.js";
 import { appContext } from "./App.jsx";
 
 

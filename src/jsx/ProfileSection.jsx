@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import * as breakpoints from "./bsbp";
+import * as breakpoints from "./bsbp.js";
 
 function ProfileSection() {
 
