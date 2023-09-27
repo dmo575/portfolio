@@ -1,6 +1,6 @@
 import { useEffect, useContext } from "react";
 import { GetPerCurrToTarget_Bottom } from "./toolFuncs";
-import { PivotContext } from "./Skeleton";
+import { appContext } from "./App.jsx";
 import * as breakpoints from "./bsbp.jsx";
 
 // how much should the works title translate upwards, in rem. One for md+, other for sm-
@@ -9,7 +9,7 @@ const worksTitleMovSm = 7;
 
 function WorksTitle() {
 
-    const bottomPivot = useContext(PivotContext);
+    const {bottomPivot} = useContext(appContext);
 
     function handleWorksTitle() {
         const titleCont = document.querySelector("#works-title-cont");
