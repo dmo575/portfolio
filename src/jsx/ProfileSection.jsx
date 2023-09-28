@@ -1,16 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import * as breakpoints from "./bsbp.js";
+import { GetTitleSize } from "./toolFuncs.js";
+import { appContext } from "./App.jsx";
 
 function ProfileSection() {
 
+    const {breakpointState} = useContext(appContext);
+
     return (
         <div className="container-fluid profile-section-marging">
-            <div className="row d-flex">
-                <div className={"col-auto gx-0 offset-1 offset-xl-2 d-flex justify-content-center flex-column"}>
+            <div className="row d-flex flex-column flex-md-row align-items-center">
+                <div className={"col-md-auto col-5 gx-0 offset-md-1 offset-xl-2 d-flex justify-content-center flex-column"}>
                     <img className="img-fluid" src="https://fastly.picsum.photos/id/893/300/400.jpg?hmac=Vy-UCZnBegnJLuZvrZtlgjA_xacW9xbYQsfq1SoLEbw" alt="profile-img" />
                 </div>
-                <div className="col offset-1 gx-0">
-                    <h1>Welcome</h1>
+                <div className="col-md col-10 offset-md-1 gx-0 gy-5 gy-md-0 text-center text-md-start">
+                    <p className={GetTitleSize(breakpointState)}>Welcome</p>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam, repellat voluptates. Et, beatae nulla. Aliquam adipisci voluptate quis mollitia cumque soluta pariatur. Iusto eos magnam ratione quia cum, asperiores deserunt enim commodi, id perferendis reprehenderit labore nisi fugiat animi ullam modi ipsam ut, atque eum molestiae sequi voluptates veritatis! Voluptates modi rerum nobis officia optio eum quae porro excepturi cumque?</p>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam, repellat voluptates. Et, beatae nulla. Aliquam adipisci voluptate quis mollitia cumque soluta pariatur. Iusto eos magnam ratione quia cum, asperiores deserunt enim commodi, id perferendis reprehenderit labore nisi fugiat animi ullam modi ipsam ut, atque eum molestiae sequi voluptates veritatis! Voluptates modi rerum nobis officia optio eum quae porro excepturi cumque?</p>
 

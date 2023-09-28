@@ -1,19 +1,19 @@
-/* USED, provides some marging between card columns */
+/* provides some marging between card columns */
 .card-separator {
     margin-bottom: 2rem;
 }
 
-/* USED, allows the cards with less txt content to be the same size as their vertical siblings */
+/* allows the cards with less txt content to be the same size as their vertical siblings */
 .card-custom {
     min-height: 100%;
 }
 
-/* USED, add to any component you want to give the fade-in animation on scroll to*/
+/* add to any component you want to give the fade-in animation on scroll to*/
 .fade-in-actor {
     opacity: 0;
 }
 
-/*  */
+/* speciffic to the Works title text */
 #works-title-cont {
     display: flex;
     justify-content: center;
@@ -25,16 +25,44 @@
     overflow-y: hidden;
 }
 
+/* section sizes */
+
+.section-size-lg {
+    font-size: 8rem;
+}
+
+.section-size-md {
+    font-size: 6.5rem;
+}
+
+.section-size-sm {
+    font-size: 5rem;
+}
+
+/* title sizes */
+.title-size-lg {
+    font-size: 3rem;
+}
+
+.title-size-md {
+    font-size: 3rem;
+}
+
+.title-size-sm {
+    font-size: 2rem;
+}
+
+
 /* set the font size for the Works title here */
 #works-title {
-    font-size: 9rem;
+    /*font-size: 9rem;*/
 }
 
 /* for SM, we will reuce the works title font size (we also reduce the */
 @media (max-width: 767px) {
 
     #works-title {
-        font-size: 5rem;
+        /*font-size: 5rem;*/
     }
 }
 

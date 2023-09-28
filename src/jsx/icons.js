@@ -6,6 +6,11 @@ export const icon_github = "https://api.iconify.design/cib:github.svg";
 export const icon_js = "https://api.iconify.design/simple-icons:javascript.svg";
 export const icon_python = "https://api.iconify.design/simple-icons:python.svg";
 export const icon_sqlite = "https://api.iconify.design/simple-icons:sqlite.svg";
+export const icon_html = "https://api.iconify.design/simple-icons:html5.svg";
+export const icon_css = "https://api.iconify.design/simple-icons:css3.svg";
+
+// os
+export const icon_linux = "https://api.iconify.design/simple-icons:linux.svg";
 
 // libraries - front end
 export const icon_react = "https://api.iconify.design/simple-icons:react.svg";

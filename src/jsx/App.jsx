@@ -7,9 +7,10 @@ import ProfileSection from "./ProfileSection.jsx";
 import Skeleton from "./Skeleton.jsx";
 import Footer from "./Footer.jsx";
 import WorksTitle from "./WorksTitle.jsx";
+import Skills from "./Skills.jsx";
 
 export const appContext = createContext();
-const bottomPivotLocPer = 50;
+const bottomPivotLocPer = 30;
 
 
 function GetBottomPivotPos() {
@@ -35,7 +36,7 @@ function App() {
 
     const [breakpointState, setBreakpointState] = useState(GetCurrentBreakpoint());
     const breakpointStateRef = useRef();
-    const bottomPivot = useRef(GetBottomPivotPos());
+    const bottomPivot = useRef();
 
     function handleFadeIn() {
 
@@ -80,6 +81,7 @@ function App() {
     useEffect(() => {
 
         handleFadeIn();
+        bottomPivot.current = GetBottomPivotPos();
 
         window.addEventListener("resize", handleResize);
         window.addEventListener("scroll", handleFadeIn);
@@ -96,6 +98,7 @@ function App() {
         <appContext.Provider value={{breakpointState, bottomPivot}}>
             <Navbar/>
             <ProfileSection/>
+            <Skills/>
             <WorksTitle/>
             <Skeleton/>
         </appContext.Provider>
