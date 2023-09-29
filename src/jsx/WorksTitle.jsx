@@ -10,12 +10,14 @@ const worksTitleMovSm = 7;
 
 let lastScrollY = window.scrollY;
 let lastScrollDir = 0;
+
+// delete after refactor
 //let lastValidTargetY = 0;
 
 
 function WorksTitle() {
 
-    const {bottomPivot, breakpointState} = useContext(appContext);
+    const {breakpointState} = useContext(appContext);
     const breakpointStateRef = useRef();
 
     useEffect(() => {
@@ -25,7 +27,11 @@ function WorksTitle() {
     function handleWorksTitle() {
 
         // sets the velocity at which the text will increase its height per change in window offset
-        const vel = 0.03;
+        const vel_landscape = 0.035;
+        const vel_portrait = 0.02;
+
+        // assign height increase velocity based on viewport layout.
+        const vel = window.innerWidth > window.innerHeight ? vel_landscape : vel_portrait;
 
         // get scroll direction (1 means scrolling up, -1 means scrolling down)
         let newScrollDir = lastScrollY > window.scrollY ? 1 : -1;
@@ -37,12 +43,11 @@ function WorksTitle() {
         const currYBottom = titleCont.getBoundingClientRect().bottom;
         const currYTop = titleCont.getBoundingClientRect().top;
 
+        // calculate the desired final height for the container based on screen breakpoint
+        const maxHeight = breakpointStateRef.current == breakpoints.lg ? worksTitleMovLg : (breakpointStateRef.current == breakpoints.md ? worksTitleMovMd : worksTitleMovSm);
 
         // we only proceed if the container we want to mod is within the window space and the scroll motion has the same direction that it had last time the event was called
         if(currYBottom <= window.innerHeight && (newScrollDir == lastScrollDir) && currYTop > 0) {
-            
-            // calculate the desired final height for the container based on screen breakpoint
-            const maxHeight = breakpointStateRef.current == breakpoints.lg ? worksTitleMovLg : (breakpointStateRef.current == breakpoints.md ? worksTitleMovMd : worksTitleMovSm);
             
             // get the container's current height (in rem units)
             let currHeight = parseFloat(titleCont.style.height.substr(0, titleCont.style.height.length - 3));
@@ -59,6 +64,15 @@ function WorksTitle() {
 
             // update container's height value
             titleCont.style.height = `${newVal}rem`;
+        }
+        else {
+
+            if(currYBottom <= 0) {
+                titleCont.style.height = `${maxHeight}rem`;
+            }
+            else if (currYTop >= window.innerHeight) {
+                titleCont.style.height = `${0}rem`;
+            }
         }
 
         // keep track of the scrollY value and direction from this scroll event so that we can compare with next scroll event
@@ -92,7 +106,7 @@ function WorksTitle() {
             {/* ROW - separator element */}
             <div className="row">
                 <div className="col d-flex justify-content-center">
-                    <div className="separator"></div>
+                    <div className="separator-rect"></div>
                 </div>
             </div>
         </div>
@@ -100,6 +114,7 @@ function WorksTitle() {
 }
 
 
+// old code, delete after refactor is done
 function save() {
 
     //geth the container that we will modify

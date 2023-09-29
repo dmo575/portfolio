@@ -6,7 +6,7 @@ function Item({srcImg, title, txt, dir}) {
     const img = <img className={`card-img-${dir}`} src={srcImg}/>;
 
     return (
-        <div id="test" className="card flex-lg-row card-custom fade-in-actor">
+        <div id="test" className="card flex-lg-row h-100 fade-in-actor">
             {dir === "left" || window.innerWidth < breakpoints.lg ? img : <></>}
             <div className="card-body d-flex flex-column">
                 <h1 className="card-title">{title}</h1>

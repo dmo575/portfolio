@@ -20,13 +20,13 @@ function Skeleton() {
         <div className="container">
             {/* ROW - project cards */}
             <div className={`row row-cols-${breakpointState == breakpoints.md ? '2': '1'} d-flex justify-content-center`}>
-                <div className="col card-separator">
+                <div className="col my-2">
                     <Item srcImg={breakpointState <= breakpoints.md ? data.imgS : data.imgL} title={data.title} txt={data.txt} dir="left"/>
                 </div>
-                <div className="col card-separator">
+                <div className="col my-2">
                     <Item srcImg={breakpointState <= breakpoints.md ? data.imgS : data.imgL} title={data.title} txt={data.txt + data.txt} dir="right"/>
                 </div>
-                <div className="col card-separator">
+                <div className="col my-2">
                     <Item srcImg={breakpointState <= breakpoints.md ? data.imgS : data.imgL} title={data.title} txt={data.txt} dir="left"/>
                 </div>
             </div>

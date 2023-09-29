@@ -11,14 +11,14 @@ function Footer() {
                     <div>
                         <p className="footer-title">Socials</p>
                     </div>
-                    <div className="footer-column-socials">
+                    <div>
                         <a href={links.link_linkedin} target="_blank"><img className="icon icon-footer" src={icons.icon_linkedin} alt="Linkedin" /></a>
                         <a href={links.link_github} target="_blank"><img className="icon icon-footer" src={icons.icon_github} alt="GitHub" /></a>
                     </div>
                 </div>
                 <div className="col d-flex justify-content-start flex-column align-items-center">
                     <p className="footer-title">Contact</p>
-                    <a href="mailto:arco4@protonmail.com">Send Email</a>
+                    <a href={`mailto:${links.link_contactMail}`}>{links.link_contactMail}</a>
                 </div>
                 <div className="col d-flex justify-content-start flex-column align-items-center">
                     <p className="footer-title">Quick Links</p>

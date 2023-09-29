@@ -37,3 +37,4 @@ export const icon_server = "";
 export const icon_git = "https://api.iconify.design/simple-icons:git.svg";
 export const icon_download = "https://api.iconify.design/uiw:download.svg";
 export const icon_hash = "https://api.iconify.design/bi:hash.svg";
+export const icon_sendMail = "https://api.iconify.design/mingcute:mail-send-line.svg";

@@ -1,6 +1,8 @@
 // socials
 export const link_linkedin = "https://www.linkedin.com/in/alfredo-rodriguez-23599a228/";
 export const link_github = "https://github.com/dmo575";
+export const link_contactMail = "arco4@protonmail.com";
+
 
 // project lives
 export const link_calculatormaster_live = "146.190.125.135:80";
