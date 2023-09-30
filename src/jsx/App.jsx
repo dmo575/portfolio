@@ -8,6 +8,7 @@ import Skeleton from "./Skeleton.jsx";
 import Footer from "./Footer.jsx";
 import WorksTitle from "./WorksTitle.jsx";
 import Skillset from "./Skillset.jsx";
+import * as content from "./content.js";
 
 export const appContext = createContext();
 const bottomPivotLocPer = 30;
@@ -98,7 +99,7 @@ function App() {
         <appContext.Provider value={{breakpointState, bottomPivot}}>
             <Navbar/>
             <ProfileSection/>
-            <Skillset/>
+            <Skillset skills={content.skills}/>
             <WorksTitle/>
             <Skeleton/>
         </appContext.Provider>
