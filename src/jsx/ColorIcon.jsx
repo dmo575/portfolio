@@ -9,7 +9,7 @@ function ColorIcon({src, color}) {
     return (
         <div className={"icon-container"}>
             <img src={src} alt={src} className="img icon" style={breakpointState >= breakpoints.lg ? {width: "4rem"} : {width: "2rem"}}/>
-            <div className="img-overlay" style={{backgroundColor: color}}></div>
+            <div className="icon-overlay" style={{backgroundColor: color}}></div>
         </div>
     );
 }

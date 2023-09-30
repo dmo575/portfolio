@@ -30,7 +30,7 @@
 
 /* title sizes */
 .title-size-lg {
-    font-size: 3rem;
+    font-size: 4rem;
 }
 
 .title-size-md {
@@ -54,7 +54,7 @@
 .spacer-rect {
     width: 100%;
     height: 0px;
-    border: 1px solid black;
+    border: 1px dashed rgba(0, 0, 0, 0.233);
 }
 
 
@@ -81,25 +81,28 @@ footer p.footer-title {
     height: auto;
     margin-right: 1rem;
     margin-left: 1rem;
-    filter: invert(85%);
+    filter: invert(50%);
 }
 
-.img-overlay {
+/* Used with ColorIcon component, its the overlay that applies a color to a greyscale icon*/
+.icon-overlay {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    /* we calculate left and width here to account for its parent (.icon) marging on left and right (1rem each) */
+    left: calc(1rem);
+    width: calc(100% - 2rem);
     height: 100%;
     mix-blend-mode: color;
     /*background-color: rgb(103, 206, 197);*/
 }
 
+/* Used with ColorIcon component*/
 .icon-container {
     position: relative;
     display: inline-block;
 }
 
-/*  */
+/* style for icons at the footer section */
 .icon.icon-footer {
     width: 1rem;
     height: auto;
@@ -108,6 +111,7 @@ footer p.footer-title {
     filter: invert(35%);
 }
 
+/* style for icons at the navbar section */
 .icon.icon-navbar {
     width: 1rem;
     height: auto;
@@ -115,6 +119,58 @@ footer p.footer-title {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     filter: invert(35%);
+}
+
+
+
+/* style for logos (colored svg files). These are used in the Skills section */
+.logo {
+    --size: 0;
+    position: absolute;
+    width: 1rem;
+    height: auto;
+    top: 0;
+    left: 0;
+    transition: width 0.1s ease-in-out , top 0.1s ease-in-out, left 0.1s ease-in-out;
+}
+
+.logo:hover {
+    width: calc(var(--size) * 2) !important;
+    top: calc(var(--size) * -1) !important;
+    left: calc(var(--size) / 2 * -1) !important;
+}
+
+.logo-container {
+    position: relative;
+}
+
+.logo-description-container {
+    --parent-size: 0;
+
+    position: absolute;
+    pointer-events: none;
+    
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+
+    top: calc(var(--parent-size) * -2.2);
+    left: calc(var(--parent-size) * 0.25);
+    
+}
+
+.logo-container:hover .logo-description-container {
+    opacity: 1;
+}
+
+.logo-description-text {
+    position: relative;
+    right: calc(50% - 0.5rem);
+    /*text-indent: -50%;*/
+
+    border: 1px solid rgba(0, 0, 0, 0.205);
+    border-radius: 0.3rem;
+    background-color: white;
+    padding: 0.2rem;
 }
 
 #profile-section {
@@ -132,5 +188,5 @@ footer p.footer-title {
     padding-bottom: 3rem;
     padding-top: 3rem;
 
-    background-color: rgb(245, 244, 244);
+    /*background-color: rgb(245, 244, 244);*/
 }
