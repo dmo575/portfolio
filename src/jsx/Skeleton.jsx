@@ -1,15 +1,8 @@
 import { useContext } from "react";
-import Item from "./Item.jsx";
+import Card from "./Card.jsx";
 import * as breakpoints from "./bsbp.js";
 import { appContext } from "./App.jsx";
-
-
-const data = {
-    imgL: "https://fastly.picsum.photos/id/288/300/300.jpg?hmac=7RMC2BTzA6EpogvGf74Us4VguwkoeSsLzBARJbs5VOk",
-    imgS: "https://fastly.picsum.photos/id/230/600/300.jpg?hmac=xaOtfLjlm4OwQVWYD4xcugIiy5Ebr_qNu7ymvmI2jv4",
-    title: "Project Title",
-    txt: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum, cupiditate architecto obcaecati repellendus id ab tempore assumenda natus, voluptatem dolorem voluptas explicabo voluptates doloribus veniam! Assumenda optio tempora debitis dicta necessitatibus, dolore quasi similique reprehenderit illum sapiente provident cupiditate accusantium consectetur deleniti asperiores, itaque quam quos tempore. Unde, id dignissimos?"
-}
+import { projectCards } from "./content.js";
 
 
 function Skeleton() {
@@ -20,17 +13,16 @@ function Skeleton() {
         <div className="container">
             {/* ROW - project cards */}
             <div className={`row row-cols-${breakpointState == breakpoints.md ? '2': '1'} d-flex justify-content-center`}>
-                <div className="col my-2">
-                    <Item srcImg={breakpointState <= breakpoints.md ? data.imgS : data.imgL} title={data.title} txt={data.txt} dir="left"/>
-                </div>
-                <div className="col my-2">
-                    <Item srcImg={breakpointState <= breakpoints.md ? data.imgS : data.imgL} title={data.title} txt={data.txt + data.txt} dir="right"/>
-                </div>
-                <div className="col my-2">
-                    <Item srcImg={breakpointState <= breakpoints.md ? data.imgS : data.imgL} title={data.title} txt={data.txt} dir="left"/>
-                </div>
+
+                {projectCards.map((cardElement, index) => {
+                    return (
+                        <div className="col my-2">
+                            <Card card={cardElement} dir={ index % 2 == 0 ? "left" : "right"}/>
+                        </div>
+                    );
+                })}
+
             </div>
-       
         </div>
     );
 }

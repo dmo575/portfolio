@@ -121,6 +121,10 @@ footer p.footer-title {
     filter: invert(35%);
 }
 
+.card-logo {
+    width: 2rem;
+    height: auto;
+}
 
 
 /* style for logos (colored svg files). These are used in the Skills section */
