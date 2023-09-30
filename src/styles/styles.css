@@ -192,6 +192,11 @@ footer p.footer-title {
     margin-top: 6rem;
 }
 
+#reach-me-at {
+    border-right: 3px solid black;
+    border-radius: 0.3rem;
+}
+
 #navbar {
     margin-bottom: 3rem;
     margin-top: 4rem;

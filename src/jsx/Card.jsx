@@ -1,7 +1,7 @@
 import * as breakpoints from "./bsbp.js";
 import Skill from "./Skill.jsx";
 
-function Item({card, dir}) {
+function Card({card, dir}) {
 
     const img = <img className={`card-img-${dir}`} src={window.innerWidth < breakpoints.lg ? card.srcS : card.srcL}/>;
 
@@ -27,4 +27,4 @@ function Item({card, dir}) {
     );
 }
 
-export default Item;
+export default Card;
