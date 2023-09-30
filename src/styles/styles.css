@@ -165,7 +165,7 @@ footer p.footer-title {
 .logo-description-text {
     position: relative;
     right: calc(50% - 0.5rem);
-    /*text-indent: -50%;*/
+    white-space: nowrap;
 
     border: 1px solid rgba(0, 0, 0, 0.205);
     border-radius: 0.3rem;
@@ -187,6 +187,4 @@ footer p.footer-title {
     margin-bottom: 10rem;
     padding-bottom: 3rem;
     padding-top: 3rem;
-
-    /*background-color: rgb(245, 244, 244);*/
 }
