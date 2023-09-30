@@ -2,34 +2,25 @@ import { useContext } from "react";
 import { appContext } from "./App.jsx";
 import * as breakpoints from "./bsbp.js";
 
-const logoSizeLg = 2;
-const logoSizeMd = 3;
-const logoSizeSm = 2;
+/* TODO: 
+    Fix logo sizes, either one size for all or make description text to work well with all sizes
+*/
 
-function GetLogoSize(currBreakpoint) {
 
-    switch (currBreakpoint) {
-        case breakpoints.sm:
-            return logoSizeSm;
-        case breakpoints.md:
-            return logoSizeMd;
-        default:
-            return logoSizeLg;
-    }
-}
+const logoSize = 2;
 
 function Skill({src, name}) {
 
     const { breakpointState } = useContext(appContext);
 
     return (
-        <div className="logo-container mx-2" style={{width: `${GetLogoSize(breakpointState)}rem`}}>
+        <div className="logo-container mx-2" style={{width: `${logoSize}rem`}}>
             <img className="logo" style={ {
-                    width: `${GetLogoSize(breakpointState)}rem`, 
-                    top: `${GetLogoSize(breakpointState) * -0.5}rem`,
-                    "--size": `${GetLogoSize(breakpointState)}rem`
+                    width: `${logoSize}rem`, 
+                    top: `${logoSize * -0.5}rem`,
+                    "--size": `${logoSize}rem`
                 }} src={src} alt={name} />
-            <div className="logo-description-container" style={{"--parent-size": `${GetLogoSize()}rem`}}>
+            <div className="logo-description-container" style={{"--parent-size": `${logoSize}rem`}}>
                 <p className="logo-description-text">{name}</p>
             </div>
         </div>

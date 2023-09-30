@@ -21,11 +21,11 @@
 }
 
 .section-size-md {
-    font-size: 6.5rem;
+    font-size: 7rem;
 }
 
 .section-size-sm {
-    font-size: 5rem;
+    font-size: 6rem;
 }
 
 /* title sizes */
@@ -34,11 +34,11 @@
 }
 
 .title-size-md {
-    font-size: 3rem;
+    font-size: 3.5rem;
 }
 
 .title-size-sm {
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 
@@ -140,6 +140,12 @@ footer p.footer-title {
     left: calc(var(--size) / 2 * -1) !important;
 }
 
+.logo:active {
+    width: calc(var(--size) * 2) !important;
+    top: calc(var(--size) * -1) !important;
+    left: calc(var(--size) / 2 * -1) !important;
+}
+
 .logo-container {
     position: relative;
 }
@@ -159,6 +165,10 @@ footer p.footer-title {
 }
 
 .logo-container:hover .logo-description-container {
+    opacity: 1;
+}
+
+.logo-container:active .logo-description-container {
     opacity: 1;
 }
 

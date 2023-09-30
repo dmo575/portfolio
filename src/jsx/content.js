@@ -13,6 +13,7 @@ export const skills = {
         {name: "Bootstrap", src: logos.logo_bootstrap},
         {name: "Git", src: logos.logo_git},
         {name: "Github", src: logos.logo_github},
+        {name: `Emerald btw 😎`, src: logos.logo_lol},
     ],
 
     other: [

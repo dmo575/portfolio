@@ -14,8 +14,8 @@ function GetSkills(actualBreakpoint, targetBreakpoint, skills) {
     if(actualBreakpoint == breakpoints.sm && targetBreakpoint == breakpoints.sm) {
         return (
             <>
-            <div className="row d-flex justify-content-center justify-content-md-end">
-                <div className="col-9 col-md5 d-flex flex-wrap">
+            <div className="row d-flex my-4">
+                <div className="col d-flex justify-content-end">
                     {
                         skills.map(skill => {
                             return (<Skill src={skill.src} name={skill.name}/>);
@@ -41,6 +41,17 @@ function GetSkills(actualBreakpoint, targetBreakpoint, skills) {
     }
 }
 
+function HoverText(render) {
+
+    if(render) {
+        return (
+            <div className="col-auto d-flex align-items-end py-0">
+                <p>(Hover/tap icons for names)</p>
+            </div>
+        );
+    }
+}
+
 function Skillset({skills}) {
 
     const { breakpointState } = useContext(appContext);
@@ -50,13 +61,11 @@ function Skillset({skills}) {
             <div className="container">
 
                 {/* Title */}
-                <div className="row d-flex justify-content-between">
-                    <div className="col-auto d-flex align-items-end">
-                        <p className={`m-0 ${GetTitleSize(breakpointState)}`} style={{lineHeight: `calc(font-size / 2)`}}>Skillset</p>
+                <div className="row d-flex justify-content-md-between justify-content-center align-items-end my-4">
+                    <div className="col-auto d-flex p-0">
+                        <p className={`${GetTitleSize(breakpointState)}`}>How I can help you . . .</p>
                     </div>
-                    <div className="col-auto d-flex align-items-end p-0" style={{lineHeight: `calc(font-size / 2)`}}>
-                        <p className="m-0">(Hover icons for names)</p>
-                    </div>
+                    {HoverText(breakpointState >= breakpoints.md)}
                 </div>
 
                 {/* Core skills */}
@@ -73,7 +82,9 @@ function Skillset({skills}) {
                     {GetSkills(breakpointState, breakpoints.md, skills.other)}
                 </LineRow>
                 {GetSkills(breakpointState, breakpoints.sm, skills.other)}
-
+                <div className="row d-flex justify-content-end">
+                    {HoverText(breakpointState == breakpoints.sm)}
+                </div>
             </div>
         </div>
     );

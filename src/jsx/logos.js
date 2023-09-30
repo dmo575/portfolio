@@ -32,3 +32,4 @@ export const logo_npm = imgs + "npm.svg";
 
 // other
 export const logo_git = imgs + "git.svg";
+export const logo_lol = imgs + "lol.png";
