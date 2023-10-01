@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import Markdown from "react-markdown";// a React component that allows me to use markdown in my jsx
+import remarkGfm from "remark-gfm";// translates the .md file following the GFM standard
+import rehyperaw from "rehype-raw";// allows the rendering of HTML code inside the .md file
 
 /* function Test() {
 
@@ -33,11 +34,6 @@ import remarkGfm from "remark-gfm";
 
 const mdPath = "./../../public/markdown/test.md";
 
-const components = {
-    img: ({src, alt}) => (<img src={src} alt={alt}/>),
-    h1: () => (<h1></h1>)
-};
-
 function Test() {
 
     const [markdown, setMarkdown] = useState("");
@@ -58,7 +54,7 @@ function Test() {
 
 
     return(
-        <Markdown remarkPlugins={[remarkGfm]} skipHtml={false} components={components}>{markdown}</Markdown>
+        <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw}>{markdown}</Markdown>
     );
 
 }

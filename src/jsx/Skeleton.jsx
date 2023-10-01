@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Card from "./Card.jsx";
+import Card from "./../components/Card.jsx"
 import * as breakpoints from "./bsbp.js";
 import { appContext } from "./App.jsx";
 import { projectCards } from "./content.js";
