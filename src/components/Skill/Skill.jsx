@@ -1,11 +1,5 @@
-/* TODO: 
-    Fix logo sizes, either one size for all or make description text to work well with all sizes
-*/
-
-
 const logoSizeLg = 2;
 const logoSizeSm = 1.8;
-
 
 function Skill({src, name, size}) {
 

@@ -1,6 +1,4 @@
 import * as logos from "./logos.js";
-import * as icons from "./icons.js";
-
 
 /* here goes all the website's content in Object format */
 

@@ -1,9 +1,12 @@
 import { useContext } from "react";
-import * as icons from "./icons.js";
-import * as links from "./links.js"
-import * as breakpoints from "./bsbp.js";
-import { appContext } from "./App.jsx";
 
+import * as icons from "./../../variables/icons.js";
+import * as links from "./../../variables/links.js";
+import * as breakpoints from "./../../variables/bsbp.js";
+
+import { appContext } from "./../App.jsx";
+
+import "./Navbar.css";
 
 function Navbar() {
 

@@ -1,8 +1,12 @@
-import { useState, useEffect, useContext } from "react";
-import * as breakpoints from "./bsbp.js";
-import { GetTitleSize } from "./toolFuncs.js";
-import { appContext } from "./App.jsx";
-import { profileLg, profileSm } from "./content.js";
+import { useContext } from "react";
+
+import * as breakpoints from "./../../variables/bsbp.js";
+import { profileLg, profileSm } from "./../../variables/content.js";
+import { GetTitleSize } from "./../../js/toolFuncs.js";
+
+import { appContext } from "./../App.jsx";
+
+import "./ProfileSection.css";
 
 function ProfileSection() {
 

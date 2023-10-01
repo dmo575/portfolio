@@ -1,8 +1,10 @@
 import { useContext } from "react";
-import Card from "./../components/Card.jsx"
-import * as breakpoints from "./bsbp.js";
-import { appContext } from "./App.jsx";
-import { projectCards } from "./content.js";
+
+import * as breakpoints from "./../../variables/bsbp.js";
+import { projectCards } from "./../../variables/content.js";
+
+import { appContext } from "./../App.jsx";
+import Card from "./../Card/Card.jsx"
 
 
 function Skeleton() {

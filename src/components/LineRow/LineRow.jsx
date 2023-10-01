@@ -1,3 +1,5 @@
+import "./LineRow.css";
+
 function LineRow({title, children}) {
 
     return (

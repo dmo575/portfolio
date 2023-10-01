@@ -1,0 +1,6 @@
+/* it styles the lines that appear in the Skillset section */
+.spacer-rect {
+    width: 100%;
+    height: 0px;
+    border: 1px dashed rgba(0, 0, 0, 0.233);
+}

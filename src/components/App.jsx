@@ -1,15 +1,17 @@
 import { useState, createContext, useEffect, useRef } from "react";
-import * as breakpoints from "./bsbp.js";
-import { GetPerCurrToTarget_Bottom } from "./toolFuncs";
 
-import Navbar from "./Navbar.jsx";
-import ProfileSection from "./ProfileSection.jsx";
-import Skeleton from "./Skeleton.jsx";
-import Footer from "./Footer.jsx";
-import WorksTitle from "./WorksTitle.jsx";
-import Skillset from "./Skillset.jsx";
-import * as content from "./content.js";
+import { GetPerCurrToTarget_Bottom } from "./../js/toolFuncs.js";
+import * as breakpoints from "./../variables/bsbp.js";
+import * as content from "./../variables/content.js";
+
+import Navbar from "./Navbar/Navbar.jsx";
+import ProfileSection from "./ProfileSection/ProfileSection.jsx";
+import Skeleton from "./Skeleton/Skeleton.jsx";
+import Footer from "./Footer/Footer.jsx";
+import WorksTitle from "./WorksTitle/WorksTitle.jsx";
+import Skillset from "./Skillset/Skillset.jsx";
 import Test from "./Test.jsx";
+
 
 export const appContext = createContext();
 const bottomPivotLocPer = 30;

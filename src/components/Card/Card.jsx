@@ -1,8 +1,10 @@
-import * as breakpoints from "./bsbp.js";
-import Skill from "./Skill.jsx";
 import { useContext, useState } from "react";
-import { appContext } from "./App.jsx";
 import { Modal, Button } from "react-bootstrap";
+
+import * as breakpoints from "./../../variables/bsbp.js";
+
+import { appContext } from "./../App.jsx";
+import Skill from "./../Skill/Skill.jsx";
 
 function Card({card, dir}) {
 

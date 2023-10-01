@@ -1,7 +1,11 @@
 import { useEffect, useContext, useRef } from "react";
-import { GetPerCurrToTarget_Bottom, GetSectionSize } from "./toolFuncs";
-import { appContext } from "./App.jsx";
-import * as breakpoints from "./bsbp.js";
+
+import { GetPerCurrToTarget_Bottom, GetSectionSize } from "./../../js/toolFuncs.js";
+import * as breakpoints from "./../../variables/bsbp.js";
+
+import { appContext } from "./../App.jsx";
+
+import "./WorksTitle.css";
 
 // how much should the works title translate upwards, in rem. One for md+, other for sm-
 const worksTitleMovLg = 12;

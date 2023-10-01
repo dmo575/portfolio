@@ -1,6 +1,7 @@
-import * as icons from "./icons.js";
-import * as links from "./links.js"
+import * as icons from "./../../variables/icons.js";
+import * as links from "./../../variables/links.js";
 
+import "./Footer.css";
 
 function Footer() {
 

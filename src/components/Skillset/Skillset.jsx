@@ -1,11 +1,13 @@
-import * as logos from "./logos.js"
-import * as breakpoints from "./bsbp.js";
-import LineRow from "./LineRow.jsx";
-import ColorIcon from "./ColorIcon.jsx";
 import { useContext } from "react";
-import { appContext } from "./App.jsx";
-import { GetTitleSize } from "./toolFuncs.js";
-import Skill from "./Skill.jsx";
+
+import * as breakpoints from "./../../variables/bsbp.js";
+import { GetTitleSize } from "./../../js/toolFuncs.js";
+
+import { appContext } from "./../App.jsx";
+import LineRow from "./../LineRow/LineRow.jsx";
+import Skill from "./../Skill/Skill.jsx";
+
+import "./Skillset.css";
 
 // given a current breakpoint and a target breakpoint, returns a list of skills in jsx format if the current breakpoint is
 // indeed the target one

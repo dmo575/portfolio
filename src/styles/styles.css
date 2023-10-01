@@ -3,18 +3,6 @@
     opacity: 0;
 }
 
-/* speciffic to the Works title text */
-#works-title-cont {
-    display: flex;
-    justify-content: center;
-    
-    width: 100%;
-    height: 0rem;/* mod this prop for cutoff behavior */
-    max-height: 100%;
-
-    overflow-y: hidden;
-}
-
 /* section sizes */
 .section-size-lg {
     font-size: 8rem;
@@ -42,39 +30,6 @@
 }
 
 
-/* it styles the rect that shows below the Works title */
-.separator-rect {
-    width: 80%;
-    border: 2px solid black;
-    border-radius: 100%; /* this is what allows me to create that neat line shape */
-    margin-bottom: 5rem;
-}
-
-/* it styles the lines that appear in the Skillset section */
-.spacer-rect {
-    width: 100%;
-    height: 0px;
-    border: 1px dashed rgba(0, 0, 0, 0.233);
-}
-
-
-footer{
-    font-size: 0.8rem;
-    background-color: beige;
-    width: 100%;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-}
-
-footer p {
-    margin: 0;
-}
-
-footer p.footer-title {
-    margin-bottom: 0.5rem;
-}
-
-
 /* standard style for icons */
 .icon {
     width: 4rem;
@@ -82,18 +37,6 @@ footer p.footer-title {
     margin-right: 1rem;
     margin-left: 1rem;
     filter: invert(50%);
-}
-
-/* Used with ColorIcon component, its the overlay that applies a color to a greyscale icon*/
-.icon-overlay {
-    position: absolute;
-    top: 0;
-    /* we calculate left and width here to account for its parent (.icon) marging on left and right (1rem each) */
-    left: calc(1rem);
-    width: calc(100% - 2rem);
-    height: 100%;
-    mix-blend-mode: color;
-    /*background-color: rgb(103, 206, 197);*/
 }
 
 /* Used with ColorIcon component*/
@@ -185,25 +128,4 @@ footer p.footer-title {
     border-radius: 0.3rem;
     background-color: white;
     padding: 0.2rem;
-}
-
-#profile-section {
-    margin-bottom: 12rem;
-    margin-top: 6rem;
-}
-
-#reach-me-at {
-    border-right: 3px solid black;
-    border-radius: 0.3rem;
-}
-
-#navbar {
-    margin-bottom: 3rem;
-    margin-top: 4rem;
-}
-
-#skills {
-    margin-bottom: 10rem;
-    padding-bottom: 3rem;
-    padding-top: 3rem;
 }
