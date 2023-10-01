@@ -6,4 +6,6 @@ Here I am writing and an image follows below:
 
 <img src="./../../public/images/linux.svg" alt="sdsd"/>
 
+<h1> Header </h1>
+
 And this is the line right after it.

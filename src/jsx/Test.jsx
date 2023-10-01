@@ -33,6 +33,11 @@ import remarkGfm from "remark-gfm";
 
 const mdPath = "./../../public/markdown/test.md";
 
+const components = {
+    img: ({src, alt}) => (<img src={src} alt={alt}/>),
+    h1: () => (<h1></h1>)
+};
+
 function Test() {
 
     const [markdown, setMarkdown] = useState("");
@@ -53,7 +58,7 @@ function Test() {
 
 
     return(
-        <Markdown remarkPlugins={[remarkGfm]}>{markdown}</Markdown>
+        <Markdown remarkPlugins={[remarkGfm]} skipHtml={false} components={components}>{markdown}</Markdown>
     );
 
 }
