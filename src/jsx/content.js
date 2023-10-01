@@ -20,6 +20,7 @@ const skill_js = {name: "JavaScript", src: logos.logo_js};
 const skill_html = {name: "HTML 5", src: logos.logo_html};
 const skill_css = {name: "CSS 3", src: logos.logo_css};
 const skill_react  = {name: "React", src: logos.logo_react};
+const skill_reactbootstrap  = {name: "React-bootstrap", src: logos.logo_reactbootstrap};
 const skill_bootstrap = {name: "Bootstrap", src: logos.logo_bootstrap};
 const skill_git = {name: "Git", src: logos.logo_git};
 const skill_github = {name: "Github", src: logos.logo_github};
@@ -70,7 +71,8 @@ export const projectCards = [
             skill_flask,
             skill_sqlite,
             skill_git,
-            skill_github
+            skill_github,
+            skill_reactbootstrap
         ],
         content: {
             // here goes the address of a markdown doc

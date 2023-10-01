@@ -15,6 +15,7 @@ export const logo_linux = imgs + "linux.svg";
 
 // libraries - front end
 export const logo_react = imgs + "react.svg";
+export const logo_reactbootstrap = imgs + "reactbootstrap.svg";
 export const logo_bootstrap = imgs + "bootstrap.svg";
 export const logo_socketio = imgs + "socketio.png";
 

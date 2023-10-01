@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
-function Test() {
+/* function Test() {
 
     const [show, setShow] = useState(false);
 
@@ -27,6 +29,33 @@ function Test() {
         </div>
         </>
     );
+} */
+
+const mdPath = "./../../public/markdown/test.md";
+
+function Test() {
+
+    const [markdown, setMarkdown] = useState("");
+
+    useEffect(() => {
+
+        fetch(mdPath)
+        .then(response => {
+            if(response.ok) {
+                return response.text();
+            }
+        })
+        .then(data => {
+            setMarkdown(data);
+        })
+
+    }, []);
+
+
+    return(
+        <Markdown remarkPlugins={[remarkGfm]}>{markdown}</Markdown>
+    );
+
 }
 
 export default Test;
