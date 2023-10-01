@@ -1,4 +1,4 @@
-const imgs = "../../public/images/";
+const imgs = "../../images/";
 
 // socials
 export const logo_github = imgs + "github.svg";

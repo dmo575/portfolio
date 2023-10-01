@@ -9,6 +9,7 @@ import Footer from "./Footer.jsx";
 import WorksTitle from "./WorksTitle.jsx";
 import Skillset from "./Skillset.jsx";
 import * as content from "./content.js";
+import Test from "./Test.jsx";
 
 export const appContext = createContext();
 const bottomPivotLocPer = 30;
@@ -97,6 +98,7 @@ function App() {
     return (
         <>
         <appContext.Provider value={{breakpointState, bottomPivot}}>
+            <Test/>
             <Navbar/>
             <ProfileSection/>
             <Skillset skills={content.skills}/>

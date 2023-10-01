@@ -4,7 +4,6 @@ import { GetTitleSize } from "./toolFuncs.js";
 import { appContext } from "./App.jsx";
 import { profileLg, profileSm } from "./content.js";
 
-
 function ProfileSection() {
 
     const {breakpointState} = useContext(appContext);

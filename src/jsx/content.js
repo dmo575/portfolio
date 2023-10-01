@@ -56,6 +56,12 @@ export const skills = {
     ]
 }
 
+const content_calculatorMaster = {
+    parragraphs : {
+
+    }
+};
+
 export const projectCards = [
     {
         title: "Calculator Master",
@@ -69,11 +75,10 @@ export const projectCards = [
             skill_python,
             skill_flask,
             skill_sqlite,
-            skill_socketio,
             skill_git,
             skill_github
         ]
-    },
+    },/*
     {
         title: "Project title",
         srcL: debug_projCardSrcL,
@@ -95,9 +100,5 @@ export const projectCards = [
             skill_html,
             skill_css
         ]
-    }
+    }*/
 ]
-
-
-
-

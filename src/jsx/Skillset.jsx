@@ -18,7 +18,7 @@ function GetSkills(actualBreakpoint, targetBreakpoint, skills) {
                 <div className="col d-flex justify-content-end">
                     {
                         skills.map(skill => {
-                            return (<Skill src={skill.src} name={skill.name}/>);
+                            return (<Skill key={skill.name} src={skill.src} name={skill.name} size="lg"/>);
                         })
                     }
                 </div>
@@ -33,7 +33,7 @@ function GetSkills(actualBreakpoint, targetBreakpoint, skills) {
             <>
             {
                 skills.map(skill => {
-                    return (<Skill src={skill.src} name={skill.name}/>);
+                    return (<Skill key={skill.name} src={skill.src} name={skill.name} size="lg"/>);
                 })
             }
             </>
@@ -45,7 +45,7 @@ function HoverText(render) {
 
     if(render) {
         return (
-            <div className="col-auto d-flex align-items-end py-0">
+            <div className="col-auto d-flex align-items-end py-0 my-3">
                 <p>(Hover/tap icons for names)</p>
             </div>
         );
@@ -65,7 +65,7 @@ function Skillset({skills}) {
                     <div className="col-auto d-flex p-0">
                         <p className={`${GetTitleSize(breakpointState)}`}>How I can help you . . .</p>
                     </div>
-                    {HoverText(breakpointState >= breakpoints.md)}
+                    {HoverText(breakpointState >= breakpoints.lg)}
                 </div>
 
                 {/* Core skills */}
@@ -83,7 +83,7 @@ function Skillset({skills}) {
                 </LineRow>
                 {GetSkills(breakpointState, breakpoints.sm, skills.other)}
                 <div className="row d-flex justify-content-end">
-                    {HoverText(breakpointState == breakpoints.sm)}
+                    {HoverText(breakpointState <= breakpoints.md)}
                 </div>
             </div>
         </div>

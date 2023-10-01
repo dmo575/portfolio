@@ -16,7 +16,7 @@ function Skeleton() {
 
                 {projectCards.map((cardElement, index) => {
                     return (
-                        <div className="col my-2">
+                        <div key={ cardElement.title + index } className="col my-2">
                             <Card card={cardElement} dir={ index % 2 == 0 ? "left" : "right"}/>
                         </div>
                     );
