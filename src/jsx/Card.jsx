@@ -1,13 +1,24 @@
 import * as breakpoints from "./bsbp.js";
 import Skill from "./Skill.jsx";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { appContext } from "./App.jsx";
+import { Modal, Button } from "react-bootstrap";
 
 function Card({card, dir}) {
 
     const { breakpointState } = useContext(appContext);
+    const [modal, setModal] = useState(false);
 
     const img = <img className={`card-img-${dir}`} src={window.innerWidth < breakpoints.lg ? card.srcS : card.srcL}/>;
+
+
+    function openModal() {
+        setModal(true);
+    };
+
+    function closeModal() {
+        setModal(false);
+    };
 
     return (
         <>
@@ -24,22 +35,22 @@ function Card({card, dir}) {
                             );
                         })}
                     </div>
-                    {breakpointState >= breakpoints.lg ? <a className="btn rounded-5 btn-dark">Check it out</a> : <></>}
+                    {breakpointState >= breakpoints.lg ? <Button className="btn flex-grow-1 btn-dark rounded-5" onClick={openModal}>Check it out</Button> : <></>}
                 </div>
                 <div className="card-text d-flex" style={{marginTop: "1rem"}}>
-                    {breakpointState >= breakpoints.lg ? <></> : <button className="btn flex-grow-1 btn-dark" data-bs-toggle="modal" data-bs-target="#test">Check it out</button>}
+                    {breakpointState >= breakpoints.lg ? <></> : <Button className="btn flex-grow-1 btn-dark rounded-5" onClick={openModal}>Check it out</Button>}
                 </div>
             </div>
             {dir === "right" && window.innerWidth >= breakpoints.lg ? img : <></>}
         </div>
         <div className="container">
-            <div id="test" className="modal">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        My content
-                    </div>
-                </div>
-            </div>
+            <Modal show={modal} onHide={closeModal}>
+                <Modal.Header>Header</Modal.Header>
+                <Modal.Body>
+                    Modal content
+                </Modal.Body>
+                <Modal.Footer>Footer</Modal.Footer>
+            </Modal>
         </div>
         </>
     );

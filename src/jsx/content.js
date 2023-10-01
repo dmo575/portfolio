@@ -56,12 +56,6 @@ export const skills = {
     ]
 }
 
-const content_calculatorMaster = {
-    parragraphs : {
-
-    }
-};
-
 export const projectCards = [
     {
         title: "Calculator Master",
@@ -77,7 +71,10 @@ export const projectCards = [
             skill_sqlite,
             skill_git,
             skill_github
-        ]
+        ],
+        content: {
+            // here goes the address of a markdown doc
+        }
     },/*
     {
         title: "Project title",
