@@ -72,10 +72,12 @@ export const projectCards = [
             skill_github,
             skill_reactbootstrap
         ],
-        content: {
-            // here goes the address of a markdown doc
-        }
-    },/*
+        markdown: "./../markdown/test.md",
+        links: [
+            {name: "See it live", url: "https://www.youtube.com"},
+            {name: "Check code", url: "https://www.google.com"}
+        ]
+    },
     {
         title: "Project title",
         srcL: debug_projCardSrcL,
@@ -85,6 +87,11 @@ export const projectCards = [
             skill_js,
             skill_html,
             skill_css
+        ],
+        markdown: "./../markdown/test.md",
+        links: [
+            {name: "Live", url: "https://www.youtube.com"},
+            {name: "GitHub", url: "https://www.google.com"}
         ]
     },
     {
@@ -97,5 +104,10 @@ export const projectCards = [
             skill_html,
             skill_css
         ]
-    }*/
+        ,markdown: "./../markdown/test.md",
+        links: [
+            {name: "Live", url: "https://www.youtube.com"},
+            {name: "GitHub", url: "https://www.google.com"}
+        ]
+    }
 ]

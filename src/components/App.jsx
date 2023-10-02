@@ -100,7 +100,6 @@ function App() {
     return (
         <>
         <appContext.Provider value={{breakpointState, bottomPivot}}>
-            <Test/>
             <Navbar/>
             <ProfileSection/>
             <Skillset skills={content.skills}/>

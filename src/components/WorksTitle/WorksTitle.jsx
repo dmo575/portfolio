@@ -21,7 +21,7 @@ let lastScrollDir = 0;
 
 function WorksTitle() {
 
-    const {breakpointState} = useContext(appContext);
+    const { breakpointState } = useContext(appContext);
     const breakpointStateRef = useRef();
 
     useEffect(() => {
