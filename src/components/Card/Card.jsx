@@ -70,21 +70,19 @@ function Card({card, dir}) {
             {dir === "right" && window.innerWidth >= breakpoints.lg ? img : <></>}
         </div>
         <Modal show={modal} dialogClassName="modal-custom" scrollable={true} centered={true} onHide={closeModal}>
-            <Modal.Header closeButton>
-                <div className="container-fluid">
-                    <div className="row d-flex justify-content-center">
-                        <div className={`col-auto col-lg d-flex flex-column flex-lg-row ${breakpointState >= breakpoints.lg ? "justify-content-around" : ""}`}>
-                            <h2 style={{whiteSpace: "nowrap"}}>{card.title}</h2>
-                            <div className={`${breakpointState >= breakpoints.lg ? "d-flex align-items-center" : "w-100 btn-group" }`}>
-                                {
-                                    card.links.map((el, index) => {
-                                        return(
-                                            <a className={`btn btn-dark ${breakpointState >= breakpoints.lg ? "mx-1" : "w-50"}`} style={{whiteSpace: "nowrap"}} target="_blank" key={card.name+el+index} href={el.url}>{el.name}</a>
-                                        );
-                                    })
-                                }
-                            </div>
-                        </div>
+            <Modal.Header closeButton className={`${breakpointState >= breakpoints.lg ? "" : "py-1"}`}>
+                <div className={`col d-flex ${breakpointState >= breakpoints.lg ? "" : "flex-column justify-content-center align-items-center"}`}>
+                    <div className="col-auto mx-2">
+                        <h2 style={{whiteSpace: "nowrap"}}>{card.title}</h2>
+                    </div>
+                    <div className={`col-auto d-flex align-items-center`}>
+                        {
+                            card.links.map((el, index) => {
+                                return(
+                                    <a className={`btn btn-dark mx-2 rounded-5 ${breakpointState <= breakpoints.md ? "btn-sm" : ""}`} style={{whiteSpace: "nowrap"}} target="_blank" key={card.name+el+index} href={el.url}>{el.name}</a>
+                                );
+                            })
+                        }
                     </div>
                 </div>
             </Modal.Header>

@@ -32,10 +32,10 @@
 
 /* standard style for icons */
 .icon {
-    width: 4rem;
-    height: auto;
+    width: 2rem;
     margin-right: 1rem;
     margin-left: 1rem;
+    height: auto;
     filter: invert(50%);
 }
 

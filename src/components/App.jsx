@@ -10,6 +10,7 @@ import Skeleton from "./Skeleton/Skeleton.jsx";
 import Footer from "./Footer/Footer.jsx";
 import WorksTitle from "./WorksTitle/WorksTitle.jsx";
 import Skillset from "./Skillset/Skillset.jsx";
+import ProjectFooter from "./ProjectFooter/ProjectFooter.jsx";
 import Test from "./Test.jsx";
 
 
@@ -105,6 +106,7 @@ function App() {
             <Skillset skills={content.skills}/>
             <WorksTitle/>
             <Skeleton/>
+            <ProjectFooter/>
         </appContext.Provider>
         <Footer/>
         </>

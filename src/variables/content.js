@@ -50,8 +50,6 @@ export const skills = {
         skill_flask,
         skill_sqlite,
         skill_vitejs,
-        skill_socketio,
-        skill_webflow        
     ]
 }
 
