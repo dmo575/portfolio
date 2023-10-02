@@ -71,15 +71,15 @@ function Card({card, dir}) {
         </div>
         <Modal show={modal} dialogClassName="modal-custom" scrollable={true} centered={true} onHide={closeModal}>
             <Modal.Header closeButton>
-                <div className="container">
+                <div className="container-fluid">
                     <div className="row d-flex justify-content-center">
-                        <div className={`col-auto col-lg d-flex flex-column flex-lg-row ${breakpointState >= breakpoints.lg ? "justify-content-between" : ""}`}>
+                        <div className={`col-auto col-lg d-flex flex-column flex-lg-row ${breakpointState >= breakpoints.lg ? "justify-content-around" : ""}`}>
                             <h2 style={{whiteSpace: "nowrap"}}>{card.title}</h2>
-                            <div className={`btn-group ${breakpointState >= breakpoints.lg ? "" : "w-100" }`}>
+                            <div className={`${breakpointState >= breakpoints.lg ? "d-flex align-items-center" : "w-100 btn-group" }`}>
                                 {
                                     card.links.map((el, index) => {
                                         return(
-                                            <a className="btn w-50 btn-outline-dark" style={{whiteSpace: "nowrap"}} target="_blank" key={card.name+el+index} href={el.url}>{el.name}</a>
+                                            <a className={`btn btn-dark ${breakpointState >= breakpoints.lg ? "mx-1" : "w-50"}`} style={{whiteSpace: "nowrap"}} target="_blank" key={card.name+el+index} href={el.url}>{el.name}</a>
                                         );
                                     })
                                 }
