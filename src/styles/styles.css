@@ -1,3 +1,7 @@
+p {
+    font-family: 'Comfortaa', cursive;
+}
+
 /* add to any component you want to give the fade-in animation on scroll to*/
 .fade-in-actor {
     opacity: 0;
@@ -5,7 +9,7 @@
 
 /* section sizes */
 .section-size-lg {
-    font-size: 8rem;
+    font-size: 9rem;
 }
 
 .section-size-md {

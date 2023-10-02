@@ -1,4 +1,17 @@
 #profile-section {
     margin-bottom: 12rem;
     margin-top: 6rem;
+    font-size: 1.2rem;
+}
+
+.profile-section-highlight {
+    font-size: 1.5rem;
+    color: rgb(46, 111, 196);
+    color: rgb(35, 90, 163);
+}
+
+.profile-section-highlight-secondary {
+    font-size: 1.35rem;
+    color: rgb(46, 111, 196);
+    color: rgb(35, 90, 163);
 }

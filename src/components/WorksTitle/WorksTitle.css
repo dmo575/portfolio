@@ -16,3 +16,7 @@
     border-radius: 100%; /* this is what allows me to create that neat line shape */
     margin-bottom: 5rem;
 }
+
+#works-title {
+    font-family: 'Carattere', cursive;
+}
