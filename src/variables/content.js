@@ -55,7 +55,7 @@ export const skills = {
 
 export const projectCards = [
     {
-        title: "Calculator Master",
+        title: "Portfolio website",
         srcL: debug_projCardSrcL,
         srcS: debug_projCardSrcS,
         description: debug_desc50,
@@ -70,14 +70,14 @@ export const projectCards = [
             skill_github,
             skill_reactbootstrap
         ],
-        markdown: "./../markdown/test.md",
+        markdown: "./../markdown/portfolio.md",
         links: [
-            {name: "See it live", url: "https://www.youtube.com"},
-            {name: "Check code", url: "https://www.google.com"}
+            {name: "Seeing it live right now", url: ""},
+            {name: "Check code", url: "https://github.com/dmo575/portfolio"}
         ]
     },
     {
-        title: "Project title",
+        title: "Calculator master",
         srcL: debug_projCardSrcL,
         srcS: debug_projCardSrcS,
         description: debug_desc50,
@@ -93,7 +93,7 @@ export const projectCards = [
         ]
     },
     {
-        title: "Project title",
+        title: "MyMovies",
         srcL: debug_projCardSrcL,
         srcS: debug_projCardSrcS,
         description: debug_desc50,

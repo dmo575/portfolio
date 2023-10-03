@@ -1,4 +1,6 @@
-p {
+/* Bootstrap has its own font-fality at the p tag level so I cant just use the body or
+html tags if I want to override Bootstrap's style */
+p, h1, h2, h3, h4, h5, h6  {
     font-family: 'Comfortaa', cursive;
 }
 

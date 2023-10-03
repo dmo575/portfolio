@@ -21,7 +21,7 @@ function ProfileSection() {
                 </div>
                 <div className="col-md col-10 offset-md-1 gx-0 gy-5 gy-md-0 text-center text-md-start">
                     <p className={GetTitleSize(breakpointState)}>Hi there 👋</p>
-                    <p>I'm Alfredo, a <strong className="profile-section-highlight">Front-end Junior web developer</strong> who loves bringing websites to live with the help of React, Bootstrap and the big three (JS/HTML/CSS).</p>
+                    <p>I'm Alfredo, a <strong className="profile-section-highlight">Front-end Junior web developer</strong> who loves bringing websites to life with the help of React, Bootstrap and the big three (JS/HTML/CSS).</p>
                     <p>I also enjoy <strong className="profile-section-highlight-secondary">learning</strong> about Back-end and <strong className="profile-section-highlight-secondary">anything</strong> tech really (Linux, game engines, you name it!)</p>
                     <p>If you like my portfolio, please let me know at <strong className="profile-section-highlight">{`${link_contactMail} !`}</strong></p>
                 </div>
