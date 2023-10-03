@@ -2,6 +2,7 @@
 
 This project was built with the objective of being a **easy to update and manage** place where I could showcase my works and also get to use React and Bootstrap.
 
+Tech used: X X X X X X X X X X X 
 
 ### React and Bootstrap
 As I built the project, it became clear to me how good React was at helping making re-husable, mantainable code by combining the idea of components with the paradigm of functional programming.
