@@ -144,3 +144,7 @@ p, h1, h2, h3, h4, h5, h6  {
     border-radius: 0.2rem;
     background-color: rgb(235, 236, 236);
 }
+
+.font-readable p{
+    font-family: var(--bs-body-font-family);
+}

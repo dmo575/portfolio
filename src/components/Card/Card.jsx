@@ -95,7 +95,9 @@ function Card({card, dir}) {
                 </div>
             </Modal.Header>
             <Modal.Body>
-                <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{markdown}</Markdown>
+                <div className="font-readable">
+                    <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{markdown}</Markdown>
+                </div>
             </Modal.Body>
         </Modal>
         </>

@@ -44,11 +44,19 @@ This is the final project structure (im skipping other directories for clarity's
 ### Custom markdown ! ! !
 Thanks to react-markdown components, I was able to customize my own markdown!.
 
-For example, this is a normal markdown **bold text**, and this is my **$$special markdown bold text** and my **$$$special markdown bold text smaller edition**. Sounds familiar? Yep, I used it on my intro card at the top of the page, that is markdown too!
+For example, this is a normal markdown **bold text**, and this is my **$$special markdown bold text** and my **$$$special markdown bold text smaller edition**. Looks familiar? Yep, I used it on my intro card at the top of the page (with a different font), that is markdown too!
 
-Also, the code blocks are customized as well.
+```
+Here is how you write the special bold text:
+**$$Big size special bold text**
+**$$$Small size special bold text**
 
-I must say, the react-markdown docs are a bit cryptic to me, so I might have taken the easy route to customization-land (parsing), but practicality is important in web development, or so I have heard.
+Here is how you customize images:
+![{"width": "50%", "someOtherAttribute": "someValue"}](./img/path.svg)
+
+Also, the code of block style is custom, I added the border and background color to it.
+
+```
 
 ### Leveling up my CSS
 It blows my mind how many new things I have discovered about CSS while making this project: expressions (calc()), variables (--myVar, var()), pseudo-expressions (.component:hover), accessing children of a selector based on parent selector AND a pseudo-expression triggering (.parent:hover .children), all that and many other CSS properties like position (static, relative, absolute), transition, white-space, etc...

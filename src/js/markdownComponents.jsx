@@ -1,16 +1,6 @@
 
-
-//ui-sans-serif
-//style={{fontFamily: "var(--bs-font-monospace)"}}
-
 const components = {
-    p(props) {
-        const {node, ...rest} = props;
 
-        return (
-            <p style={{fontFamily: "var(--bs-body-font-family)"}} {...rest}/>
-        );
-    },
     pre(props) {
         const {node, ...rest} = props;
 
@@ -35,8 +25,12 @@ const components = {
         // small parsing hack for markdown bold text (**like this**)
         // when writting bold text, if you start that text with:
         // $ -> means you really just want to use the $ symbol
-        // $$ -> means you want to use profile-section-highlight-primary class
+        //      example: (**$ dollars in normal bold**)
+        // $$ -> means you want to use profile-section-highlight-primary clas
+        //      example: (**$$special bold text LARGE ver**)
         // $$$ -> means you want to use profile-section-highlight-secondary class
+        //      example: (**$$special bold text SMALL ver**)
+
         let classes = "";
         
         if (start === "$$$") {
@@ -54,6 +48,6 @@ const components = {
             <strong className={classes} {...rest}/>
         );
     }
-}
+};
 
 export default components;
