@@ -12,9 +12,43 @@ I only found out that Bootstrap was not fully compatible with React once I was a
 It was a great experience for me to use React for this project as I was able to see first hand what React has to offer (Compartmentalization of code by components and the hability they have to react to any changes and send information to one another) and where it lacks (Bootstrap compatability, no markdown support) and sticking to it and finding workarounds for its shortcomings as well as leveraging its best features gave me a real sense of what it feels like to build and mantain a real life project.
 
 ### The big picture
-As I made the website I realized that if I was to manage its content over the comming months I needed a solution for data storage and creation. For this reason I decided to look into markdown languages and their integration onto React applications. I ended up using the package react-markdown from GitHub.
+As I made the website I realized that if I was to manage its content over the coming months I needed a solution for data storage and creation. For this reason I decided to look into markdown languages and their integration into React applications. I ended up using the package **react-markdown** from GitHub.
 
-Markdown would then serve me to easely create content, so for the storage and serving of the .md files and other small files I decide to pay more attention to the project structure. I restructured the project on a way that made sense to me and worked well with both the bundler (Vitejs) and the server application (Flask, which allows me change the relative path I want to use to serve my files from)
+After I added markdown, I noticed that I still had a lot of data in .js files that was used in the project but that made no sense to place in a .md file, like all the different data that makes up a Card component. I wanted that data to be outside the /src directory because I didn't want to re-bundle my app every time I changed a simple line like "Welcome" to "Hi there" or something like that, but the idea of placing .js files, even if they contained just data, inside the /public directory felt awfully wrong (what could happen if because Vite's optimization the references to those files inside the /src content got renamed, it would break the whole thing. Plus, my .js files inside /public would not get optimized at all), so after some research I realized that JSON was just the best format to use in this case.
+
+This is the final project structure (im skipping other directories for clarity's sake):
+```
+.
+├── src/
+│   └── components/
+│       ├── comp1/
+│       │   ├── comp1.jsx
+│       │   └── comp1.css (optional)
+│       └── comp2...
+│       
+└── public/
+    ├── images/
+    │   ├── img1.svg
+    │   └── ...
+    │
+    ├── markdown/
+    │   ├── calculatormaster.md
+    │   └── ...
+    │
+    └── JSON/
+        ├── Cards.json
+        ├── Comp3.json (optional)
+        └── ...
+```
+
+### Custom markdown ! ! !
+Thanks to react-markdown components, I was able to customize my own markdown!.
+
+For example, this is a normal markdown **bold text**, and this is my **$special markdown bold text** and my **$$special markdown bold text secondary**. Sounds familiar? Yep, I used it on my intro card at the top of the page, that is markdown too!
+
+Also, the code blocks are customized as well.
+
+I must say, the react-markdown docs are a bit cryptic to me, so I might have taken the easy route to customization-land (parsing), but practicality is important in web development, or so I have heard.
 
 ### Leveling up my CSS
 It blows my mind how many new things I have discovered about CSS while making this project: expressions (calc()), variables (--myVar, var()), pseudo-expressions (.component:hover), accessing children of a selector based on parent selector AND a pseudo-expression triggering (.parent:hover .children), all that and many other CSS properties like position (static, relative, absolute), transition, white-space, etc...

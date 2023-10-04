@@ -1,0 +1,82 @@
+{
+    "linkedin": {
+        "name": "Linkedin",
+        "color": "",
+        "grayscale": "https://api.iconify.design/cib:linkedin.svg"
+    },
+    "github": {
+        "name": "GitHub",
+        "color": "./images/github.svg",
+        "grayscale": "https://api.iconify.design/cib:github.svg"
+    },
+    "git": {
+        "name": "Git",
+        "color": "./images/git.svg",
+        "grayscale": "https://api.iconify.design/simple-icons:git.svg"
+    },
+    "javascript": {
+        "name": "JavaScript",
+        "color": "./images/javascript.svg",
+        "grayscale": "https://api.iconify.design/simple-icons:javascript.svg"
+    },
+    "python": {
+        "name": "Python",
+        "color": "./images/python.svg",
+        "grayscale": "https://api.iconify.design/simple-icons:python.svg"
+    },
+    "html": {
+        "name": "HTML 5",
+        "color": "./images/html.svg",
+        "grayscale": "https://api.iconify.design/simple-icons:html5.svg"
+    },
+    "css": {
+        "name": "CSS 3",
+        "color": "./images/css.svg",
+        "grayscale": "https://api.iconify.design/simple-icons:css3.svg"
+    },
+    "react": {
+        "name": "React",
+        "color": "./images/react.svg",
+        "grayscale": "https://api.iconify.design/simple-icons:react.svg"
+    },
+    "bootstrap": {
+        "name": "Bootstrap",
+        "color": "./images/bootstrap.svg",
+        "grayscale": "https://api.iconify.design/simple-icons:bootstrap.svg"
+    },
+    "flask": {
+        "name": "Flask",
+        "color": "./images/flask.svg",
+        "grayscale": "https://api.iconify.design/simple-icons:flask.svg"
+    },
+    "vitejs": {
+        "name": "Vite.js",
+        "color": "./images/vitejs.svg",
+        "grayscale": "https://api.iconify.design/simple-icons:vite.svg"
+    },
+    "sqlite": {
+        "name": "SQLite",
+        "color": "./images/sqlite.svg",
+        "grayscale": "https://api.iconify.design/simple-icons:sqlite.svg"
+    },
+    "webflow": {
+        "name": "Webflow",
+        "color": "./images/webflow.svg",
+        "grayscale": "https://api.iconify.design/simple-icons:webflow.svg"
+    },
+    "lol": {
+        "name": "Emerald b t w 😎",
+        "color": "./images/lol.png"
+    },
+
+
+    "download": {
+        "grayscale": "https://api.iconify.design/uiw:download.svg"
+    },
+    "hash": {
+        "grayscale": "https://api.iconify.design/bi:hash.svg"
+    },
+    "mail": {
+        "grayscale": "https://api.iconify.design/mingcute:mail-send-line.svg"
+    }
+}

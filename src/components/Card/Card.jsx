@@ -14,7 +14,7 @@ import "./Card.css";
 
 function Card({card, dir}) {
 
-    const { breakpointState } = useContext(appContext);
+    const { breakpointState, icons } = useContext(appContext);
     const [modal, setModal] = useState(false);
     const [markdown, setMarkdown] = useState("Loading markdown. . .");
 
@@ -32,7 +32,7 @@ function Card({card, dir}) {
 
     async function loadMarkdown() {
         
-        const response = await (fetch(card.markdown));
+        const response = await (fetch(card.content));
 
         if(response.status === 200) {
 
@@ -52,12 +52,16 @@ function Card({card, dir}) {
             {dir === "left" || window.innerWidth < breakpoints.lg ? img : <></>}
             <div className="card-body d-flex flex-column">
                 <h1 className="card-title">{card.title}</h1>
-                <p className="card-text flex-grow-1">{card.description}</p>
+                <div className="card-text flex-grow-1">
+                    <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw}>{card.description}</Markdown>
+                </div>
                 <div className="card-text d-flex justify-content-lg-between justify-content-center">
                     <div className={`d-flex justify-content-lg-start justify-content-around flex-grow-1 align-items-center ${breakpointState <= breakpoints.md ? "my-3" : ""}`}>
                         {card.tech.map(el => {
+                            if(Object.keys(icons).length == 0) {return}
+
                             return (
-                                <Skill key={card.title + el.name} src={el.src} name={el.name} size={breakpointState == breakpoints.lg ? "lg" : "sm"}/>
+                                <Skill key={card.title + el} src={icons[el].color} name={icons[el].name} size={breakpointState == breakpoints.lg ? "lg" : "sm"}/>
                             );
                         })}
                     </div>
@@ -69,6 +73,8 @@ function Card({card, dir}) {
             </div>
             {dir === "right" && window.innerWidth >= breakpoints.lg ? img : <></>}
         </div>
+
+        
         <Modal show={modal} dialogClassName="modal-custom" scrollable={true} centered={true} onHide={closeModal}>
             <Modal.Header closeButton className={`${breakpointState >= breakpoints.lg ? "" : "py-1"}`}>
                 <div className={`col d-flex ${breakpointState >= breakpoints.lg ? "" : "flex-column justify-content-center align-items-center"}`}>
@@ -79,7 +85,7 @@ function Card({card, dir}) {
                         {
                             card.links.map((el, index) => {
                                 return(
-                                    <a className={`btn btn-dark mx-2 rounded-5 ${breakpointState <= breakpoints.md ? "btn-sm" : ""}`} style={{whiteSpace: "nowrap"}} target="_blank" key={card.name+el+index} href={el.url}>{el.name}</a>
+                                    <a className={`btn btn-dark mx-2 rounded-5 ${breakpointState <= breakpoints.md ? "btn-sm" : ""}`} style={{whiteSpace: "nowrap"}} target="_blank" key={card.title+el+index} href={el.url}>{el.name}</a>
                                 );
                             })
                         }

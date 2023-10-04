@@ -16,7 +16,7 @@ function ProjectFooter() {
         <div id="project-footer-cont" className="container">
             <div className="row">
                 <div className="col text-center">
-                    <p className="m-0">. . . and more comming! I'm always coding something { breakpointState != breakpoints.md ? <>&#8674;</> : ""}
+                    <p className="m-0">. . . and more coming! I'm always coding something { breakpointState != breakpoints.md ? <>&#8674;</> : ""}
                     <a href={link_github} target="_blank"><img className="icon h-100" src={icon_github} alt="GitHub"/></a>
                     </p>
                 </div>

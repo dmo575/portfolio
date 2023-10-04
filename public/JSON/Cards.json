@@ -1,0 +1,48 @@
+{
+    "cards": [
+        {
+            "title": "Portfolio website",
+            "srcL": "https://fastly.picsum.photos/id/288/300/300.jpg?hmac=7RMC2BTzA6EpogvGf74Us4VguwkoeSsLzBARJbs5VOk",
+            "srcS": "https://fastly.picsum.photos/id/230/600/300.jpg?hmac=xaOtfLjlm4OwQVWYD4xcugIiy5Ebr_qNu7ymvmI2jv4",
+            "description": "./markdown/portfolio_desc.md",
+            "tech": [
+                "javascript",
+                "html",
+                "css",
+                "bootstrap",
+                "python",
+                "flask",
+                "sqlite",
+                "git",
+                "github"
+            ],
+            "content": "./markdown/portfolio.md",
+            "links": [
+                {"name": "Check it out", "url": "/" },
+                {"name": "Check code", "url": "https://github.com/dmo575/portfolio" }
+            ]
+        },
+        {
+            "title": "Calculator master",
+            "srcL": "https://fastly.picsum.photos/id/288/300/300.jpg?hmac=7RMC2BTzA6EpogvGf74Us4VguwkoeSsLzBARJbs5VOk",
+            "srcS": "https://fastly.picsum.photos/id/230/600/300.jpg?hmac=xaOtfLjlm4OwQVWYD4xcugIiy5Ebr_qNu7ymvmI2jv4",
+            "description": "./markdown/portfolio_desc.md",
+            "tech": [
+                "javascript",
+                "html",
+                "css",
+                "bootstrap",
+                "python",
+                "flask",
+                "sqlite",
+                "git",
+                "github"
+            ],
+            "content": "./markdown/calculatormaster.md",
+            "links": [
+                {"name": "Check it out", "url": "/" },
+                {"name": "Check code", "url": "https://github.com/dmo575/portfolio" }
+            ]
+        }
+    ]
+}

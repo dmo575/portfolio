@@ -1,3 +1,4 @@
+// bootstrap breakpoints (screen width, px)
 export const sm = 576;
 export const md = 768;
 export const lg = 992;

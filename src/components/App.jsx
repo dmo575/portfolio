@@ -16,6 +16,7 @@ import Test from "./Test.jsx";
 
 export const appContext = createContext();
 const bottomPivotLocPer = 30;
+const iconsJson = "./JSON/Icons.json";
 
 
 function GetBottomPivotPos() {
@@ -37,11 +38,24 @@ function GetCurrentBreakpoint() {
     return breakpoints.lg;
 }
 
+async function FetchIcons() {
+
+    const response = await(fetch(iconsJson));
+
+    if(response.status == 200) {
+
+        const data = await(response.json());
+
+        return data;
+    }
+}
+
 function App() {
 
     const [breakpointState, setBreakpointState] = useState(GetCurrentBreakpoint());
     const breakpointStateRef = useRef();
     const bottomPivot = useRef();
+    const [icons, setIcons] = useState({});
 
     function handleFadeIn() {
 
@@ -85,6 +99,17 @@ function App() {
 
     useEffect(() => {
 
+        const getIcons = async () => {
+
+            const iconsData = await(FetchIcons());
+
+            console.log(iconsData);
+
+            setIcons(iconsData);
+        };
+
+
+        getIcons();
         handleFadeIn();
         bottomPivot.current = GetBottomPivotPos();
 
@@ -100,7 +125,8 @@ function App() {
 
     return (
         <>
-        <appContext.Provider value={{breakpointState, bottomPivot}}>
+        <appContext.Provider value={{breakpointState, bottomPivot, icons}}>
+            <Test/>
             <Navbar/>
             <ProfileSection/>
             <Skillset skills={content.skills}/>

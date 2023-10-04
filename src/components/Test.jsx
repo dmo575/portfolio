@@ -4,6 +4,7 @@ import { Modal } from "react-bootstrap";
 import Markdown from "react-markdown";// a React component that allows me to use markdown in my jsx
 import remarkGfm from "remark-gfm";// translates the .md file following the GFM standard
 import rehyperaw from "rehype-raw";// allows the rendering of HTML code inside the .md file
+import components from "./../js/markdownComponents.jsx";
 
 /* function Test() {
 
@@ -54,7 +55,7 @@ function Test() {
 
 
     return(
-        <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw}>{markdown}</Markdown>
+        <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{markdown}</Markdown>
     );
 
 }

@@ -63,12 +63,12 @@ export const projectCards = [
             skill_js,
             skill_html,
             skill_css,
+            skill_bootstrap,
             skill_python,
             skill_flask,
             skill_sqlite,
             skill_git,
             skill_github,
-            skill_reactbootstrap
         ],
         markdown: "./../markdown/portfolio.md",
         links: [
@@ -84,9 +84,14 @@ export const projectCards = [
         tech: [
             skill_js,
             skill_html,
-            skill_css
+            skill_css,
+            skill_python,
+            skill_flask,
+            skill_sqlite,
+            skill_git,
+            skill_github
         ],
-        markdown: "./../markdown/test.md",
+        markdown: "./../markdown/calculatormaster.md",
         links: [
             {name: "Live", url: "https://www.youtube.com"},
             {name: "GitHub", url: "https://www.google.com"}
@@ -100,9 +105,26 @@ export const projectCards = [
         tech: [
             skill_js,
             skill_html,
-            skill_css
+            skill_css,
+            skill_python,
+            skill_flask,
+            skill_sqlite,
         ]
-        ,markdown: "./../markdown/test.md",
+        ,markdown: "./../markdown/mymovies.md",
+        links: [
+            {name: "Live", url: "https://www.youtube.com"},
+            {name: "GitHub", url: "https://www.google.com"}
+        ]
+    },
+    {
+        title: "My game dev portfolio",
+        srcL: debug_projCardSrcL,
+        srcS: debug_projCardSrcS,
+        description: "More than the webpage (which I fully made but using Webflow instead of coding), the idea is to showcase that I am always ready to learn new things (also, check out the C++ 2D engine in there, thats 🔥🔥🔥 😎)",
+        tech: [
+            skill_webflow,
+        ]
+        ,markdown: "./../markdown/mymovies.md",
         links: [
             {name: "Live", url: "https://www.youtube.com"},
             {name: "GitHub", url: "https://www.google.com"}

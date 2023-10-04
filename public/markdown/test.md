@@ -4,13 +4,15 @@
 
 **And this is some bold text**
 
-**sdsdsdsd**
+**$$$ABCD**
+
+**This is some test**
 
 ###### sdsdsdsdsd
 
 Here I am writing and an image follows below:
 
-<img src="./../../public/images/js.svg" className="w-25 rounded-5" alt="Some image" width="15%"/>
+![Image](./../../public/images/javascript.svg)
 
 And this is the line right after it.
 

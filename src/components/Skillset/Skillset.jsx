@@ -65,7 +65,7 @@ function Skillset({skills}) {
                 {/* Title */}
                 <div className="row d-flex justify-content-md-between justify-content-center align-items-end my-4">
                     <div className="col-auto d-flex p-0">
-                        <p className={`${GetTitleSize(breakpointState)}`}>How I can help you . . .</p>
+                        <p className={`${GetTitleSize(breakpointState)}`}>Preffered tools</p>
                     </div>
                     {HoverText(breakpointState >= breakpoints.lg)}
                 </div>
