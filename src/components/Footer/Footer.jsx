@@ -1,9 +1,37 @@
-import * as icons from "./../../variables/icons.js";
-import * as links from "./../../variables/links.js";
+import { useState, useEffect } from "react";
 
 import "./Footer.css";
 
+const iconsJson = "./JSON/Icons.json";
+const contactJson = "./JSON/Contact.json";
+
+
 function Footer() {
+
+    const [state, setState] = useState(null);
+
+    useEffect(() => {
+
+        const getStateData = async () => {
+
+            const iconsResponse = await(fetch(iconsJson));
+            const contactResponse = await(fetch(contactJson));
+
+            if(iconsResponse.status == 200 && contactResponse.status == 200) {
+
+                const iconsData = await(iconsResponse.json());
+                const contactData = await(contactResponse.json());
+
+                setState({iconsData, contactData});
+                return;
+            }
+
+            console.error("Error while retrieving icons and contact info in Footer");
+        };
+
+        getStateData();
+
+    }, []);
 
     return (
         <footer className="container-fluid gx-0">
@@ -13,13 +41,13 @@ function Footer() {
                         <p className="footer-title">Socials</p>
                     </div>
                     <div>
-                        <a href={links.link_linkedin} target="_blank"><img className="icon icon-footer" src={icons.icon_linkedin} alt="Linkedin" /></a>
-                        <a href={links.link_github} target="_blank"><img className="icon icon-footer" src={icons.icon_github} alt="GitHub" /></a>
+                        <a href={state?.contactData?.linkedin || "https://www.linkedin.com/in/alfredo-rodriguez-23599a228/"} target="_blank"><img className="icon icon-footer" src={state?.iconsData?.linkedin.grayscale || "Linkedin"} alt="Linkedin" /></a>
+                        <a href={state?.contactData?.github || "https://github.com/dmo575"} target="_blank"><img className="icon icon-footer" src={state?.iconsData?.github.grayscale || "Github"} alt="GitHub" /></a>
                     </div>
                 </div>
                 <div className="col d-flex justify-content-start flex-column align-items-center">
                     <p className="footer-title">Contact</p>
-                    <a href={`mailto:${links.link_contactMail}`}>{links.link_contactMail}</a>
+                    <a href={`mailto:${state?.contactData?.email || "arco4@protonmail.com"}`}>{state?.contactData?.email || "arco4@protonmail.com"}</a>
                 </div>
                 <div className="col d-flex justify-content-start flex-column align-items-center">
                     <p className="footer-title">Quick Links</p>
