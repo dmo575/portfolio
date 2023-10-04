@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 
 import * as breakpoints from "./../../variables/bsbp.js";
 import { GetTitleSize } from "./../../js/toolFuncs.js";
@@ -9,84 +9,96 @@ import Skill from "./../Skill/Skill.jsx";
 
 import "./Skillset.css";
 
-// given a current breakpoint and a target breakpoint, returns a list of skills in jsx format if the current breakpoint is
-// indeed the target one
-function GetSkills(actualBreakpoint, targetBreakpoint, skills) {
+const skillsetJson = "./JSON/Skillset.json";
 
-    if(actualBreakpoint == breakpoints.sm && targetBreakpoint == breakpoints.sm) {
-        return (
-            <>
-            <div className="row d-flex my-4">
-                <div className="col d-flex justify-content-end">
-                    {
-                        skills.map(skill => {
-                            return (<Skill key={skill.name} src={skill.src} name={skill.name} size="lg"/>);
-                        })
-                    }
-                </div>
-            </div>
-            </>
-        );
 
-    }
-    else if(actualBreakpoint >= breakpoints.md && targetBreakpoint >= breakpoints.md) {
-
-        return (
-            <>
-            {
-                skills.map(skill => {
-                    return (<Skill key={skill.name} src={skill.src} name={skill.name} size="lg"/>);
-                })
-            }
-            </>
-        );
-    }
-}
-
-function HoverText(render) {
+function HoverText(render, text) {
 
     if(render) {
         return (
             <div className="col-auto d-flex align-items-end py-0 my-3">
-                <p>(Hover/tap icons for names)</p>
+                <p>{text}</p>
             </div>
         );
     }
 }
 
-function Skillset({skills}) {
+function Skillset() {
 
-    const { breakpointState } = useContext(appContext);
+    const { breakpointState, icons } = useContext(appContext);
+
+    const [state, setState] = useState(null);
+
+    useEffect(() =>{
+
+        const getData = async () => {
+
+            const response = await(fetch(skillsetJson));
+
+            if(response.status == 200) {
+
+                const data = await(response.json());
+
+                setState(data);
+            }
+
+        };
+
+        getData();
+
+    }, []);
+
+    function getSkills(stateArray) {
+
+        return (state && icons) ? (
+            state[stateArray].map( el => {
+                return (<Skill key={icons[el].name} src={icons[el].color} name={icons[el].name} size="lg"/>);
+            })
+        ) : null
+    };
 
     return (
         <div id="skills" className="container-fluid">
             <div className="container">
 
-                {/* Title */}
                 <div className="row d-flex justify-content-md-between justify-content-center align-items-end my-4">
                     <div className="col-auto d-flex p-0">
-                        <p className={`${GetTitleSize(breakpointState)}`}>Preffered tools</p>
+                        <p className={`${GetTitleSize(breakpointState)}`}>{state ? state.title: ""}</p>
                     </div>
-                    {HoverText(breakpointState >= breakpoints.lg)}
+                    {HoverText(breakpointState >= breakpoints.lg, state ? state.comment : "")}
                 </div>
 
-                {/* Core skills */}
-                <LineRow title="Core">
-                    {GetSkills(breakpointState, breakpoints.md, skills.core)}
-                </LineRow>
-                {GetSkills(breakpointState, breakpoints.sm, skills.core)}
+                {
+                    breakpointState >= breakpoints.md ? 
+                    (
+                        <>
+                        <LineRow title={state ? state.primaryToolsTitle : ""}>
+                        { getSkills("primarySkills")}
+                        </LineRow>
+                        <div className="row m-3"></div>
+                        <LineRow title={state ? state.secondaryToolsTitle : ""}>
+                        {getSkills("secondarySkills")}
+                        </LineRow>
+                        </>
+                    ) : (
+                        <>
+                        <LineRow title={state ? state.primaryToolsTitle : ""}/>
+                        <div className="row d-flex my-4">
+                            <div className="col d-flex justify-content-end">
+                            {getSkills("primarySkills")}
+                            </div>
+                        </div>
 
-                {/* Separation */}
-                <div className="row m-3"></div>
-
-                {/* Secondary skills */}
-                <LineRow title="Used here and there">
-                    {GetSkills(breakpointState, breakpoints.md, skills.other)}
-                </LineRow>
-                {GetSkills(breakpointState, breakpoints.sm, skills.other)}
-                <div className="row d-flex justify-content-end">
-                    {HoverText(breakpointState <= breakpoints.md)}
-                </div>
+                        <div className="row m-3"></div>
+                        <LineRow title={state ? state.secondaryToolsTitle : ""}/>
+                        <div className="row d-flex my-4">
+                            <div className="col d-flex justify-content-end">
+                            {getSkills("secondarySkills")}
+                            </div>
+                        </div>
+                        </>
+                    )
+                }
             </div>
         </div>
     );

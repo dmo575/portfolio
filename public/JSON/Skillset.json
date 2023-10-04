@@ -1,0 +1,22 @@
+{
+    "title": "Preffered tools",
+    "comment": "(Hover/tap icons for names)",
+    "primaryToolsTitle": "Core",
+    "secondaryToolsTitle": "Used here and there",
+    "primarySkills": [
+        "javascript",
+        "html",
+        "css",
+        "react",
+        "bootstrap",
+        "git",
+        "github",
+        "lol"
+    ],
+    "secondarySkills": [
+        "python",
+        "flask",
+        "sqlite",
+        "vitejs"
+    ]
+}

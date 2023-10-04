@@ -2,7 +2,6 @@ import { useState, createContext, useEffect, useRef } from "react";
 
 import { GetPerCurrToTarget_Bottom } from "./../js/toolFuncs.js";
 import * as breakpoints from "./../variables/bsbp.js";
-import * as content from "./../variables/content.js";
 
 import Navbar from "./Navbar/Navbar.jsx";
 import ProfileSection from "./ProfileSection/ProfileSection.jsx";
@@ -56,7 +55,7 @@ function App() {
     const [breakpointState, setBreakpointState] = useState(GetCurrentBreakpoint());
     const breakpointStateRef = useRef();
     const bottomPivot = useRef();
-    const [icons, setIcons] = useState({});
+    const [icons, setIcons] = useState(null);
 
     function handleFadeIn() {
 
@@ -130,7 +129,7 @@ function App() {
             <Test/>
             <Navbar/>
             <ProfileSection/>
-            <Skillset skills={content.skills}/>
+            <Skillset/>
             <WorksTitle/>
             <Skeleton/>
             <ProjectFooter/>

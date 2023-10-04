@@ -44,7 +44,7 @@ function Card({card, dir}) {
 
         }
         else {
-            setMarkdown("Error while loading the markdown content :/ . . . sry lol. You know what, lets forget u ever saw this, just hire me it will be fine, trust me bro. . . Im kidding its a connection issue, either the server went down or u just have no internet.");
+            setMarkdown("Error while loading the markdown content. Please check your connection to the internet and refresh the page.");
         }
     };
 
