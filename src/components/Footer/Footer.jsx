@@ -1,14 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { appContext } from "../App";
+
+import { iconsJson, contactJson } from "../../js/paths";
 
 import "./Footer.css";
-
-const iconsJson = "./JSON/Icons.json";
-const contactJson = "./JSON/Contact.json";
 
 
 function Footer() {
 
     const [state, setState] = useState(null);
+    const { Error } = useContext(appContext);
 
     useEffect(() => {
 
@@ -26,7 +27,8 @@ function Footer() {
                 return;
             }
 
-            console.error("Error while retrieving icons and contact info in Footer");
+            Error("footer content");
+
         };
 
         getStateData();

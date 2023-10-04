@@ -5,7 +5,6 @@ import remarkGfm from "remark-gfm";// translates the .md file following the GFM 
 import rehyperaw from "rehype-raw";// allows the rendering of HTML code inside the .md file
 import components from "./../../js/markdownComponents.jsx";
 
-
 import * as breakpoints from "./../../variables/bsbp.js";
 
 import { appContext } from "./../App.jsx";
@@ -16,9 +15,11 @@ import "./Card.css";
 
 function Card({card, dir}) {
 
-    const { breakpointState, icons } = useContext(appContext);
+    const { breakpointState, icons, Error } = useContext(appContext);
     const [modal, setModal] = useState(false);
-    const [markdown, setMarkdown] = useState("Loading markdown. . .");
+
+    // the main content of the card (.md file)
+    const [cardContent, setCardContent] = useState("Loading content. . .");
 
     const img = <img className={`card-img-${dir}`} src={window.innerWidth < breakpoints.lg ? card.srcS : card.srcL}/>;
 
@@ -40,12 +41,12 @@ function Card({card, dir}) {
 
             const data = await (response.text());
 
-            setMarkdown(data);
+            setCardContent(data);
 
+            return;
         }
-        else {
-            setMarkdown("Error while loading the markdown content. Please check your connection to the internet and refresh the page.");
-        }
+
+        Error("card contents");
     };
 
     return (
@@ -96,7 +97,7 @@ function Card({card, dir}) {
             </Modal.Header>
             <Modal.Body>
                 <div className="font-readable">
-                    <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{markdown}</Markdown>
+                    <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{cardContent}</Markdown>
                 </div>
             </Modal.Body>
         </Modal>

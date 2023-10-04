@@ -2,14 +2,13 @@ import { useContext, useState, useEffect } from "react";
 
 import * as breakpoints from "./../../variables/bsbp.js";
 import { GetTitleSize } from "./../../js/toolFuncs.js";
+import { skillsetJson } from "../../js/paths.js";
 
 import { appContext } from "./../App.jsx";
 import LineRow from "./../LineRow/LineRow.jsx";
 import Skill from "./../Skill/Skill.jsx";
 
 import "./Skillset.css";
-
-const skillsetJson = "./JSON/Skillset.json";
 
 
 function HoverText(render, text) {
@@ -25,7 +24,7 @@ function HoverText(render, text) {
 
 function Skillset() {
 
-    const { breakpointState, icons } = useContext(appContext);
+    const { breakpointState, icons, Error } = useContext(appContext);
 
     const [state, setState] = useState(null);
 
@@ -43,7 +42,7 @@ function Skillset() {
                 return;
             }
 
-            console.error("Error while retrieving icons info in Skillset");
+            Error();
 
         };
 
@@ -66,28 +65,28 @@ function Skillset() {
 
                 <div className="row d-flex justify-content-md-between justify-content-center align-items-end my-4">
                     <div className="col-auto d-flex p-0">
-                        <p className={`${GetTitleSize(breakpointState)}`}>{state ? state.title: ""}</p>
+                        <p className={`${GetTitleSize(breakpointState)}`}>{state?.title || ""}</p>
                     </div>
-                    {HoverText(breakpointState >= breakpoints.lg, state ? state.comment : "")}
+                    {HoverText(breakpointState >= breakpoints.lg, state?.comment || "")}
                 </div>
 
                 {
                     breakpointState >= breakpoints.md ? 
                     (
                         <>
-                        <LineRow title={state ? state.primaryToolsTitle : ""}>
+                        <LineRow title={state?.primaryToolsTitle || ""}>
                         { getSkills("primarySkills")}
                         </LineRow>
 
                         <div className="row m-3"></div>
 
-                        <LineRow title={state ? state.secondaryToolsTitle : ""}>
+                        <LineRow title={state?.secondaryToolsTitle || ""}>
                         {getSkills("secondarySkills")}
                         </LineRow>
                         </>
                     ) : (
                         <>
-                        <LineRow title={state ? state.primaryToolsTitle : ""}/>
+                        <LineRow title={state?.primaryToolsTitle || ""}/>
                         <div className="row d-flex my-4">
                             <div className="col d-flex justify-content-end">
                             {getSkills("primarySkills")}
@@ -96,7 +95,7 @@ function Skillset() {
 
                         <div className="row m-3"></div>
 
-                        <LineRow title={state ? state.secondaryToolsTitle : ""}/>
+                        <LineRow title={state?.secondaryToolsTitle || ""}/>
                         <div className="row d-flex my-4">
                             <div className="col d-flex justify-content-end">
                             {getSkills("secondarySkills")}

@@ -1,0 +1,6 @@
+{
+    "header": "Hi there 👋",
+    "bodyMarkdown": "./../markdown/greeting.md",
+    "srcL": "https://fastly.picsum.photos/id/893/300/400.jpg?hmac=Vy-UCZnBegnJLuZvrZtlgjA_xacW9xbYQsfq1SoLEbw",
+    "srcS": "https://fastly.picsum.photos/id/230/600/300.jpg?hmac=xaOtfLjlm4OwQVWYD4xcugIiy5Ebr_qNu7ymvmI2jv4"
+}

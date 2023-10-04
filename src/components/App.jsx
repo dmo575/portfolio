@@ -50,6 +50,11 @@ async function FetchIcons() {
     }
 }
 
+function Error(context) {
+
+    console.log("Error loading: " + context);
+}
+
 function App() {
 
     const [breakpointState, setBreakpointState] = useState(GetCurrentBreakpoint());
@@ -125,7 +130,7 @@ function App() {
 
     return (
         <>
-        <appContext.Provider value={{breakpointState, bottomPivot, icons}}>
+        <appContext.Provider value={{breakpointState, bottomPivot, icons, Error}}>
             <Test/>
             <Navbar/>
             <ProfileSection/>
@@ -133,8 +138,8 @@ function App() {
             <WorksTitle/>
             <Skeleton/>
             <ProjectFooter/>
+            <Footer/>
         </appContext.Provider>
-        <Footer/>
         </>
     );
 }

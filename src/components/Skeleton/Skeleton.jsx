@@ -1,16 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 
 import * as breakpoints from "./../../variables/bsbp.js";
+import { cardsJson } from "../../js/paths.js";
 
 import { appContext } from "./../App.jsx";
 import Card from "./../Card/Card.jsx"
 
-const cardsJson = "./JSON/Cards.json";
-
 
 function Skeleton() {
 
-    const {breakpointState} = useContext(appContext);
+    const {breakpointState, Error} = useContext(appContext);
     const [cardsArray, setCardsArray] = useState([]);
 
     
@@ -44,7 +43,7 @@ function Skeleton() {
 
                 }).catch(err => {
 
-                    console.error('Error loading card description.');
+                    Error("cards");
                 });
 
                 // add the fetch promise to the promises array
@@ -52,7 +51,13 @@ function Skeleton() {
             });
 
             // once all fetch promises for all cards have been solved (card.description)
-            await Promise.allSettled(promises);
+            const results = await (Promise.allSettled(promises));
+
+            results.forEach(el => {
+                if(el.status == "rejected") {
+                    Error("card descriptions");
+                }
+            });
 
             // set the cardsData state to be the array of cards
             setCardsArray(cardsData.cards);

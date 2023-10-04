@@ -12,7 +12,7 @@
 
 Here I am writing and an image follows below:
 
-![{"alt": "Image", "width": "30%"}](./../../public/images/javascript.svg)
+![{"alt": "Image", "width": "30%"}](./../../public/images/javascript.svg){height=50%}
 
 And this is the line right after it.
 
