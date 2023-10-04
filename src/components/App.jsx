@@ -38,6 +38,7 @@ function GetCurrentBreakpoint() {
     return breakpoints.lg;
 }
 
+// Fetches the icons json and returns its object
 async function FetchIcons() {
 
     const response = await(fetch(iconsJson));
@@ -99,12 +100,12 @@ function App() {
 
     useEffect(() => {
 
+        // fetch icons json
         const getIcons = async () => {
 
             const iconsData = await(FetchIcons());
 
-            console.log(iconsData);
-
+            // set the iconsData state to contain the icons object
             setIcons(iconsData);
         };
 

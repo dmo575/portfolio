@@ -44,7 +44,7 @@ This is the final project structure (im skipping other directories for clarity's
 ### Custom markdown ! ! !
 Thanks to react-markdown components, I was able to customize my own markdown!.
 
-For example, this is a normal markdown **bold text**, and this is my **$special markdown bold text** and my **$$special markdown bold text secondary**. Sounds familiar? Yep, I used it on my intro card at the top of the page, that is markdown too!
+For example, this is a normal markdown **bold text**, and this is my **$$special markdown bold text** and my **$$$special markdown bold text smaller edition**. Sounds familiar? Yep, I used it on my intro card at the top of the page, that is markdown too!
 
 Also, the code blocks are customized as well.
 

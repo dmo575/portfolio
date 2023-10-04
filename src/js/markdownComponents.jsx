@@ -1,5 +1,16 @@
 
+
+//ui-sans-serif
+//style={{fontFamily: "var(--bs-font-monospace)"}}
+
 const components = {
+    p(props) {
+        const {node, ...rest} = props;
+
+        return (
+            <p style={{fontFamily: "var(--bs-body-font-family)"}} {...rest}/>
+        );
+    },
     pre(props) {
         const {node, ...rest} = props;
 
@@ -10,9 +21,11 @@ const components = {
     img(props) {
         const {node, ...rest} = props;
 
-        
+        const data = JSON.parse(rest.alt);
+        rest.alt = data.alt;
+
         return(
-            <img className="rounded-5" width="15%" {...rest}/>
+            <img className="rounded-5" {...data} {...rest}/>
         );
     },
     strong(props) {

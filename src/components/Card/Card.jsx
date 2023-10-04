@@ -3,6 +3,8 @@ import { Modal, Button } from "react-bootstrap";
 import Markdown from "react-markdown";// a React component that allows me to use markdown in my jsx
 import remarkGfm from "remark-gfm";// translates the .md file following the GFM standard
 import rehyperaw from "rehype-raw";// allows the rendering of HTML code inside the .md file
+import components from "./../../js/markdownComponents.jsx";
+
 
 import * as breakpoints from "./../../variables/bsbp.js";
 
@@ -53,7 +55,7 @@ function Card({card, dir}) {
             <div className="card-body d-flex flex-column">
                 <h1 className="card-title">{card.title}</h1>
                 <div className="card-text flex-grow-1">
-                    <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw}>{card.description}</Markdown>
+                    <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{card.description}</Markdown>
                 </div>
                 <div className="card-text d-flex justify-content-lg-between justify-content-center">
                     <div className={`d-flex justify-content-lg-start justify-content-around flex-grow-1 align-items-center ${breakpointState <= breakpoints.md ? "my-3" : ""}`}>
@@ -93,7 +95,7 @@ function Card({card, dir}) {
                 </div>
             </Modal.Header>
             <Modal.Body>
-                <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw}>{markdown}</Markdown>
+                <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{markdown}</Markdown>
             </Modal.Body>
         </Modal>
         </>
