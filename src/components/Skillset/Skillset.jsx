@@ -40,7 +40,10 @@ function Skillset() {
                 const data = await(response.json());
 
                 setState(data);
+                return;
             }
+
+            console.error("Error while retrieving icons info in Skillset");
 
         };
 
@@ -75,7 +78,9 @@ function Skillset() {
                         <LineRow title={state ? state.primaryToolsTitle : ""}>
                         { getSkills("primarySkills")}
                         </LineRow>
+
                         <div className="row m-3"></div>
+
                         <LineRow title={state ? state.secondaryToolsTitle : ""}>
                         {getSkills("secondarySkills")}
                         </LineRow>
@@ -90,6 +95,7 @@ function Skillset() {
                         </div>
 
                         <div className="row m-3"></div>
+
                         <LineRow title={state ? state.secondaryToolsTitle : ""}/>
                         <div className="row d-flex my-4">
                             <div className="col d-flex justify-content-end">
