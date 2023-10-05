@@ -16,6 +16,11 @@ const components = {
             <img className="rounded-5" {...data} {...rest}/>
         );
     },
+    a({node, ...rest}) {
+        return (
+            <a target="_blank" {...rest}/>
+        );
+    },
     strong({node, ...rest}) {
 
         let classes = "";

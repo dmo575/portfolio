@@ -72,9 +72,8 @@
             ],
             "content": "./markdown/arc.md",
             "links": [
-                {"name": "See it live", "url": "/" },
-                {"name": "Check code", "url": "https://github.com/dmo575/portfolio" }
-            ]
+            ],
+            "skipTo": "https://arc-gameworks.webflow.io/"
         }
         
     ]

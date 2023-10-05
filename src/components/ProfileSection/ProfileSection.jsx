@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from "react";
+import { Modal, Button } from "react-bootstrap";
 
 import Markdown from "react-markdown";// a React component that allows me to use markdown in my jsx
 import remarkGfm from "remark-gfm";// translates the .md file following the GFM standard
@@ -17,6 +18,16 @@ function ProfileSection() {
 
     const [state, setState] = useState(null);
     const {breakpointState, Error} = useContext(appContext);
+    const [modalState, setModalState] = useState(false);
+
+
+    function showModal(e) {
+        setModalState(true);
+    }
+
+    function closeModal() {
+        setModalState(false);
+    }
 
     useEffect(() => {
 
@@ -62,7 +73,20 @@ function ProfileSection() {
                     <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{state?.bodyMarkdown}</Markdown>
                 </div>
                 <div className="col-1 col-xl-2"></div>
+                <div className="row">
+                    <div className="col-auto offset-8">
+                        <Button variant="link" onClick={showModal}><p>How I got into web development &#8674;</p></Button>
+                    </div>
+                </div>
             </div>
+            <Modal show={modalState} centered={true} onHide={closeModal}>
+                <Modal.Header>
+                    Modal Header
+                </Modal.Header>
+                <Modal.Body>
+                    Modal body
+                </Modal.Body>
+            </Modal>
         </div>
     );
 }

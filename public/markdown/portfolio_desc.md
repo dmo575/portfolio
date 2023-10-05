@@ -4,4 +4,4 @@ The page you are at right now. Highlights include:
 - Custom markdown like **$$$these**
 - Responsive design
 - Full-stack, I also made the back end and full server set up
-- All that and more, click the **"Check it out"** button for an in depth rundown!
+- All that and more, click **$$$"Check it out"** for an **$$in depth rundown** and a link to the code!

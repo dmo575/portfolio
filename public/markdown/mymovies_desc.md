@@ -1,4 +1,4 @@
-My final project for CS50x.
+My final project for [CS50x](https://cs50.harvard.edu/x/2023/).
 
 - **$$$Chatroom**: all users have access to a global live chatroom where they can participate (socketIO)
 - Registering and logging in/out (username and password, no email required)
