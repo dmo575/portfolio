@@ -34,16 +34,14 @@ function Skillset() {
 
             const response = await(fetch(skillsetJson));
 
-            if(response.status == 200) {
-
-                const data = await(response.json());
-
-                setState(data);
+            if(response.status != 200) {
+                Error("Skillset");
                 return;
             }
+            
+            const data = await(response.json());
 
-            Error();
-
+            setState(data);
         };
 
         getData();

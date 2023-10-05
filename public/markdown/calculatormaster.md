@@ -5,9 +5,9 @@ A purely JS/CSS/HTML application with no extra libraries.
 - Makes use of a database for the leaderboard (SQLite3)
 - Adaptive design, works on both PC and mobile screens (portrait and landscape)
 - Interacts with two APIs.
-    -  **ipinfo.io** (*server-side*) : for info on the client's **direct** IP (The IP that initiates the connection with the server, if the client is using a third party app like a VPN we wont be able to tell)
+    -  **ipinfo.io** (*server-side*) : for info on the client's **direct** IP (The IP that initiates the connection with the server, if the client is using a proxy we wont be able to tell, we can only take the IP at face value)
     -  **flagsapi.com** (*client-side*) : for fetching country flags based on a country code
-- Custom API made on the back-end to retrieve Leaderboard
+- Custom API made on the back-end to update and retrieve Leaderboard data
     - **/get_leaderboard?length=${leaderboardCapacity}**
 - Uses Github for both pushing from my PC to the repo and pulling latest from repo onto the server.
 - Makes heavy use of ES6 promises and other JS asynchronous functions
@@ -32,7 +32,7 @@ When recording a user's score, we send their IP trough the **ipinfo.io** API in 
 
 When retrieving the leaderboard, I first have the client ask for the data of the top players before displaying it. Once that is done I ask for the flags of each player by using the country code information I was provided along the players data. If an error occurs during the fetching of the flag, I instead display a world icon. This could be a connection issue with the API or the API not being able to locate the flag with the country code given.
 
-I also have my own implementation of a single API endpoint that allows me to retrieve the top X players:
+I also have my own implementation of a single API endpoint that allows me to retrieve the top X players (as well as other more endpoints for updating the database):
 
 **/get_leaderboard?length=${leaderboardCapacity}**
 

@@ -18,17 +18,16 @@ function Footer() {
             const iconsResponse = await(fetch(iconsJson));
             const contactResponse = await(fetch(contactJson));
 
-            if(iconsResponse.status == 200 && contactResponse.status == 200) {
+            if(iconsResponse.status != 200 || contactResponse.status != 200) {
 
-                const iconsData = await(iconsResponse.json());
-                const contactData = await(contactResponse.json());
-
-                setState({iconsData, contactData});
+                Error("footer content");
                 return;
             }
+            
+            const iconsData = await(iconsResponse.json());
+            const contactData = await(contactResponse.json());
 
-            Error("footer content");
-
+            setState({iconsData, contactData});
         };
 
         getStateData();

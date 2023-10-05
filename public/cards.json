@@ -25,7 +25,7 @@
         "title": "Calculator master",
         "srcL": "debug_projCardSrcL",
         "srcS": "debug_projCardSrcS",
-        "description": "debug_desc50",
+        "description": "./../markdown/calculatormaster_desc.md",
         "tech": [
             "skill_js",
             "skill_html",

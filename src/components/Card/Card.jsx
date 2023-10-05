@@ -37,16 +37,15 @@ function Card({card, dir}) {
         
         const response = await (fetch(card.content));
 
-        if(response.status === 200) {
-
-            const data = await (response.text());
-
-            setCardContent(data);
-
-            return;
+        if(response.status != 200) {
+            
+            Error("card contents");
+            return;            
         }
 
-        Error("card contents");
+        const data = await (response.text());
+
+        setCardContent(data);
     };
 
     return (

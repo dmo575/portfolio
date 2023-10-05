@@ -1,6 +1,6 @@
 import { useEffect, useContext, useRef } from "react";
 
-import { GetPerCurrToTarget_Bottom, GetSectionSize } from "./../../js/toolFuncs.js";
+import { GetSectionSize } from "./../../js/toolFuncs.js";
 import * as breakpoints from "./../../variables/bsbp.js";
 
 import { appContext } from "./../App.jsx";
@@ -14,10 +14,6 @@ const worksTitleMovSm = 7;
 
 let lastScrollY = window.scrollY;
 let lastScrollDir = 0;
-
-// delete after refactor
-//let lastValidTargetY = 0;
-
 
 function WorksTitle() {
 
@@ -116,34 +112,5 @@ function WorksTitle() {
         </div>
     );
 }
-
-
-// old code, delete after refactor is done
-function save() {
-
-    //geth the container that we will modify
-    const titleCont = document.querySelector("#works-title-cont");
-    
-    // the the container's current position (bottom rects pos)
-    const currY = titleCont.getBoundingClientRect().bottom;
-    
-    // if the containers bottom rect pos is within the confines of the screen
-    // we also check if the direction of this scroll is the same as the last scroll event, this is due to a weird scroll bug that triggers inconsisten scrolling (up and down) while scrolling 
-    // either up or down around the Works title area
-    if(currY <= window.innerHeight) {
-        
-        // calculate the heigth target based on screen breakpoint
-        const heightTarget = breakpointStateRef.current == breakpoints.lg ? worksTitleMovLg : (breakpointStateRef.current == breakpoints.md ? worksTitleMovMd : worksTitleMovSm);
-        
-        // calculate the percentage of height that we want to apply to the target
-        const percentage = GetPerCurrToTarget_Bottom(currY, bottomPivot.current);
-        
-        // convert the percentage onto a real value (in rem)
-        const value = heightTarget / 100 * percentage;
-        
-        // apply the height value
-        titleCont.style.height = `${value <= heightTarget ? value : heightTarget }rem`;
-    }
-};
 
 export default WorksTitle;

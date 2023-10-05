@@ -26,7 +26,7 @@
             "title": "Calculator master",
             "srcL": "https://fastly.picsum.photos/id/288/300/300.jpg?hmac=7RMC2BTzA6EpogvGf74Us4VguwkoeSsLzBARJbs5VOk",
             "srcS": "https://fastly.picsum.photos/id/230/600/300.jpg?hmac=xaOtfLjlm4OwQVWYD4xcugIiy5Ebr_qNu7ymvmI2jv4",
-            "description": "./markdown/portfolio_desc.md",
+            "description": "./markdown/calculatormaster_desc.md",
             "tech": [
                 "javascript",
                 "html",

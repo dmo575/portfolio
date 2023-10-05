@@ -19,7 +19,16 @@ function Skeleton() {
         const getCards = async () => {
             
             // fetch cards.json
-            const cardsData = await(FetchCards());
+            const cardsResponse = await (fetch(cardsJson));
+
+            if(cardsResponse.status != 200) {
+        
+                Error("Cards");
+                return;
+            }
+
+            const cardsData = await(cardsResponse.json());
+
             // will contain fetch promises for each card later
             const promises = [];
 
@@ -43,7 +52,7 @@ function Skeleton() {
 
                 }).catch(err => {
 
-                    Error("cards");
+                    card.description = "";
                 });
 
                 // add the fetch promise to the promises array

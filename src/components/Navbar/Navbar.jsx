@@ -23,17 +23,16 @@ function Navbar() {
             const iconsResponse = await(fetch(iconsJson));
             const contactResponse = await(fetch(contactJson));
 
-            if(iconsResponse.status == 200 && contactResponse.status == 200) {
+            if(iconsResponse.status != 200 || contactResponse.status != 200) {
 
-                const iconsData = await(iconsResponse.json());
-                const contactData = await(contactResponse.json());
-
-                setState({iconsData, contactData});
+                Error("Navbar");
                 return;
             }
 
-            Error();
-            //console.error("Error while retrieving icons and contact info in Navbar");
+            const iconsData = await(iconsResponse.json());
+            const contactData = await(contactResponse.json());
+
+            setState({iconsData, contactData});
         };
 
         getStateData();

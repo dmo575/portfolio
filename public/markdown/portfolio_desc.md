@@ -1,11 +1,7 @@
-This is a markdown description of the portfolio project. And this is **BOLD TYPING**
+The page you are at right now. Highlights include:
 
-```
-.
-├── SuperRoot
-├── Root
-│   ├── second
-│   └── second two
-│       └── third from second
-└── root 2
-```
+- Easily mantainable without re-bundling/re-deploying thanks to project structure and JSON/Markdown
+- Custom markdown like **$$$these**
+- Responsive design
+- Full-stack, I also made the back end and full server set up
+- All that and more, click the **"Check it out"** button for an in depth rundown!

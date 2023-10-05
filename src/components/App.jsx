@@ -113,7 +113,6 @@ function App() {
             setIcons(iconsData);
         };
 
-
         getIcons();
         handleFadeIn();
         bottomPivot.current = GetBottomPivotPos();
@@ -130,8 +129,7 @@ function App() {
 
     return (
         <>
-        <appContext.Provider value={{breakpointState, bottomPivot, icons, Error}}>
-            <Test/>
+        <appContext.Provider value={{breakpointState, icons, Error}}>
             <Navbar/>
             <ProfileSection/>
             <Skillset/>
