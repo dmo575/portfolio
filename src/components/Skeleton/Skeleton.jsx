@@ -84,7 +84,7 @@ function Skeleton() {
                 {cardsArray.map((card, index) => {
                     return (
                         <div key={ card.title + index } className="col my-2">
-                            <Card card={card} dir={ index % 2 == 0 ? "left" : "right"}/>
+                            <Card card={card} imgOrder={ index % 2 == 0 ? "first" : "last"}/>
                         </div>
                     );
                 })}

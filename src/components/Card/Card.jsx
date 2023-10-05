@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import Markdown from "react-markdown";// a React component that allows me to use markdown in my jsx
 import remarkGfm from "remark-gfm";// translates the .md file following the GFM standard
@@ -12,18 +12,31 @@ import Skill from "./../Skill/Skill.jsx";
 
 import "./Card.css";
 
+/**Notes on the card:
+ * On large breakpoints:
+ * minimun height is decided by the "container for IMAGE" with its col-3 class.
+ *      else, it will be decided by the card's contents
+ * 
+ * On the medium and below breakpoints:
+ * minimun height is decided by
+ */
 
-function Card({card, dir}) {
+function Card({card, imgOrder}) {
+
+    //const srcImg = "./images/center.png";
+    //const srcImg = card.srcL;
+    //const srcImg = "https://fastly.picsum.photos/id/444/250/150.jpg?hmac=rf970L3Kif2xoku1aTGP_993JseeO-XCQp4y--Mpn1I";
+    const srcImg = "https://fastly.picsum.photos/id/736/800/300.jpg?hmac=N5PatVpCSuhhSYo2HCYbSiRZf8W8WM1SQgFF63nTzf0";
+
+    const imgContId = `${card.title.replace(/\s+/g, '')}-img-cont`;
+
+    const [imageUpdate, setImageUpdate] = useState(null);
 
     const { breakpointState, icons, Error } = useContext(appContext);
-
     // controls the react-bootstrap modal
     const [modal, setModal] = useState(false);
-
     // will store the content of the card (the .md file)
     const [cardContent, setCardContent] = useState("Loading content. . .");
-
-
     // open/close the react-bootstrap modal
     function openModal() {
         setModal(true);
@@ -34,10 +47,80 @@ function Card({card, dir}) {
         setModal(false);
     };
 
+    useEffect(() => {
+
+        function ResizeImage() {
+
+            const imgCont = document.querySelector(`#${imgContId}`);
+            //html collection, meaning live array, but we just need a screenshot of their values
+            const siblingChildren = imgCont.nextSibling.children;
+            const img = imgCont.firstChild;
+
+            
+            // step 1: resize the image container
+
+            // for large breakpoints:
+            if(window.innerWidth >= breakpoints.lg) {
+
+                // stores the image container's sibling height into the currHeight.
+                // (the reason we get the value via its children and padding is because its current height is influenced by the image container
+                // and we want to get what its real height would be had the image container not been an influence on it)
+                let siblingHeight = 0;
+                for(let i = 0; i < siblingChildren.length; i++) {
+                    siblingHeight += siblingChildren[i].offsetHeight;
+                }
+                const paddingComputed = window.getComputedStyle(imgCont.nextSibling).paddingTop;
+                const paddingTotal = parseInt(paddingComputed.substring(0, paddingComputed.length - 2)) * 2;
+                siblingHeight += paddingTotal;
+
+                // we set the containter's minimun height to be its current width
+                imgCont.style.minHeight = `${imgCont.offsetWidth}px`;
+                // we set the max height to be 100%, which means as large as the image it contains ( we need to set this because
+                // if we come from a lower breakpoint, this property will be set already, so we reset it here)
+                imgCont.style.maxHeight = `100%`;
+                // we set its current height to be its sibling's height we calculated earlier
+                imgCont.style.height = `${siblingHeight}px`;
+
+                // This means that for LG+ breakpoints the container will always have the same relative width set by the parent (col-3 inside
+                // a card element), but its hegiht will increase based on the height of the card itself.
+                // also its height will never be less than its width which is the same for all cards, this allows us to have a minimun
+                // common height for all cards
+            }
+            // for medium and below breakpoints:
+            else {
+
+                const widthComputed = window.getComputedStyle(imgCont).width;
+                const width = parseInt(widthComputed.substring(0, widthComputed.length - 2));
+
+                // we set the container's min height to 0 because if we come from a LG breakpoint this will have a value setted up
+                // that we need to reset
+                imgCont.style.minHeight = "0";
+                // we set its current height to be 2/3 of its width
+                imgCont.style.height = `${width / 2}px`;
+                // we also need to reset the max height comming from a LG breakpoint, so we set it to the value we have planned, 2/3
+                imgCont.style.maxHeight = `${width / 2}px`;
+            }
+
+            // step 2: define the image's behavior inside the container
+
+            // with the image object-fit prop set to cover, we just need to make sure to use images with spare width.
 
 
+            // we want the images to be horizontally centered at all times, we know that the image's height
+            // fits with the container already
+            const offsetX = ((-img.offsetWidth / 2) + imgCont.offsetWidth / 2)
+            img.style.transform = `translate(${offsetX}px, ${0})`;
+        };
 
-    const img = <img className={`card-img-${dir}`} src={window.innerWidth < breakpoints.lg ? card.srcS : card.srcL}/>;
+        // initial resizing of the card's image container and positioning of the image inside its container
+        ResizeImage();
+
+        window.addEventListener("resize", ResizeImage);
+
+        return () => {
+            window.removeEventListener("resize", ResizeImage);
+        }
+    }, []);
 
 
     // returns a button with the correct styling (large or small)
@@ -78,20 +161,17 @@ function Card({card, dir}) {
 
     return (
         <>
-        <div className="card flex-lg-row fade-in-actor">{/* MAIN CONTAINER, card */}
-            <div className="col-3" style={{backgroundColor: "green"}}>{/* container for IMAGE */}
-                COLUMN IMAGE BOI
+        <div className="card flex-lg-row h-100 fade-in-actor">{/* MAIN CONTAINER, card */}
+            <div id={imgContId} className={`col col-lg-3 test-parent d-flex ${ breakpointState >= breakpoints.lg && `order-${imgOrder}`}`} style={{backgroundColor: "green", }}>{/* container for IMAGE */}
+                <img src={srcImg} className="test"></img>
             </div>
-            <div className="card-body" style={{backgroundColor: "grey"}}>
+            <div className="card-body d-flex flex-column justify-content-between" style={{backgroundColor: "grey"}}>
 
                 <div className="row">{/* container of TITLE and DESCRIPTION*/}
-                    <div className="card-title" style={{backgroundColor: "blue"}}>{/* TITLE */}
-                        CARD TITLE
+                    <div className="card-title">{/* TITLE */}
+                        <h1 className="card-title">{card.title}</h1>
                     </div>
                     <div className="card-text" style={{backgroundColor: "red"}}>{/* DESCRIPTION */}
-                        <p>CARD TEXT</p>
-                        <p>CARD TEXT</p>
-                        <p>CARD TEXT</p>
                         <p>CARD TEXT</p>
                     </div>
                 </div>
@@ -139,15 +219,16 @@ function Card({card, dir}) {
 }
 
 
-function CardOld({card, dir}) {
+function CardOld({card, imgOrder}) {
 
+    imgOrder = imgOrder == "first" ? "left" : "right";
     const { breakpointState, icons, Error } = useContext(appContext);
     const [modal, setModal] = useState(false);
 
     // the main content of the card (.md file)
     const [cardContent, setCardContent] = useState("Loading content. . .");
 
-    const img = <img className={`card-img-${dir}`} src={window.innerWidth < breakpoints.lg ? card.srcS : card.srcL}/>;
+    const img = <img className={`card-img-${imgOrder}`} src={window.innerWidth < breakpoints.lg ? card.srcS : card.srcL}/>;
 
 
     function openModal() {
@@ -199,7 +280,7 @@ function CardOld({card, dir}) {
     return (
         <>
         <div className="card flex-lg-row h-100 fade-in-actor">
-            {dir === "left" || window.innerWidth < breakpoints.lg ? img : <></>}
+            {imgOrder === "left" || window.innerWidth < breakpoints.lg ? img : <></>}
             <div className="card-body d-flex flex-column">
                 <h1 className="card-title">{card.title}</h1>
                 <div className="card-text flex-grow-1">
@@ -223,7 +304,7 @@ function CardOld({card, dir}) {
                     {GetButton(breakpointState < breakpoints.lg)}
                 </div>
             </div>
-            {dir === "right" && window.innerWidth >= breakpoints.lg ? img : <></>}
+            {imgOrder === "right" && window.innerWidth >= breakpoints.lg ? img : <></>}
         </div>
 
         
