@@ -55,7 +55,7 @@ This is the final project structure (im skipping other directories/files for cla
 ### Custom markdown ! ! !
 Thanks to **react-markdown**'s hability to pass in customs components, I was able to customize my own markdown !
 
-For example, this is a normal markdown **bold text**, and this is my **$$special markdown bold text** and my **$$$special markdown bold text smaller edition**. Looks familiar? Yep, I used it on my intro card at the top of the page (with a different font), that is markdown too!
+For example, this is a normal markdown **bold text**, and this is my **$$special markdown bold text** and my **$$$special markdown bold text smaller edition**. Looks familiar? I used it on my intro card at the top of the page (with a different font), that was markdown too!
 
 ```
 Here is how you write the special bold text:

@@ -52,7 +52,7 @@ function Footer() {
                 </div>
                 <div className="col d-flex justify-content-start flex-column align-items-center">
                     <p className="footer-title">Quick Links</p>
-                    <a href="#root">Top</a>
+                    <a href="#html">Top</a>
                     <a href="#works">Works</a>
                 </div>
             </div>

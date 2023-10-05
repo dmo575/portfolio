@@ -148,3 +148,11 @@ p, h1, h2, h3, h4, h5, h6, li  {
 .font-readable p{
     font-family: var(--bs-body-font-family);
 }
+
+.font-readable ul{
+    font-family: var(--bs-body-font-family);
+}
+
+.font-readable li{
+    font-family: var(--bs-body-font-family);
+}
