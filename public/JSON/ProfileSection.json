@@ -7,7 +7,7 @@
         "./markdown/greeting.md",
         "./markdown/greeting_2.md"
     ],
-    "pageTitles": [
+    "pageLinks": [
         "How I got into web development",
         "Back to the intro !"
     ],

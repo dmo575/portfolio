@@ -74,7 +74,7 @@ function ProfileSection() {
 
     }, []);
 
-    function LoadPages() {
+    function LoadPages(invis) {
 
         const pageCount = state.pageContents.length - 1;
 
@@ -84,16 +84,18 @@ function ProfileSection() {
 
             pageElements.push(
                 (
-                    <div className="col" key={`profile-page-${i}`} style={{transform:`translate(${100 * i}%, ${0}%)`, position:"absolute"}}>
+                    <div className="col h-100" key={`profile-page-${i}-${invis && "invis"}`} style={{opacity: (invis ? 0 : 1),transform:`translate(${100 * i}%, ${0}%)`, position: (invis ? "static" : "absolute")}}>
                         <p className={GetTitleSize(breakpointState)}>{state.pageHeaders[i]}</p>
                         <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{state?.pageContents[i]}</Markdown>
                         <div className="col-auto d-flex justify-content-end">
-                            <Button variant="link" onClick={showModal}><p>How I got into web development &#8674;</p></Button>
+                            <Button variant="link" onClick={invis ? null : showModal}><p>How I got into web development &#8674;</p></Button>
                         </div>
                     </div>
                     
                 )
             );
+
+            if(invis) break;
         }
 
         return <>
@@ -107,15 +109,21 @@ function ProfileSection() {
     return (
         <div id="profile-section" className="container-fluid">
 
-            <div className="row d-flex flex-column flex-md-row" style={{backgroundColor: "grey"}}>{/* PROFILE ROW */}
-                <div className="col-4 mx-4 mx-lg-5 d-flex justify-content-end" style={{backgroundColor: "green"}}>{/* Image COL*/}
-                    <img className="img-fluid" style={{backgroundColor: "yellow"}} src={breakpointState >= breakpoints.md ? state?.srcL : state?.srcS} alt="profile-img" />
+            <div className="row d-flex flex-column flex-md-row" style={{backgroundColor: "grey"}}>
+                <div className="col p-0"></div>{/* SPACER col */}
+
+                <div className="col-auto p-0 d-flex justify-content-center" style={{backgroundColor: "yellow"}}> {/* IMAGE col */}
+                    <img className="img-fluid" style={{objectFit: "contain"}} src={breakpointState >= breakpoints.md ? state?.srcL : state?.srcS} alt="Profile image" />
                 </div>
-                <div className="col d-flex flex-column justify-content-between px-4 px-lg-5" style={{backgroundColor: "cyan"}}> {/* Page holder */}
-                    <div className="col" style={{position:"relative"}}>
-                            {state && LoadPages()}
-                    </div>
+
+                <div className="col-1 p-0"></div>{/* SPACER col */}
+
+                <div className="text-center text-md-start col-md-6" style={{backgroundColor: "green", position: "relative"}}> {/* PAGE AERA col */}
+                {state && LoadPages(false)}{/* we first loat the pages and position them */}
+                {state && LoadPages(true)}{/* we then load the first page, invisible and with static positioning so that its container will vertically update */}
                 </div>
+
+                <div className="col p-0"></div>{/* SPACER col */}
             </div>
 
 
