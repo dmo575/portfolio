@@ -76,7 +76,7 @@ function ProfileSection() {
 
     function LoadPages() {
 
-        const pageCount = state.pageContents.length;
+        const pageCount = state.pageContents.length - 1;
 
         const pageElements = [];
 
@@ -84,37 +84,40 @@ function ProfileSection() {
 
             pageElements.push(
                 (
-                    <div key={`profile-page-${i}`} className="test">
+                    <div className="col" key={`profile-page-${i}`} style={{transform:`translate(${100 * i}%, ${0}%)`, position:"absolute"}}>
                         <p className={GetTitleSize(breakpointState)}>{state.pageHeaders[i]}</p>
                         <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{state?.pageContents[i]}</Markdown>
+                        <div className="col-auto d-flex justify-content-end">
+                            <Button variant="link" onClick={showModal}><p>How I got into web development &#8674;</p></Button>
+                        </div>
                     </div>
+                    
                 )
             );
         }
+
+        return <>
+        {
+            pageElements.map(el => el)
+        }
+        </>;
 
     }
 
     return (
         <div id="profile-section" className="container-fluid">
 
-            <div className="row d-flex flex-column flex-md-row align-items-center">
-                <div className={"col-7 col-md-auto col-5 gx-0 offset-md-1 offset-xl-2 d-flex justify-content-center flex-column"}>
-                    <img className="img-fluid" src={breakpointState >= breakpoints.md ? state?.srcL : state?.srcS} alt="profile-img" />
+            <div className="row d-flex flex-column flex-md-row" style={{backgroundColor: "grey"}}>{/* PROFILE ROW */}
+                <div className="col-4 mx-4 mx-lg-5 d-flex justify-content-end" style={{backgroundColor: "green"}}>{/* Image COL*/}
+                    <img className="img-fluid" style={{backgroundColor: "yellow"}} src={breakpointState >= breakpoints.md ? state?.srcL : state?.srcS} alt="profile-img" />
                 </div>
-                <div className="col-md col-10 offset-md-1 gx-0 gy-5 gy-md-0 text-center text-md-start profile-txt-cont">
-                    {state && LoadPages()}
-                    <div className="test">
-                        <p className={GetTitleSize(breakpointState)}>{state?.pageHeaders[pageIndex]}</p>
-                        <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{state?.pageContents[pageIndex]}</Markdown>
+                <div className="col d-flex flex-column justify-content-between px-4 px-lg-5" style={{backgroundColor: "cyan"}}> {/* Page holder */}
+                    <div className="col" style={{position:"relative"}}>
+                            {state && LoadPages()}
                     </div>
                 </div>
-                <div className="col-1 col-xl-2"></div>
             </div>
-            <div className="row">
-                <div className="col-auto offset-8">
-                    <Button variant="link" onClick={showModal}><p>How I got into web development &#8674;</p></Button>
-                </div>
-            </div>
+
 
             <Modal show={modalState} centered={true} onHide={closeModal}>
                 <Modal.Header>
