@@ -166,10 +166,15 @@ p, h1, h2, h3, h4, h5, h6, li  {
     flex-grow: 1;
 }
 
-.profile-txt-cont {
+.profile-page-container {
     overflow: hidden;
 }
 
 .test {
-    transform: translate(-20%, 0);
+    --page-vel: 0.0s;
+    transition: transform var(--page-vel) ease-in-out;
+}
+
+.disable-click {
+    pointer-events: none;
 }

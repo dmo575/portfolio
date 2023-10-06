@@ -14,6 +14,10 @@ import { appContext } from "./../App.jsx";
 
 import "./ProfileSection.css";
 
+const pageSectionId = "#page-section";
+const cssVarPageVel = "--page-vel";
+const pageVel = 0.4;
+
 function ProfileSection() {
 
     const [state, setState] = useState(null);
@@ -22,8 +26,26 @@ function ProfileSection() {
     const pageIndex = useRef(0);
 
 
-    function showModal(e) {
-        setModalState(true);
+    // transitions the pages
+    function goNextPage() {
+
+        // get pages parent
+        const pageParent = document.querySelector(pageSectionId);
+        // calculate offset
+        const offset = pageParent.offsetWidth;
+
+        // get pages (last item is the invis page)
+        const pages = pageParent.children;
+
+        // for each page, set the transition vel and translate it
+        for(let i = 0; i < pages.length - 1; i++) {
+
+            pages[i].style.setProperty(cssVarPageVel, `${pageVel}s`);
+            pages[i].style.transform = `translate(${offset * (i + pageIndex.current - 1)}px, ${0})`;
+        }
+
+        // update the page index
+        pageIndex.current = pageIndex.current < state.pageLinks.length - 1 ? pageIndex.current + 1 : 0;
     }
 
     function closeModal() {
@@ -70,25 +92,55 @@ function ProfileSection() {
             setState(profileData);
         };
 
+        // resizes the pages according to the new window
+        function resizePages() {
+
+            // get pages parent
+            const pageParent = document.querySelector(pageSectionId);
+            // calculate offset
+            const offset = pageParent.offsetWidth;
+
+            // get pages (last item is the invis page)
+            const pages = pageParent.children;
+
+            // for each page, update its position
+            for(let i = 0; i < pages.length - 1; i++) {
+
+                pages[i].style.setProperty(cssVarPageVel, `${0}s`);
+                pages[i].style.transform = `translate(${offset * (i - pageIndex.current)}px, ${0})`;
+            }
+        };
+
         getProfileData();
+        window.addEventListener("resize", resizePages);
+
+        return () => {
+            window.removeEventListener("resize", resizePages);
+        };
+
 
     }, []);
 
     function LoadPages(invis) {
 
-        const pageCount = state.pageContents.length - 1;
-
+        const pageCount = state.pageContents.length;
         const pageElements = [];
+        const pageParent = document.querySelector(pageSectionId);
+        const offset = pageParent.offsetWidth;
 
         for(let i = 0; i < pageCount; i++) {
 
+            if(invis) i++;
+
             pageElements.push(
                 (
-                    <div className="col h-100" key={`profile-page-${i}-${invis && "invis"}`} style={{opacity: (invis ? 0 : 1),transform:`translate(${100 * i}%, ${0}%)`, position: (invis ? "static" : "absolute")}}>
-                        <p className={GetTitleSize(breakpointState)}>{state.pageHeaders[i]}</p>
-                        <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{state?.pageContents[i]}</Markdown>
+                    <div className={`col px-sm-5 h-100 test d-flex flex-column justify-content-center ${invis && "disable-click"}`} key={`profile-page-${i}-${invis && "invis"}`} style={{opacity: (invis ? 0 : 1),transform:`translate(${offset * i}px, ${0}%)`, position: (invis ? "static" : "absolute")}}>
+                        <div>
+                            <p className={GetTitleSize(breakpointState)}>{state.pageHeaders[i]}</p>
+                            <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{state?.pageContents[(invis ? 1 : i)]}</Markdown>
+                        </div>
                         <div className="col-auto d-flex justify-content-end">
-                            <Button variant="link" onClick={invis ? null : showModal}><p>How I got into web development &#8674;</p></Button>
+                            <Button variant="link" onClick={goNextPage}><p>{state.pageLinks[i]}</p></Button>
                         </div>
                     </div>
                     
@@ -110,20 +162,20 @@ function ProfileSection() {
         <div id="profile-section" className="container-fluid">
 
             <div className="row d-flex flex-column flex-md-row" style={{backgroundColor: "grey"}}>
-                <div className="col p-0"></div>{/* SPACER col */}
+                <div className="col-md p-0"></div>{/* SPACER col */}
 
                 <div className="col-auto p-0 d-flex justify-content-center" style={{backgroundColor: "yellow"}}> {/* IMAGE col */}
                     <img className="img-fluid" style={{objectFit: "contain"}} src={breakpointState >= breakpoints.md ? state?.srcL : state?.srcS} alt="Profile image" />
                 </div>
 
-                <div className="col-1 p-0"></div>{/* SPACER col */}
+                <div className="col-md p-0"></div>{/* SPACER col */}
 
-                <div className="text-center text-md-start col-md-6" style={{backgroundColor: "green", position: "relative"}}> {/* PAGE AERA col */}
-                {state && LoadPages(false)}{/* we first loat the pages and position them */}
-                {state && LoadPages(true)}{/* we then load the first page, invisible and with static positioning so that its container will vertically update */}
+                <div id="page-section" className="text-center text-md-start col-md-7 profile-page-container" style={{backgroundColor: "lightgreen", position: "relative"}}> {/* PAGE AERA col */}
+                    {state && LoadPages(false)}{/* we first loat the pages and position them */}
+                    {state && LoadPages(true)}{/* we then load the first page, invisible and with static positioning so that its container will vertically update */}
                 </div>
 
-                <div className="col p-0"></div>{/* SPACER col */}
+                <div className="col-md p-0"></div>{/* SPACER col */}
             </div>
 
 
