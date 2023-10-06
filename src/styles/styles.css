@@ -157,10 +157,19 @@ p, h1, h2, h3, h4, h5, h6, li  {
     font-family: var(--bs-body-font-family);
 }
 
-.test-parent {
+.card-img-cont {
     overflow: hidden;
 }
 
-.test{
-    object-fit: "cover";
+.card-img{
+    object-fit: cover;
+    flex-grow: 1;
+}
+
+.profile-txt-cont {
+    overflow: hidden;
+}
+
+.test {
+    transform: translate(-20%, 0);
 }

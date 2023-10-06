@@ -26,7 +26,13 @@ function Card({card, imgOrder}) {
     //const srcImg = "./images/center.png";
     //const srcImg = card.srcL;
     //const srcImg = "https://fastly.picsum.photos/id/444/250/150.jpg?hmac=rf970L3Kif2xoku1aTGP_993JseeO-XCQp4y--Mpn1I";
-    const srcImg = "https://fastly.picsum.photos/id/736/800/300.jpg?hmac=N5PatVpCSuhhSYo2HCYbSiRZf8W8WM1SQgFF63nTzf0";
+    //const srcImg = "https://fastly.picsum.photos/id/736/800/300.jpg?hmac=N5PatVpCSuhhSYo2HCYbSiRZf8W8WM1SQgFF63nTzf0";
+
+    // vertical LARGE
+    //const srcImg = "https://fastly.picsum.photos/id/483/300/700.jpg?hmac=mQnj9mx9xryichrou05E1WDOeCdpMgr1ORw9PjvFssg";
+
+    //800*800
+    const srcImg = "https://fastly.picsum.photos/id/677/800/800.jpg?hmac=Br67ocN_8AO1SrVQ7BvM2hacQj8gfK4vh7GwsJu7fPk";
 
     const imgContId = `${card.title.replace(/\s+/g, '')}-img-cont`;
 
@@ -47,9 +53,26 @@ function Card({card, imgOrder}) {
         setModal(false);
     };
 
+    function GetButton() {
+
+        const classes = `btn rounded-5 ${breakpointState < breakpoints.lg && "flex-grow-1"}`;
+
+        if(!card.skipTo) {
+            return (
+                <Button className={`btn-dark ${classes}`} onClick={openModal}>Check it out</Button>
+            );
+        }
+
+        return (
+            <a className={`btn-success ${classes}`} href={card.skipTo} target="_blank">See it live</a>
+        );
+    };
+
     useEffect(() => {
 
         function ResizeImage() {
+
+            //if(imgContId != "Calculatormaster-img-cont") return;
 
             const imgCont = document.querySelector(`#${imgContId}`);
             //html collection, meaning live array, but we just need a screenshot of their values
@@ -65,12 +88,15 @@ function Card({card, imgOrder}) {
                 // stores the image container's sibling height into the currHeight.
                 // (the reason we get the value via its children and padding is because its current height is influenced by the image container
                 // and we want to get what its real height would be had the image container not been an influence on it)
-                let siblingHeight = 0;
+                let siblingHeight = 0.0;
                 for(let i = 0; i < siblingChildren.length; i++) {
+
                     siblingHeight += siblingChildren[i].offsetHeight;
+
                 }
+
                 const paddingComputed = window.getComputedStyle(imgCont.nextSibling).paddingTop;
-                const paddingTotal = parseInt(paddingComputed.substring(0, paddingComputed.length - 2)) * 2;
+                const paddingTotal = parseInt(paddingComputed.substring(0, paddingComputed.length - 2)) * 2;// -2 to remove 'px' from str, *2 to get padding at the bot and top
                 siblingHeight += paddingTotal;
 
                 // we set the containter's minimun height to be its current width
@@ -123,27 +149,6 @@ function Card({card, imgOrder}) {
     }, []);
 
 
-    // returns a button with the correct styling (large or small)
-    // "get" is a bool that tells the function if it should return a button at all
-    // "card.skipTo" is a property that whenever it exists it means that the button should
-    // be a link to the skipTo value instead of a modal opener button
-    function GetButton(get) {
-
-        if(!get) {return;}
-
-        const classes = `btn rounded-5 ${breakpointState < breakpoints.lg && "flex-grow-1"}`;
-
-        if(!card.skipTo) {
-            return (
-                <Button className={`btn-dark ${classes}`} onClick={openModal}>Check it out</Button>
-            );
-        }
-
-        return (
-            <a className={`btn-success ${classes}`} href={card.skipTo} target="_blank">See it live</a>
-        );
-    };
-
     async function loadMarkdown() {
         
         const response = await (fetch(card.content));
@@ -161,29 +166,33 @@ function Card({card, imgOrder}) {
 
     return (
         <>
-        <div className="card flex-lg-row h-100 fade-in-actor">{/* MAIN CONTAINER, card */}
-            <div id={imgContId} className={`col col-lg-3 test-parent d-flex ${ breakpointState >= breakpoints.lg && `order-${imgOrder}`}`} style={{backgroundColor: "green", }}>{/* container for IMAGE */}
-                <img src={srcImg} className="test"></img>
+        <div className="card flex-lg-row h-100 fade-in-actor" style={{overflow: "hidden"}}>{/* MAIN CONTAINER, card */}
+            <div id={imgContId} className={`col-lg-3 card-img-cont d-flex ${ breakpointState >= breakpoints.lg && `order-${imgOrder}`}`}>{/* container for IMAGE */}
+                <img src={srcImg} className="card-img"></img>
             </div>
-            <div className="card-body d-flex flex-column justify-content-between" style={{backgroundColor: "grey"}}>
+            <div className="card-body d-flex flex-column justify-content-between">
 
                 <div className="row">{/* container of TITLE and DESCRIPTION*/}
                     <div className="card-title">{/* TITLE */}
                         <h1 className="card-title">{card.title}</h1>
                     </div>
-                    <div className="card-text" style={{backgroundColor: "red"}}>{/* DESCRIPTION */}
-                        <p>CARD TEXT</p>
+                    <div className="card-text">{/* DESCRIPTION */}
+                        <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{card.description}</Markdown>
                     </div>
                 </div>
 
                 <div className="row">{/* container of TOOLS and BUTTON */}
-                    <div className="col d-flex justify-content-between justify-content-lg-start " style={{backgroundColor: "yellow"}}>{/* TOOLS */}
-                        <p>1</p>
-                        <p>2</p>
-                        <p>3</p>
+                    <div className="col my-3 d-flex justify-content-around justify-content-lg-start ">{/* TOOLS */}
+                        {card.tech.map(el => {
+                            if(Object.keys(icons).length == 0) {return}
+
+                            return (
+                                <Skill key={card.title + el} src={icons[el].color} name={icons[el].name} size={breakpointState == breakpoints.lg ? "lg" : "sm"}/>
+                            );
+                        })}
                     </div>
-                    <div className="col-lg-auto">{/* BUTTON */}
-                        <Button className="btn btn-dark rounded-5 w-100 h-100">Check out</Button>
+                    <div className="col-lg-auto d-flex my-3 my-lg-0">{/* BUTTON */}
+                        {GetButton()}
                     </div>
                 </div>
 

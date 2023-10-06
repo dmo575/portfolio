@@ -130,6 +130,7 @@ function App() {
     return (
         <>
         <appContext.Provider value={{breakpointState, icons, Error}}>
+            <Test/>
             <Navbar/>
             <ProfileSection/>
             <Skillset/>

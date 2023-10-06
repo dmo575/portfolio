@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { Modal, Button } from "react-bootstrap";
 
 import Markdown from "react-markdown";// a React component that allows me to use markdown in my jsx
@@ -15,6 +15,121 @@ import { appContext } from "./../App.jsx";
 import "./ProfileSection.css";
 
 function ProfileSection() {
+
+    const [state, setState] = useState(null);
+    const {breakpointState, Error} = useContext(appContext);
+    const [modalState, setModalState] = useState(false);
+    const pageIndex = useRef(0);
+
+
+    function showModal(e) {
+        setModalState(true);
+    }
+
+    function closeModal() {
+        setModalState(false);
+    }
+
+    useEffect(() => {
+
+        const getProfileData = async () => {
+
+            const profileResponse = await(fetch(profileSectionJson));
+
+            if(profileResponse.status != 200) {
+
+                Error("profile");
+                return;
+            }
+
+            const profileData = await(profileResponse.json());
+
+            // now we prepare for the next fetch
+            const pageContents = [];
+            const pageRequests = [];
+
+            profileData.pageContents.forEach(page => {
+
+                pageRequests.push(fetch(page));
+            });
+
+            const pageResponses = await Promise.allSettled(pageRequests);
+
+            // If all pages requests were 200OK, get the texts onto pageContents, else send error and return.
+            for(let i = 0; i < pageResponses.length; i++) {
+
+                if(pageResponses[i].status == "rejected") {
+                    Error("Profile text page");
+                    return;
+                }
+
+                pageContents.push(await (pageResponses[i].value.text()));
+            }
+            profileData.pageContents = pageContents;
+
+            setState(profileData);
+        };
+
+        getProfileData();
+
+    }, []);
+
+    function LoadPages() {
+
+        const pageCount = state.pageContents.length;
+
+        const pageElements = [];
+
+        for(let i = 0; i < pageCount; i++) {
+
+            pageElements.push(
+                (
+                    <div key={`profile-page-${i}`} className="test">
+                        <p className={GetTitleSize(breakpointState)}>{state.pageHeaders[i]}</p>
+                        <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{state?.pageContents[i]}</Markdown>
+                    </div>
+                )
+            );
+        }
+
+    }
+
+    return (
+        <div id="profile-section" className="container-fluid">
+
+            <div className="row d-flex flex-column flex-md-row align-items-center">
+                <div className={"col-7 col-md-auto col-5 gx-0 offset-md-1 offset-xl-2 d-flex justify-content-center flex-column"}>
+                    <img className="img-fluid" src={breakpointState >= breakpoints.md ? state?.srcL : state?.srcS} alt="profile-img" />
+                </div>
+                <div className="col-md col-10 offset-md-1 gx-0 gy-5 gy-md-0 text-center text-md-start profile-txt-cont">
+                    {state && LoadPages()}
+                    <div className="test">
+                        <p className={GetTitleSize(breakpointState)}>{state?.pageHeaders[pageIndex]}</p>
+                        <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{state?.pageContents[pageIndex]}</Markdown>
+                    </div>
+                </div>
+                <div className="col-1 col-xl-2"></div>
+            </div>
+            <div className="row">
+                <div className="col-auto offset-8">
+                    <Button variant="link" onClick={showModal}><p>How I got into web development &#8674;</p></Button>
+                </div>
+            </div>
+
+            <Modal show={modalState} centered={true} onHide={closeModal}>
+                <Modal.Header>
+                    Modal Header
+                </Modal.Header>
+                <Modal.Body>
+                    Modal body
+                </Modal.Body>
+            </Modal>
+        </div>
+    );
+}
+
+
+function ProfileSectionOld() {
 
     const [state, setState] = useState(null);
     const {breakpointState, Error} = useContext(appContext);
@@ -64,6 +179,7 @@ function ProfileSection() {
 
     return (
         <div id="profile-section" className="container-fluid">
+
             <div className="row d-flex flex-column flex-md-row align-items-center">
                 <div className={"col-7 col-md-auto col-5 gx-0 offset-md-1 offset-xl-2 d-flex justify-content-center flex-column"}>
                     <img className="img-fluid" src={breakpointState >= breakpoints.md ? state?.srcL : state?.srcS} alt="profile-img" />
@@ -73,12 +189,13 @@ function ProfileSection() {
                     <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{state?.bodyMarkdown}</Markdown>
                 </div>
                 <div className="col-1 col-xl-2"></div>
-                <div className="row">
-                    <div className="col-auto offset-8">
-                        <Button variant="link" onClick={showModal}><p>How I got into web development &#8674;</p></Button>
-                    </div>
+            </div>
+            <div className="row">
+                <div className="col-auto offset-8">
+                    <Button variant="link" onClick={showModal}><p>How I got into web development &#8674;</p></Button>
                 </div>
             </div>
+
             <Modal show={modalState} centered={true} onHide={closeModal}>
                 <Modal.Header>
                     Modal Header
