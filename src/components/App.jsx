@@ -129,7 +129,7 @@ function App() {
 
     return (
         <>
-        <appContext.Provider value={{breakpointState, icons, Error}}>
+        <appContext.Provider value={{breakpointState, bottomPivot, icons, Error}}>
             <Test/>
             <Navbar/>
             <ProfileSection/>
