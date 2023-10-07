@@ -152,7 +152,6 @@ function App() {
 
     return (
         <>
-            <Test/>
         <appContext.Provider value={{breakpointState, bottomPivot, icons, Error}}>
             <Navbar/>
             <ProfileSection/>

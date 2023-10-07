@@ -170,16 +170,13 @@ p, h1, h2, h3, h4, h5, h6, li  {
     overflow: hidden;
 }
 
-.test {
+.title-page {
     --page-vel: 0.0s;
     transition: transform var(--page-vel) ease-in-out;
+    left:0px;
 }
 
 .disable-click {
     pointer-events: none;
 }
 
-
-.my-test{
-    max-width: 380px !important;
-}

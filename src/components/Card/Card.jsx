@@ -187,6 +187,7 @@ function Card({card, imgOrder}) {
 
                             return (
                                 <Skill key={card.title + el} src={icons[el].color} name={icons[el].name} size={breakpointState == breakpoints.lg ? "lg" : "sm"}/>
+                                //<Skill key={card.title + el} src={icons[el].color} name={icons[el].name} size={breakpointState == breakpoints.lg ? 2 : 1.7}/>
                             );
                         })}
                     </div>

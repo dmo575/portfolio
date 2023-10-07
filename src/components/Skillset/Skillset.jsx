@@ -9,6 +9,7 @@ import LineRow from "./../LineRow/LineRow.jsx";
 import Skill from "./../Skill/Skill.jsx";
 
 import "./Skillset.css";
+import Test from "../Test.jsx";
 
 
 function HoverText(render, text) {
@@ -53,6 +54,8 @@ function Skillset() {
         return (state && icons) ? (
             state[stateArray].map( el => {
                 return (<Skill key={icons[el].name} src={icons[el].color} name={icons[el].name} size="lg"/>);
+                //return (<Test key={icons[el].name} logo={icons[el].color} name={icons[el].name} size={2} />)
+                //return (<Skill key={icons[el].name} src={icons[el].color} name={icons[el].name} size={2}/>);
             })
         ) : null
     };

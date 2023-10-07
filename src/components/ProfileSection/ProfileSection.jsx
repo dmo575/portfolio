@@ -140,7 +140,7 @@ function ProfileSection() {
             // add the page JSX onto the pagesElements array
             pageElements.push(
                 (
-                    <div className={`col px-sm-5 h-100 test d-flex flex-column justify-content-center ${invis && "disable-click"}`} key={`profile-page-${i}-${invis && "invis"}`} style={{opacity: (invis ? 0 : 1),transform:`translate(${offset * i}px, ${0}%)`, position: (invis ? "static" : "absolute")}}>
+                    <div className={`col px-sm-5 h-100 title-page d-flex flex-column justify-content-center ${invis && "disable-click"}`} key={`profile-page-${i}-${invis && "invis"}`} style={{opacity: (invis ? 0 : 1),transform:`translate(${offset * i}px, ${0}%)`, position: (invis ? "static" : "absolute")}}>
                         <div>
                             <p className={GetTitleSize(breakpointState)}>{state.pageHeaders[i]}</p>
                             <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{state?.pageContents[(invis ? 1 : i)]}</Markdown>
@@ -151,6 +151,8 @@ function ProfileSection() {
                     </div>
                 )
             );
+
+            console.log(offset);
 
             // if we are loading the invis page, break
             if(invis) break;

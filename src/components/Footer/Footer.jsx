@@ -35,10 +35,10 @@ function Footer() {
     }, []);
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid px-0">
             <footer>
                 <div className="row">
-                    <div className="col d-flex justify-content-start flex-column align-items-center">
+                    <div className="col px-0 d-flex justify-content-start flex-column align-items-center">
                         <div>
                             <p className="footer-title">Socials</p>
                         </div>
@@ -47,18 +47,18 @@ function Footer() {
                             <a href={state?.contactData?.github || "https://github.com/dmo575"} target="_blank"><img className="icon icon-footer" src={state?.iconsData?.github.grayscale || "Github"} alt="GitHub" /></a>
                         </div>
                     </div>
-                    <div className="col d-flex justify-content-start flex-column align-items-center">
+                    <div className="col px-0 d-flex justify-content-start flex-column align-items-center">
                         <p className="footer-title">Contact</p>
                         <a href={`mailto:${state?.contactData?.email || "arco4@protonmail.com"}`}>{state?.contactData?.email || "arco4@protonmail.com"}</a>
                     </div>
-                    <div className="col d-flex justify-content-start flex-column align-items-center">
+                    <div className="col px-0 d-flex justify-content-start flex-column align-items-center">
                         <p className="footer-title">Quick Links</p>
                         <a href="#html">Top</a>
                         <a href="#works">Works</a>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col d-flex justify-content-center">
+                    <div className="col px-0 d-flex justify-content-center">
                         Thank you for visiting !
                     </div>
                 </div>

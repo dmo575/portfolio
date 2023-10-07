@@ -64,18 +64,12 @@ function WorksTitle() {
             // scope it since we dont need to know if we are past it
             percentage = percentage > 100.0 ? 100.0 : percentage;
 
-            // start is containerHeight
-            // dest is 0 ZERO ZET NEIN NOMAS NONO IADA ZELO ZETO ZEDO SKT T1 FAKAER 1v9 GGFF NOOB ZERO GANKS JG DIFF
-
             const val = containerHeight / 100 * percentage;
 
-
             titleElement.style.transform = `translate(${0}rem, ${containerHeight - val}rem)`;
-
-
-            //const moveVal = window.innerWidth >= breakpoints.md ? worksTitleMovMdPlus : worksTitleMovSm;
-            //const value = moveVal / 100 * percentage;
-            //titleCont.style.height = `${value <= moveVal ? value : moveVal }rem`;
+        }
+        else {
+            titleElement.style.transform = `translate(${0}rem, ${containerHeight}rem)`;
         }
     }
 
