@@ -168,16 +168,16 @@ function ProfileSection() {
     return (
         <div id="profile-section" className="container-fluid">
 
-            <div className="row d-flex flex-column flex-md-row" style={{backgroundColor: "grey"}}>
+            <div className="row d-flex flex-column flex-md-row">
                 <div className="col-md p-0"></div>{/* SPACER col */}
 
-                <div className="col-auto p-0 d-flex justify-content-center" style={{backgroundColor: "yellow"}}> {/* IMAGE col */}
+                <div className="col-auto p-0 d-flex justify-content-center"> {/* IMAGE col */}
                     <img className="img-fluid" style={{objectFit: "contain"}} src={breakpointState >= breakpoints.md ? state?.srcL : state?.srcS} alt="Profile image" />
                 </div>
 
                 <div className="col-md p-0"></div>{/* SPACER col */}
 
-                <div id="page-section" className="text-center text-md-start col-md-7 profile-page-container" style={{backgroundColor: "lightgreen", position: "relative"}}> {/* PAGE AERA col */}
+                <div id="page-section" className="text-center text-md-start col-md-7 profile-page-container" style={{position: "relative"}}> {/* PAGE AERA col */}
                     {state && LoadPages(false)}{/* we first loat the pages and position them */}
                     {state && LoadPages(true)}{/* we then load the first page, invisible and with static positioning so that its container will vertically update */}
                 </div>

@@ -2,6 +2,8 @@ import { useState, createContext, useEffect, useRef } from "react";
 
 import { GetPerCurrToTarget_Bottom } from "./../js/toolFuncs.js";
 import * as breakpoints from "./../variables/bsbp.js";
+import { Button, Modal } from "react-bootstrap";
+
 
 import Navbar from "./Navbar/Navbar.jsx";
 import ProfileSection from "./ProfileSection/ProfileSection.jsx";
@@ -50,10 +52,7 @@ async function FetchIcons() {
     }
 }
 
-function Error(context) {
 
-    console.log("Error loading: " + context);
-}
 
 function App() {
 
@@ -61,6 +60,29 @@ function App() {
     const breakpointStateRef = useRef();
     const bottomPivot = useRef();
     const [icons, setIcons] = useState(null);
+    const [modalState, setmodalState] = useState(false);
+    const [errors, setErrors] = useState(null);
+
+    function showModal() {setmodalState(true)};
+    function hideModal() {setmodalState(false)};
+
+    // gets called every time a fetching error happens.
+    function Error(context) {
+
+        // adds new error to the array and shows the error modal to the user.
+        setErrors(prev => {
+
+            const errorsList = prev || [];
+
+            errorsList.push(context);
+
+            showModal();
+
+            console.log(`Errors: ${errorsList}`);
+
+            return errorsList;
+        });
+    }
 
     function handleFadeIn() {
 
@@ -120,6 +142,7 @@ function App() {
         window.addEventListener("resize", handleResize);
         window.addEventListener("scroll", handleFadeIn);
 
+
         return () => {
             window.removeEventListener("resize", handleResize);
             window.removeEventListener("scroll", handleFadeIn);
@@ -129,8 +152,8 @@ function App() {
 
     return (
         <>
-        <appContext.Provider value={{breakpointState, bottomPivot, icons, Error}}>
             <Test/>
+        <appContext.Provider value={{breakpointState, bottomPivot, icons, Error}}>
             <Navbar/>
             <ProfileSection/>
             <Skillset/>
@@ -139,6 +162,23 @@ function App() {
             <ProjectFooter/>
             <Footer/>
         </appContext.Provider>
+        <Modal show={modalState} onHide={hideModal} centered>
+            <Modal.Header>
+                <h1 className="text-center w-100">
+                    Error while fetching data from the server
+                </h1>
+            </Modal.Header>
+            <Modal.Body>
+                <p>An error occured while fetching data from the server. <strong style={{fontSize:"1.5rem"}}>Please refresh the webpage</strong></p>
+                <p>If the issue persists after refreshing. Dont worry, I promise the content was great, you can hire me at arco4@protonmail.com 😃</p>
+                <p>Errors: </p>
+                {errors?.map((el, index) => {
+                    return (
+                        <p key={`error ${index}`} style={{display:"inline"}}>{el}{index == (errors.length - 1) ? "." : ", "}</p>
+                    );
+                })}
+            </Modal.Body>
+        </Modal>
         </>
     );
 }

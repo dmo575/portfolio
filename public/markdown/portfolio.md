@@ -69,6 +69,14 @@ Also, the code-block style is custom, I added the border and background color to
 
 ```
 
+### Handling Errors
+The website handles fetching errors at any time by informing the user about it.
+
+The way it works is that if an error occurs, any component can call the Error(context) function, which is
+sent as a context to them. The Error function then adds the new error to the list and opens a modal that shows all errors along a message to the user informing it of steps to take.
+
+You should never see this if everything goes well, so I have attached a .gif showing what would it look like if the client were to get any fetch error anywhere in the site.
+
 ### Leveling up my CSS
 It blows my mind how many new things I have discovered about CSS while making this project: expressions (calc()), variables (--myVar, var()), pseudo-classes (.component:hover), accessing children of a tag based on parent's selector **AND** a pseudo-class being active (.parent:hover .children), all that and many other CSS properties like position (static, relative, absolute), transition, white-space, etc...
 
