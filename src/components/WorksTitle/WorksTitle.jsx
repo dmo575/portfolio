@@ -1,6 +1,6 @@
 import { useEffect, useContext, useRef } from "react";
 
-import { GetSectionSize, GetPerCurrToTarget_Bottom } from "./../../js/toolFuncs.js";
+import { GetSectionSize, GetPerCurrToTarget_Bottom } from "../../js/general.js";
 import * as breakpoints from "./../../variables/bsbp.js";
 
 import { appContext } from "./../App.jsx";

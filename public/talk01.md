@@ -1,0 +1,103 @@
+Vitejs Case study - Differences between import statements (ES6) and fetch/http requests within the public/ and src/ contexts.
+
+While making my portfolio, I realized that I needed a way to properly manage my data. I wanted to be able to easily create and change content for it without having the re-bundle and re-deploy my web application. It was while looking for answers to this problem that I got trapped in this little rabbithole of import/fetch and the correct usage of public/ and src/assets/.
+
+
+Before going onto how Vitejs directories work, its a good idea to know the differences between the fetch function and the import statement.
+
+**Import statements:**
+
+When importing, what you are doing is telling Vitejs "Hey, give me this or that resource here" (now, depending on the format and plugings you might have, the how you get the content there and what exacly you end up getting differs, but for js code we can assume we get it by basically copying the code from source and pasting it on destination).
+
+Within a Vitejs application, **all import statements are resolved at bundling**, the browser does not handle those, the server does not handle those, Vitejs handles them all.
+
+If you were to be using vanilla js/css/html and no bundler, and you happened to have an import statement inside your js file. The browser would see that when first running the code after downloading it (this is another topic altogether) and inmediately ask the server for it. Meaning that **you would initiate a fetch request for each of those import statements**(*, out of scope). But bundlers like Vitejs "bundle" things so that the initial request already contains all needed files.
+
+So, within a Vitejs context, using an import statement means no fetching. You can check this if you build your application and run it on the dev server:
+```
+npm run build --> build the app
+npm run preview --> run the build
+```
+And then go to the network tab in your browser's dev tools, and check if you see any http request for your import statements. You will find none.
+
+And funily enough, you can also check the opposite if you run the dev code and not the build. If you do that you will in fact SEE fetch requests for import statements, because you will be running un-optimized code, code that has been transalted to vanilla js/css/html but not optimized, which gets to show you an example of how would a traditional/un-bundled js code run on a client (the example I explaned earlier)
+
+```
+npm run dev --> runs un-optimized code
+```
+
+
+**So, what does all this means for your project structure?**
+
+It means that the stuff that you import you better make sure you wont need to modify it often, because modifying it means having to re-bundle, meaning re-deploying. So unless you want to take your server offline every time you make a change on that imported content, you need to find another way of "importing" data.
+
+As a final note on importing in Vitejs, you can import from anywhere within your project, public/, src/, it doesnt matter (note its not recommended, more on it later). We can safely assume why as well: We have access to the whole project, including the original layout of the src/ directory, because we are going to execute those imports pre-bundling, in our development environments. I bet we could import files from our desktop or our downloads folder assuming we have the patience to type down the whole path.
+
+**Positives:**
+
+- Avoid unnecesary http requests on the server by conveniently serving all needed files on the initial request.
+- No restrictions on where those files should go in the project.
+
+**Negatives:**
+
+- You need those files to bundle your app. If the file is not found you will get a bundling error.
+- Modifying the import files means re-bundling, re-deploying.
+
+**Use case scenarios:**
+
+- The most common place to use this is with source files (code files). You have this javascript file that needs to call a couple of functions that are commonly used all over your app. So you make a file just for those commonly used functions (tools.js), and then whenever you want to use any of those functions elsewhere you import the file. This ensures that the files that need those functions will always have access to it.
+
+- Another case, which is what prompted me to learn about all this in the first time is this one:
+
+    You have a connection error message with some text, and you want to always know that the text of that error message is availible within the initial request, because you will use it to display an error message if any fetch request goes wrong. But you also want to separate the text from the component (im using React), so you can have the text in a .json file, and import the json file onto your component. This will make sure that the error message content is always ready to go. Now in this case this means that if I want to change the error message Ill have to re-bundle & re-deploy but I dont plan on doing so Im just saying "hey refresh pls", so Ill take the risk there.
+
+- If that last case seemed a bit to weird/nonsensical (I get why dw) you can think of it as this: Lets say you need some content, some data, some file... wathever it is, ready to go within the initial request, but you also want to keep it in its own file. You use `import` then (remember, this is within a Vitejs app context).
+
+
+**Now lets go over fetch requests:**
+
+Fetch requests are basically you requesting some data at runtime, asynchronously (I imagine you can do http requests synchronously, but the fetch API does it async). Also, I haven't mentioned this but obviously imports are not async, there is no such a concept in importing as far as I know.
+
+So what does it mean requesting data at runtime? It means requesting data as your code is executing, live. Which means, if you think about it, that the browser is the one dealing with it, not Vite, not your PC, the client's browser.
+
+Since the browser is dealing with it, the path that we need to provide for that file we want must be accessible post-bundling, which is why you cannot fetch anything inside the src/ directory, and heres the explanation for that:
+
+Bundling in Vitejs (and I assume most bundlers), involves renaming files, moving files around, copying and pasting here and there. This obviously results in a completely different src/ directory than the one you have access to pre-bundling. So there is no way for you to know the name of a file after all those changes and, even so, will the file still contain what it originally contained? Probably not. That is why fetching to the src/ directory is not only not recommened but not possible, you will get undefined behavior (in my case I always got back my index.html file even if I asked for a non-existent file)
+
+
+**So, what does all this means for your project structure?**
+
+It means that if you have change-sensitive content, you should place it inside the public/ directory, because your build doesnt care about whats going on inside that directory.
+
+
+**Positives:**
+
+- Allows you to access content at runtime.
+- Doesn't matter if what you are asking for changes in any way, as long as your code knows how to handle that, it will always work and you wont need to re-bundle anything.
+
+**Negatives:**
+
+- If you need content availible on the first response, you cannot use this.
+- Each time you ask for the data you are starting an http request, which puts work on the server you ask to.
+
+
+### **Dos and donts (plus the whys)**
+Just to cement a bit all that content, lets go over some dos and donts and explain their whys.
+
+**Fetching:**
+
+- **Fetching a file that lives in the src/ directory:**
+
+    - Veredict: **DONT** - You cannot do it, it will throw an error saying the file doesnt exist.
+    - Why: Vitejs bundles the contents of src/, this involves a lot of moving code around, renaming things, copy and pasting things here and there.
+    
+        If you try to fetch something it means you want to ask for a file at **runtime**, so unless you have the correct path to it, which you wont because Vitejs will rename all content in src/ and change it all around, you cannot possibly ask for it.
+- **Fetching a file that lives in the public/ directory:**
+    - Veredict: **DO** - You can do it and as far as I know its common practice.
+    - Why: Files in the public/ directory are not subject to Vitejs bunlding process, their names, location and their content will always remain the same, so you know where they will be at all times.
+- **Importing a file that lives in the src/ directory:**
+    - Veredict: **DO** - Common practice for source files (code), for static files use the assets/ subfolder (not required but Vitejs bundles better that way)
+    - Why: All import statements are solved pre bundling.
+- **Importing a file that lives in the public/ directory:**
+    - Veredict: **DO(NT)** - You can do it, but you should use the src/assets/ directory.
+    - Why: Even tho its perfectly fine to do so, Vitejs recommends to use the src/assets/ directory for a better bundling, I assume it helps them optimize for such cases (Imagine they cant really rename it if its outside the src/ directory for example, this seems trivial but it stacks).

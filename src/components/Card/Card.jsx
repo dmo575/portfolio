@@ -23,15 +23,6 @@ import "./Card.css";
 
 function Card({card, imgOrder}) {
 
-    //const srcImg = "./images/center.png";
-    //const srcImg = card.srcL;
-    //const srcImg = "https://fastly.picsum.photos/id/444/250/150.jpg?hmac=rf970L3Kif2xoku1aTGP_993JseeO-XCQp4y--Mpn1I";
-    //const srcImg = "https://fastly.picsum.photos/id/736/800/300.jpg?hmac=N5PatVpCSuhhSYo2HCYbSiRZf8W8WM1SQgFF63nTzf0";
-
-    // vertical LARGE
-    //const srcImg = "https://fastly.picsum.photos/id/483/300/700.jpg?hmac=mQnj9mx9xryichrou05E1WDOeCdpMgr1ORw9PjvFssg";
-
-    //800*800
     const srcImg = "https://fastly.picsum.photos/id/677/800/800.jpg?hmac=Br67ocN_8AO1SrVQ7BvM2hacQj8gfK4vh7GwsJu7fPk";
 
     const imgContId = `${card.title.replace(/\s+/g, '')}-img-cont`;
@@ -183,7 +174,8 @@ function Card({card, imgOrder}) {
                 <div className="row">{/* container of TOOLS and BUTTON */}
                     <div className="col my-3 d-flex justify-content-around justify-content-lg-start ">{/* TOOLS */}
                         {card.tech.map(el => {
-                            if(Object.keys(icons).length == 0) {return}
+                            //if(Object.keys(icons).length == 0) {return}
+                            if(!icons) return;
 
                             return (
                                 <Skill key={card.title + el} src={icons[el].color} name={icons[el].name} size={breakpointState == breakpoints.lg ? "lg" : "sm"}/>
@@ -199,7 +191,7 @@ function Card({card, imgOrder}) {
             </div>
         </div>
 
-{/* <Modal show={modal} onShow={handleModalShow} fullscreen="sm-down" dialogClassName={breakpointState > breakpoints.sm && `modal-custom`} scrollable={true} centered={true} onHide={closeModal}> */}
+        {/* <Modal show={modal} onShow={handleModalShow} fullscreen="sm-down" dialogClassName={breakpointState > breakpoints.sm && `modal-custom`} scrollable={true} centered={true} onHide={closeModal}> */}
         <Modal show={modal} fullscreen="sm-down" dialogClassName={breakpointState > breakpoints.sm && `modal-custom`} scrollable={true} centered={true} onHide={closeModal}>
             <Modal.Header closeButton className={`${breakpointState >= breakpoints.lg ? "" : "py-1"}`}>
                 <div className={`col d-flex ${breakpointState >= breakpoints.lg ? "" : "flex-column justify-content-center align-items-center"}`}>

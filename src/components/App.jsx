@@ -1,10 +1,19 @@
 import { useState, createContext, useEffect, useRef } from "react";
 
-import { GetPerCurrToTarget_Bottom } from "./../js/toolFuncs.js";
+// tools
+import { GetPerCurrToTarget_Bottom } from "../js/general.js";
 import * as breakpoints from "./../variables/bsbp.js";
+import { iconsJson } from "../js/paths.js";
+import components from "./../js/markdownComponents.jsx";
+
+
+// external components
 import { Button, Modal } from "react-bootstrap";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehyperaw from "rehype-raw";
 
-
+// components
 import Navbar from "./Navbar/Navbar.jsx";
 import ProfileSection from "./ProfileSection/ProfileSection.jsx";
 import Skeleton from "./Skeleton/Skeleton.jsx";
@@ -12,20 +21,25 @@ import Footer from "./Footer/Footer.jsx";
 import WorksTitle from "./WorksTitle/WorksTitle.jsx";
 import Skillset from "./Skillset/Skillset.jsx";
 import ProjectFooter from "./ProjectFooter/ProjectFooter.jsx";
-import Test from "./Test.jsx";
 
+// assets
+import appJson from "./../assets/App.json";
 
+// exports
 export const appContext = createContext();
+
+// variables
+
+// defines a pivot on the screen, the value represents how far away from the bottom of the screen that pivot is, assuming the max is the top edge of the screen.
 const bottomPivotLocPer = 30;
-const iconsJson = "./JSON/Icons.json";
 
-
+// calculates the position in pixels of the bottom pivot
 function GetBottomPivotPos() {
 
     return  window.innerHeight - ((window.innerHeight / 100) * bottomPivotLocPer);
 }
 
-/* returns current breakpoint (only uses sm-, md and lg+) */
+// returns the current breakpoint state based on bootstrap breakpoints ( we only use sm md dn lg)
 function GetCurrentBreakpoint() {
     let currSize = window.innerWidth;
 
@@ -39,30 +53,23 @@ function GetCurrentBreakpoint() {
     return breakpoints.lg;
 }
 
-// Fetches the icons json and returns its object
-async function FetchIcons() {
-
-    const response = await(fetch(iconsJson));
-
-    if(response.status == 200) {
-
-        const data = await(response.json());
-
-        return data;
-    }
-}
-
-
 
 function App() {
 
+    // represents the current breakpoint state for the window
     const [breakpointState, setBreakpointState] = useState(GetCurrentBreakpoint());
+    // a reference to the breakpoint state that we can use in closure functions and callbacks
     const breakpointStateRef = useRef();
+    // represents a fixed point on the screen
     const bottomPivot = useRef();
-    const [icons, setIcons] = useState(null);
+    // state for the "fetching error" modal
     const [modalState, setmodalState] = useState(false);
+    // live list of fetching errors
     const [errors, setErrors] = useState(null);
+    // icons. Since we use these with various components, Ill use App.jsx as a resource hub
+    const [icons, setIcons] = useState(null);
 
+    // handle the fetchin error modal
     function showModal() {setmodalState(true)};
     function hideModal() {setmodalState(false)};
 
@@ -78,12 +85,30 @@ function App() {
 
             showModal();
 
-            console.log(`Errors: ${errorsList}`);
-
             return errorsList;
         });
     }
 
+    // fetch icons
+    async function GetIcons() {
+
+        const response = await fetch(iconsJson);
+
+        console.log(response);
+
+        if(response.status != 200) {
+            Error("App");
+            return;
+        }
+
+        const data = await response.json();
+
+        setIcons(data);
+    }
+
+
+
+    // updates the opacity of all fade-in actors
     function handleFadeIn() {
 
         // get all fade-in-actors
@@ -105,45 +130,52 @@ function App() {
         });
     };
 
+    // called whenever the screen resizes
     function handleResize() {
 
+        // update the bottom pivot position
         const newSize = GetCurrentBreakpoint();
         bottomPivot.current = GetBottomPivotPos();
 
+        // update the breakpoint state
         if(newSize != breakpointStateRef.current) {
+
+            // we need both the reference and the state because we need to cause a re-render when the breakpoint changes (so we use the state) and also be able to check
+            // if we need to change the breakpoin state or not, which we do in a closure function passed as a callback, and for us to get access to the latest value we need
+            // a reference.
 
             setBreakpointState(newSize);
         }
 
+        // update the fade-in actors
         handleFadeIn();
     };
 
+    // update the breakpointStateRef to point to the new object whenever it changes
     useEffect(() => {
 
         breakpointStateRef.current = breakpointState;
 
     }, [breakpointState]);
 
+    // on mount:
     useEffect(() => {
 
-        // fetch icons json
-        const getIcons = async () => {
+        // get icons
+        GetIcons();
 
-            const iconsData = await(FetchIcons());
-
-            // set the iconsData state to contain the icons object
-            setIcons(iconsData);
-        };
-
-        getIcons();
+        // update fade-in acrots
         handleFadeIn();
+        // update bottom pivot
         bottomPivot.current = GetBottomPivotPos();
 
+        // sub to events
         window.addEventListener("resize", handleResize);
         window.addEventListener("scroll", handleFadeIn);
 
 
         return () => {
+            // unsub to events on un-mount
             window.removeEventListener("resize", handleResize);
             window.removeEventListener("scroll", handleFadeIn);
         };
@@ -152,7 +184,7 @@ function App() {
 
     return (
         <>
-        <appContext.Provider value={{breakpointState, bottomPivot, icons, Error}}>
+        <appContext.Provider value={{breakpointState, icons, bottomPivot, Error}}>
             <Navbar/>
             <ProfileSection/>
             <Skillset/>
@@ -164,13 +196,14 @@ function App() {
         <Modal show={modalState} onHide={hideModal} centered>
             <Modal.Header>
                 <h1 className="text-center w-100">
-                    Error while fetching data from the server
+                    {appJson.errorHeader}
                 </h1>
             </Modal.Header>
             <Modal.Body>
-                <p>An error occured while fetching data from the server. <strong style={{fontSize:"1.5rem"}}>Please refresh the webpage</strong></p>
-                <p>If the issue persists after refreshing. Dont worry, I promise the content was great, you can hire me at arco4@protonmail.com 😃</p>
-                <p>Errors: </p>
+                <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>
+                    {appJson.errorBody}
+                </Markdown>
+                <p>Errors:</p>
                 {errors?.map((el, index) => {
                     return (
                         <p key={`error ${index}`} style={{display:"inline"}}>{el}{index == (errors.length - 1) ? "." : ", "}</p>

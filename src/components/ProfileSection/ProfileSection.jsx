@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";// translates the .md file following the GFM 
 import rehyperaw from "rehype-raw";// allows the rendering of HTML code inside the .md file
 
 import * as breakpoints from "./../../variables/bsbp.js";
-import { GetTitleSize } from "./../../js/toolFuncs.js";
+import { GetTitleSize } from "../../js/general.js";
 import { profileSectionJson } from "../../js/paths.js";
 import components from "../../js/markdownComponents.jsx";
 
