@@ -5,7 +5,7 @@ This project was built with the objective of being a **easy to update and manage
 ### The big picture
 As I made the website I realized that if I was to manage its content over the coming months I needed a solution for data storage and creation.
 
-I started researching and the final solution that I came up with has to do with two main topics: data storage and data serving. I ended up going fairly deep for a first dive and wrote an entire post titled **$$$"Vitejs case study: Differences between import statements (ES6) and fetch/http requests within the public/ and src/ contexts"** (please check it out!)
+I started researching and the final solution that I came up with has to do with two main topics: data storage and data serving. I ended up going fairly deep for a first dive and wrote an entire post titled **$$$"Vitejs case study: Differences between import statements (ES6) and fetch/http requests within the public/ and src/ contexts"** (Please check it out!)
 
 **Data storage:** This meant extracting the data out of the components and saving it somewhere else. For this I needed to choose two things: the place to store the data at and the format to store it as. I chose JSON and Markdown as the formats and as for the location, after researching how Vitejs bundled its applications, the obvious solution were the public/ and the src/assets/ directories.
 
