@@ -1,5 +1,7 @@
 import "./LineRow.css";
 
+// A horizontal dotted line that takes up all the horizontal space, with the ooption of rendering some children at the right
+// end of the line.
 function LineRow({title, children}) {
 
     return (

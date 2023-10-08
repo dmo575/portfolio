@@ -57,24 +57,28 @@ function ProfileSection() {
 
             if(profileResponse.status != 200) {
 
-                Error("profile");
+                Error("profile data");
                 return;
             }
 
             const profileData = await(profileResponse.json());
 
-            // now we prepare for the next fetch
+            // will hold each page's content (makdown files)
             const pageContents = [];
+            // will hold a fetch promise per page
             const pageRequests = [];
 
+            // for each page
             profileData.pageContents.forEach(page => {
 
+                // fetch its markdown file
                 pageRequests.push(fetch(page));
             });
 
+            // wait for all page fetches to be resolved
             const pageResponses = await Promise.allSettled(pageRequests);
 
-            // If all pages requests were 200OK, get the texts onto pageContents, else send error and return.
+            // If all pages fetches were 200 OK, get the texts onto pageContents, else send error and return.
             for(let i = 0; i < pageResponses.length; i++) {
 
                 if(pageResponses[i].status == "rejected") {

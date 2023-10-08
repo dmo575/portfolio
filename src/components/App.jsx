@@ -3,7 +3,7 @@ import { useState, createContext, useEffect, useRef } from "react";
 // tools
 import { GetPerCurrToTarget_Bottom } from "../js/general.js";
 import * as breakpoints from "./../variables/bsbp.js";
-import { iconsJson } from "../js/paths.js";
+import { iconsJson, contactJson } from "../js/paths.js";
 import components from "./../js/markdownComponents.jsx";
 
 
@@ -68,6 +68,9 @@ function App() {
     const [errors, setErrors] = useState(null);
     // icons. Since we use these with various components, Ill use App.jsx as a resource hub
     const [icons, setIcons] = useState(null);
+    // same for contact info
+    const [contact, setContact] = useState(null);
+
 
     // handle the fetchin error modal
     function showModal() {setmodalState(true)};
@@ -90,20 +93,21 @@ function App() {
     }
 
     // fetch icons
-    async function GetIcons() {
+    async function InitialFetches() {
 
-        const response = await fetch(iconsJson);
+        const iconsResponse = await fetch(iconsJson);
+        const contactResponse = await fetch(contactJson);
 
-        console.log(response);
-
-        if(response.status != 200) {
+        if(iconsResponse.status != 200 || contactResponse.status != 200) {
             Error("App");
             return;
         }
 
-        const data = await response.json();
+        const iconsData = await iconsResponse.json();
+        const contacData = await contactResponse.json();
 
-        setIcons(data);
+        setContact(contacData);
+        setIcons(iconsData);
     }
 
 
@@ -162,7 +166,7 @@ function App() {
     useEffect(() => {
 
         // get icons
-        GetIcons();
+        InitialFetches();
 
         // update fade-in acrots
         handleFadeIn();
@@ -184,7 +188,7 @@ function App() {
 
     return (
         <>
-        <appContext.Provider value={{breakpointState, icons, bottomPivot, Error}}>
+        <appContext.Provider value={{breakpointState, icons, contact, bottomPivot, Error}}>
             <Navbar/>
             <ProfileSection/>
             <Skillset/>

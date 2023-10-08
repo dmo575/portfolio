@@ -94,16 +94,4 @@ function Skeleton() {
     );
 }
 
-async function FetchCards(){
-
-    const response = await (fetch(cardsJson));
-
-    if(response.status == 200) {
-
-        const data = await(response.json());
-
-        return data;
-    }
-}
-
 export default Skeleton;

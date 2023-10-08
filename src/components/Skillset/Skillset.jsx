@@ -9,9 +9,9 @@ import LineRow from "./../LineRow/LineRow.jsx";
 import Skill from "./../Skill/Skill.jsx";
 
 import "./Skillset.css";
-import Test from "../Test.jsx";
 
 
+// conditionally returns a text parragraph
 function HoverText(render, text) {
 
     if(render) {
@@ -27,16 +27,18 @@ function Skillset() {
 
     const { breakpointState, icons, Error } = useContext(appContext);
 
+    // state for a list of skills to display
     const [state, setState] = useState(null);
 
     useEffect(() =>{
 
+        // get the state data
         const getData = async () => {
 
             const response = await(fetch(skillsetJson));
 
             if(response.status != 200) {
-                Error("Skillset");
+                Error("Skills");
                 return;
             }
             
@@ -49,6 +51,7 @@ function Skillset() {
 
     }, []);
 
+    // For each skill, get its icon
     function getSkills(stateArray) {
 
         return (state && icons) ? (
@@ -71,6 +74,7 @@ function Skillset() {
                     {HoverText(breakpointState >= breakpoints.lg, state?.comment || "")}
                 </div>
 
+                {/* This will render on larger screens */}
                 {
                     breakpointState >= breakpoints.md ? 
                     (
@@ -85,7 +89,8 @@ function Skillset() {
                         {getSkills("secondarySkills")}
                         </LineRow>
                         </>
-                    ) : (
+                    ) : 
+                    (
                         <>
                         <LineRow title={state?.primaryToolsTitle || ""}/>
                         <div className="row d-flex my-4">
@@ -105,6 +110,12 @@ function Skillset() {
                         </>
                     )
                 }
+                <div className="row">
+                    <div className="col d-flex justify-content-end">
+                        {HoverText(breakpointState <= breakpoints.md, state?.comment || "")}
+                    </div>
+                </div>
+                {/* This will render on smaller screens */}
             </div>
         </div>
     );

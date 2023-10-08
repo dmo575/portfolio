@@ -3,7 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 import Markdown from "react-markdown";// a React component that allows me to use markdown in my jsx
 import remarkGfm from "remark-gfm";// translates the .md file following the GFM standard
 import rehyperaw from "rehype-raw";// allows the rendering of HTML code inside the .md file
-import components from "./../../js/markdownComponents.jsx";
+import components from "./../../js/markdownComponents.jsx";// custom components for Markdown
 
 import * as breakpoints from "./../../variables/bsbp.js";
 
@@ -23,8 +23,6 @@ import "./Card.css";
 
 function Card({card, imgOrder}) {
 
-    const srcImg = "https://fastly.picsum.photos/id/677/800/800.jpg?hmac=Br67ocN_8AO1SrVQ7BvM2hacQj8gfK4vh7GwsJu7fPk";
-
     const imgContId = `${card.title.replace(/\s+/g, '')}-img-cont`;
 
     const { breakpointState, icons, Error } = useContext(appContext);
@@ -32,6 +30,7 @@ function Card({card, imgOrder}) {
     const [modal, setModal] = useState(false);
     // will store the content of the card (the .md file)
     const [cardContent, setCardContent] = useState("Loading content. . .");
+
     // open/close the react-bootstrap modal
     function openModal() {
 
@@ -43,6 +42,10 @@ function Card({card, imgOrder}) {
         setModal(false);
     };
 
+
+    // return a button based on the skipTo property.
+    // if a card object has a skipTo, it means that instead of opening a modal, this card wants to open a link
+    // to somewhere and that links value is skipTo.
     function GetButton() {
 
         const classes = `btn rounded-5 ${breakpointState < breakpoints.lg && "flex-grow-1"}`;
@@ -60,9 +63,8 @@ function Card({card, imgOrder}) {
 
     useEffect(() => {
 
+        // resizes and centers the card's image
         function ResizeImage() {
-
-            //if(imgContId != "Calculatormaster-img-cont") return;
 
             const imgCont = document.querySelector(`#${imgContId}`);
             //html collection, meaning live array, but we just need a screenshot of their values
@@ -139,13 +141,14 @@ function Card({card, imgOrder}) {
     }, []);
 
 
+    // attempts to load the card's content markdown file
     async function loadMarkdown() {
         
         const response = await (fetch(card.content));
 
         if(response.status != 200) {
             
-            Error("card contents");
+            Error("Card content");
             return;            
         }
 
@@ -158,7 +161,7 @@ function Card({card, imgOrder}) {
         <>
         <div className="card flex-lg-row h-100 fade-in-actor" style={{overflow: "hidden"}}>{/* MAIN CONTAINER, card */}
             <div id={imgContId} className={`col-lg-3 card-img-cont d-flex ${ breakpointState >= breakpoints.lg && `order-${imgOrder}`}`}>{/* container for IMAGE */}
-                <img src={srcImg} className="card-img"></img>
+                <img src={breakpointState >= breakpoints.lg ? card.srcL : card.srcS} className="card-img"></img>
             </div>
             <div className="card-body d-flex flex-column justify-content-between">
 
@@ -191,7 +194,6 @@ function Card({card, imgOrder}) {
             </div>
         </div>
 
-        {/* <Modal show={modal} onShow={handleModalShow} fullscreen="sm-down" dialogClassName={breakpointState > breakpoints.sm && `modal-custom`} scrollable={true} centered={true} onHide={closeModal}> */}
         <Modal show={modal} fullscreen="sm-down" dialogClassName={breakpointState > breakpoints.sm && `modal-custom`} scrollable={true} centered={true} onHide={closeModal}>
             <Modal.Header closeButton className={`${breakpointState >= breakpoints.lg ? "" : "py-1"}`}>
                 <div className={`col d-flex ${breakpointState >= breakpoints.lg ? "" : "flex-column justify-content-center align-items-center"}`}>
@@ -218,124 +220,5 @@ function Card({card, imgOrder}) {
         </>
     );
 }
-
-
-function CardOld({card, imgOrder}) {
-
-    imgOrder = imgOrder == "first" ? "left" : "right";
-    const { breakpointState, icons, Error } = useContext(appContext);
-    const [modal, setModal] = useState(false);
-
-    // the main content of the card (.md file)
-    const [cardContent, setCardContent] = useState("Loading content. . .");
-
-    const img = <img className={`card-img-${imgOrder}`} src={window.innerWidth < breakpoints.lg ? card.srcS : card.srcL}/>;
-
-
-    function openModal() {
-        setModal(true);
-        loadMarkdown();
-    };
-
-    function closeModal() {
-        setModal(false);
-    };
-
-
-    // returns a button with the correct styling (large or small)
-    // "get" is a bool that tells the function if it should return a button at all
-    // "card.skipTo" is a property that whenever it exists it means that the button should
-    // be a link to the skipTo value instead of a modal opener button
-    function GetButton(get) {
-
-        if(!get) {return;}
-
-        const classes = `btn rounded-5 ${breakpointState < breakpoints.lg && "flex-grow-1"}`;
-
-        if(!card.skipTo) {
-            return (
-                <Button className={`btn-dark ${classes}`} onClick={openModal}>Check it out</Button>
-            );
-        }
-
-        return (
-            <a className={`btn-success ${classes}`} href={card.skipTo} target="_blank">See it live</a>
-        );
-    };
-
-    async function loadMarkdown() {
-        
-        const response = await (fetch(card.content));
-
-        if(response.status != 200) {
-            
-            Error("card contents");
-            return;            
-        }
-
-        const data = await (response.text());
-
-        setCardContent(data);
-    };
-
-    return (
-        <>
-        <div className="card flex-lg-row h-100 fade-in-actor">
-            {imgOrder === "left" || window.innerWidth < breakpoints.lg ? img : <></>}
-            <div className="card-body d-flex flex-column">
-                <h1 className="card-title">{card.title}</h1>
-                <div className="card-text flex-grow-1">
-                    <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{card.description}</Markdown>
-                </div>
-                <div className="card-text d-flex justify-content-lg-between justify-content-center">
-                    <div className={`d-flex justify-content-lg-start justify-content-around flex-grow-1 align-items-center ${breakpointState <= breakpoints.md ? "my-3" : ""}`}>
-                        {card.tech.map(el => {
-                            if(Object.keys(icons).length == 0) {return}
-
-                            return (
-                                <Skill key={card.title + el} src={icons[el].color} name={icons[el].name} size={breakpointState == breakpoints.lg ? "lg" : "sm"}/>
-                            );
-                        })}
-                    </div>
-                    {/*breakpointState >= breakpoints.lg ? <Button className="btn btn-dark rounded-5" onClick={openModal}>Check it out</Button> : <></>*/}
-                    {GetButton(breakpointState >= breakpoints.lg)}
-                </div>
-                <div className="card-text d-flex" style={{marginTop: "1rem"}}>
-                    {/*breakpointState >= breakpoints.lg ? <></> : <Button className="btn flex-grow-1 btn-dark rounded-5" onClick={card.skipTo ? "https//:www.google.com" : openModal}>Check it out</Button>*/}
-                    {GetButton(breakpointState < breakpoints.lg)}
-                </div>
-            </div>
-            {imgOrder === "right" && window.innerWidth >= breakpoints.lg ? img : <></>}
-        </div>
-
-        
-        <Modal show={modal} dialogClassName="modal-custom" scrollable={true} centered={true} onHide={closeModal}>
-            <Modal.Header closeButton className={`${breakpointState >= breakpoints.lg ? "" : "py-1"}`}>
-                <div className={`col d-flex ${breakpointState >= breakpoints.lg ? "" : "flex-column justify-content-center align-items-center"}`}>
-                    <div className="col-auto mx-2">
-                        <h2 style={{whiteSpace: "nowrap"}}>{card.title}</h2>
-                    </div>
-                    <div className={`col-auto d-flex align-items-center`}>
-                        {
-                            card.links.map((el, index) => {
-                                return(
-                                    <a className={`btn btn-dark mx-2 rounded-5 ${breakpointState <= breakpoints.md ? "btn-sm" : ""}`} style={{whiteSpace: "nowrap"}} target="_blank" key={card.title+el+index} href={el.url}>{el.name}</a>
-                                );
-                            })
-                        }
-                    </div>
-                </div>
-            </Modal.Header>
-            <Modal.Body>
-                <div className="font-readable">
-                    <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehyperaw} components={components}>{cardContent}</Markdown>
-                </div>
-            </Modal.Body>
-        </Modal>
-        </>
-    );
-}
-
-
 
 export default Card;
