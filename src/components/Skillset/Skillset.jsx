@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 
-import * as breakpoints from "./../../variables/bsbp.js";
+import * as breakpoints from "./../../js/bsbp.js";
 import { GetTitleSize } from "../../js/general.js";
 import { skillsetJson } from "../../js/paths.js";
 

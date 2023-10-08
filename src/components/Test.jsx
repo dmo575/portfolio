@@ -4,9 +4,9 @@ import { Modal } from "react-bootstrap";
 import Markdown from "react-markdown";// a React component that allows me to use markdown in my jsx
 import remarkGfm from "remark-gfm";// translates the .md file following the GFM standard
 import rehyperaw from "rehype-raw";// allows the rendering of HTML code inside the .md file
-import components from "./../js/markdownComponents.jsx";
+import components from "./../markdownComponents.jsx";
 import { appContext } from "./App.jsx";
-import * as breakpoints from "./../variables/bsbp.js";
+import * as breakpoints from "./../js/bsbp.js";
 import { iconsJson } from "../js/paths.js";
 
 

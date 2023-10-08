@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 import { appContext } from "../App";
-import * as breakpoints from "./../../variables/bsbp.js";
+import * as breakpoints from "./../../js/bsbp.js";
 
 import "./ProjectFooter.css";
 

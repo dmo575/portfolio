@@ -1,7 +1,7 @@
 import { useEffect, useContext, useRef } from "react";
 
 import { GetSectionSize, GetPerCurrToTarget_Bottom } from "../../js/general.js";
-import * as breakpoints from "./../../variables/bsbp.js";
+import * as breakpoints from "./../../js/bsbp.js";
 
 import { appContext } from "./../App.jsx";
 
@@ -69,6 +69,7 @@ function WorksTitle() {
         window.addEventListener("scroll", handleWorksTitle);
         window.addEventListener("resize", handleWorksTitle);
 
+        // update the works title
         handleWorksTitle();
 
         return () => {

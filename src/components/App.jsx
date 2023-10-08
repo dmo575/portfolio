@@ -2,9 +2,9 @@ import { useState, createContext, useEffect, useRef } from "react";
 
 // tools
 import { GetPerCurrToTarget_Bottom } from "../js/general.js";
-import * as breakpoints from "./../variables/bsbp.js";
+import * as breakpoints from "./../js/bsbp.js";
 import { iconsJson, contactJson } from "../js/paths.js";
-import components from "./../js/markdownComponents.jsx";
+import components from "./../markdownComponents.jsx";
 
 
 // external components

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 
-import * as breakpoints from "./../../variables/bsbp.js";
+import * as breakpoints from "./../../js/bsbp.js";
 import { cardsJson } from "../../js/paths.js";
 
 import { appContext } from "./../App.jsx";
