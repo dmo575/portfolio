@@ -9,9 +9,9 @@ I started researching and the final solution that I came up with has to do with 
 
 **Data storage:** This meant extracting the data out of the components and saving it somewhere else. For this I needed to choose two things: the place to store the data at and the format to store it as. I chose JSON and Markdown as the formats and as for the location, after researching how Vitejs bundled its applications, the obvious solution were the public/ and the src/assets/ directories.
 
-- **What went into the public directory:** Content that I knew I would want to modify some day in some form.
+- **What went into the public/ directory:** Content that I knew I would want to modify some day in some form.
 
-- **What went into the assets directory:** Content that I absolutely needed to send along the rest of the page in the initial request of the webpage. In my case this was only one thing that I just wanted to implement and it was the error message for http requests, more on it later.
+- **What went into the drc/assets/ directory:** Content that I absolutely needed to send along in the initial request of the webpage. In my case this was only one thing that I just wanted to implement (I have this little error system for fetch requests that prompts a message and I wanted to have the message not be sent in a fetch request, that would be so lame)
 
 - **Why JSON and Markdown:** JSON and Markdown compliment eachother very well in my opinion, I can have a JSON store all granular variables needed for a component and use Markdown for the large text parts, then store the Markdown paths inside the JSON as just another item.
 

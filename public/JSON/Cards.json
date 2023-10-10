@@ -18,6 +18,7 @@
             ],
             "content": "./markdown/portfolio.md",
             "links": [
+                {"name": "See it live", "url": "https://github.com/dmo575/portfolio" },
                 {"name": "Check code", "url": "https://github.com/dmo575/portfolio" }
             ]
         },

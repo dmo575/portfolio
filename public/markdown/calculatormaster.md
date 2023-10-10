@@ -2,7 +2,7 @@
 A purely JS/CSS/HTML application with no extra libraries.
 
 ### Keeping the user updated
-The application handles all possible edge cases gracefully, informing the user of everything that might happen. From the sate of the game to server operations and results.
+The application handles all possible edge cases gracefully and matains the user informed of what is happening at all times; from fetching statuses to fetching errors.
 
 ### Client and server data validation
 When sending data to the server, the client validates the data first to avoid overhead on the server. The data is however checked again in the server since the client side validation is just useful to avoid overhead when the user is interacting with the application in good faith (and because that is what happens most of the time, client side validation is actually important to not bother the server with wrong data send in good faith).

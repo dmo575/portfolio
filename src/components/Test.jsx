@@ -10,6 +10,12 @@ import * as breakpoints from "./../js/bsbp.js";
 import { iconsJson } from "../js/paths.js";
 
 
+import publicFile from "./../../public/public_file.json";
+import srcFile from "./../src_file.json";
+
+const publicPath = "./../../public/public_file.json";
+const srcPath = "./../src_file.json";
+
 /* function Test() {
 
     const [show, setShow] = useState(false);
@@ -81,7 +87,7 @@ const mdPath = "./../../public/markdown/test.md";
 
 
 // size is optional, if none it will be auto/auto
-function Test({name, logo, size=2}) {
+/* function Test({name, logo, size=2}) {
 
     const [state, setState] = useState(null);
 
@@ -117,6 +123,24 @@ function Test({name, logo, size=2}) {
             {Skill()}
         </>
     );
+} */
+
+
+async function fetchTest(path) {
+
+    const response = await fetch(path);
+
+    const data = await response.text();
+
+    console.log(data);
+}
+
+function Test() {
+
+    //console.log(publicFile);
+    //console.log(srcFile);
+    fetchTest(srcPath);
+
 }
 
 export default Test;

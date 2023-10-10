@@ -156,8 +156,6 @@ function ProfileSection() {
                 )
             );
 
-            console.log(offset);
-
             // if we are loading the invis page, break
             if(invis) break;
         }
