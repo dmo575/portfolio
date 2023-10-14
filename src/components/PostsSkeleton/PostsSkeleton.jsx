@@ -39,9 +39,11 @@ function PostsSkeleton() {
     function loadPost(title, index) {
 
         return(
-            <ListGroup.Item key={`post-${title}`} variant="secondary" data-index={index} action onClick={openModal}>
-                {title}
-            </ListGroup.Item>
+            <li>
+                <ListGroup.Item key={`post-${title}`} className="rounded-2 my-1" variant="secondary" data-index={index} action onClick={openModal}>
+                    {title}
+                </ListGroup.Item>
+            </li>
         );
     }
 
@@ -74,14 +76,16 @@ function PostsSkeleton() {
     // col with a list of all posts in posts.json
     return(
         <div className="container">
-            <div className="row"> {/* Posts section */}
-                <div className="col">
+            <div className="row d-flex justify-content-center"> {/* Posts section */}
+                <div className="col-auto">
                     <ListGroup>
+                        <ul>
                         {
                             state?.posts.map((el, index) => {
                                 return loadPost(el.title, index);
                             })
                         }
+                        </ul>
                     </ListGroup>
                 </div>
             </div>

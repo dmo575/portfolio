@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+/* import { useState, useEffect, useContext } from "react";
 import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import Markdown from "react-markdown";// a React component that allows me to use markdown in my jsx
@@ -13,8 +13,8 @@ import { iconsJson } from "../js/paths.js";
 import publicFile from "./../../public/public_file.json";
 import srcFile from "./../src_file.json";
 
-const publicPath = "./../../public/public_file.json";
-const srcPath = "./../src_file.json";
+const publicPath = "./../../public/public_file.json"; */
+//const srcPath = "./../src_file.json";
 
 /* function Test() {
 
@@ -43,7 +43,7 @@ const srcPath = "./../src_file.json";
     );
 } */
 
-const mdPath = "./../../public/markdown/test.md";
+//const mdPath = "./../../public/markdown/test.md";
 
 /* function Test() {
 
@@ -126,7 +126,7 @@ const mdPath = "./../../public/markdown/test.md";
 } */
 
 
-async function fetchTest(path) {
+/* async function fetchTest(path) {
 
     const response = await fetch(path);
 
@@ -140,6 +140,10 @@ function Test() {
     //console.log(publicFile);
     //console.log(srcFile);
     fetchTest(srcPath);
+
+} */
+
+function Test() {
 
 }
 

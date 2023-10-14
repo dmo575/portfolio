@@ -83,3 +83,8 @@ I have come to understand that CSS is much more powerful that I initialy thought
 I also wrote the back-end for this project. While I worked within the Node runtime environment for the front-end, I used Deno and its built-in server solutions for the back-end, so its written in Typescript.
 
 I also went trough the server renting and set up on Fedora Linux for this project and others.
+
+### A comment on the blog-post:
+I have a [blog-post](./posts.html) where you can find me expanding on programming concepts that I learn as I build my projects. If that sounds like something interesting to you, please check it out !
+
+I made the blog-post as a separate page (same IP just different .html). I debated with myself whether to use my [React-router](https://github.com/dmo575/ReactRouter) component or not but I ended up deciding for having the portfolio be a multi-page app so I could make good use of my [server-side](https://github.com/dmo575/portfolio-backend) code.

@@ -6,10 +6,10 @@ function PostsApp() {
 
     return(
         <div>
-            <div className="container">
+            <div className="container my-4">
                 <div className="row">
                     <div className="col d-flex justify-content-center">
-                        <h1>Blog-post.</h1>
+                        <h1>blog-post.</h1>
                     </div>
                 </div>
             </div>
