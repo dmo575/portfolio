@@ -1,0 +1,12 @@
+{
+    "posts": [
+        {
+            "title": "First post",
+            "markdown": "./markdown/posts/t01.md"
+        },
+        {
+            "title": "Second post",
+            "markdown": "./markdown/posts/t02.md"
+        }
+    ]
+}
