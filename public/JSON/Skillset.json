@@ -14,9 +14,9 @@
         "lol"
     ],
     "secondarySkills": [
-        "python",
-        "flask",
+        "vitejs",
         "sqlite",
-        "vitejs"
+        "python",
+        "flask"
     ]
 }

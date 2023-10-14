@@ -10,16 +10,13 @@
                 "html",
                 "css",
                 "bootstrap",
-                "python",
-                "flask",
-                "sqlite",
                 "git",
                 "github"
             ],
             "content": "./markdown/portfolio.md",
             "links": [
-                {"name": "See it live", "url": "https://github.com/dmo575/portfolio" },
-                {"name": "Check code", "url": "https://github.com/dmo575/portfolio" }
+                {"name": "Check code (client)", "url": "https://github.com/dmo575/portfolio" },
+                {"name": "Check code (server)", "url": "https://github.com/dmo575/portfolio-backend" }
             ]
         },
         {
@@ -31,7 +28,6 @@
                 "javascript",
                 "html",
                 "css",
-                "bootstrap",
                 "python",
                 "flask",
                 "sqlite",
@@ -40,8 +36,8 @@
             ],
             "content": "./markdown/calculatormaster.md",
             "links": [
-                {"name": "See it live", "url": "/" },
-                {"name": "Check code", "url": "https://github.com/dmo575/portfolio" }
+                {"name": "See it live", "url": "http://146.190.125.135:80" },
+                {"name": "Check code", "url": "https://github.com/dmo575/CalculatorMaster" }
             ]
         },
         {

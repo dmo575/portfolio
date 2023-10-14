@@ -64,6 +64,14 @@
         "color": "./images/webflow.svg",
         "grayscale": "https://api.iconify.design/simple-icons:webflow.svg"
     },
+    "deno": {
+        "name": "Deno",
+        "color": "./images/deno.svg"
+    },
+    "node": {
+        "name": "Node",
+        "color": "./images/node.svg"
+    },
     "lol": {
         "name": "😎",
         "color": "./images/lol.png"
