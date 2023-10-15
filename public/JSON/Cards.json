@@ -2,14 +2,15 @@
     "cards": [
         {
             "title": "Portfolio website",
-            "srcL": "https://fastly.picsum.photos/id/677/800/800.jpg?hmac=Br67ocN_8AO1SrVQ7BvM2hacQj8gfK4vh7GwsJu7fPk",
-            "srcS": "https://fastly.picsum.photos/id/230/600/300.jpg?hmac=xaOtfLjlm4OwQVWYD4xcugIiy5Ebr_qNu7ymvmI2jv4",
+            "srcL": "./images/portfolio_L.jpg",
+            "srcS": "./images/portfolio_S.jpg",
             "description": "./markdown/portfolio_desc.md",
             "tech": [
                 "javascript",
                 "html",
                 "css",
                 "bootstrap",
+                "deno",
                 "git",
                 "github"
             ],
@@ -21,8 +22,8 @@
         },
         {
             "title": "Calculator master",
-            "srcL": "https://fastly.picsum.photos/id/677/800/800.jpg?hmac=Br67ocN_8AO1SrVQ7BvM2hacQj8gfK4vh7GwsJu7fPk",
-            "srcS": "https://fastly.picsum.photos/id/230/600/300.jpg?hmac=xaOtfLjlm4OwQVWYD4xcugIiy5Ebr_qNu7ymvmI2jv4",
+            "srcL": "./images/calculatormaster_L.jpg",
+            "srcS": "./images/calculatormaster_S.jpg",
             "description": "./markdown/calculatormaster_desc.md",
             "tech": [
                 "javascript",
@@ -42,8 +43,8 @@
         },
         {
             "title": "MyMovies",
-            "srcL": "https://fastly.picsum.photos/id/677/800/800.jpg?hmac=Br67ocN_8AO1SrVQ7BvM2hacQj8gfK4vh7GwsJu7fPk",
-            "srcS": "https://fastly.picsum.photos/id/230/600/300.jpg?hmac=xaOtfLjlm4OwQVWYD4xcugIiy5Ebr_qNu7ymvmI2jv4",
+            "srcL": "./images/mymovies_L.jpg",
+            "srcS": "./images/mymovies_S.jpg",
             "description": "./markdown/mymovies_desc.md",
             "tech": [
                 "javascript",
@@ -61,8 +62,8 @@
         },
         {
             "title": "My old game dev portfolio",
-            "srcL": "https://fastly.picsum.photos/id/677/800/800.jpg?hmac=Br67ocN_8AO1SrVQ7BvM2hacQj8gfK4vh7GwsJu7fPk",
-            "srcS": "https://fastly.picsum.photos/id/230/600/300.jpg?hmac=xaOtfLjlm4OwQVWYD4xcugIiy5Ebr_qNu7ymvmI2jv4",
+            "srcL": "./images/gameportfolio_L.jpg",
+            "srcS": "./images/gameportfolio_S.jpg",
             "description": "./markdown/arc_desc.md",
             "tech": [
                 "webflow"

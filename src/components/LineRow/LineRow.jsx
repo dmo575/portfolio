@@ -5,7 +5,7 @@ import "./LineRow.css";
 function LineRow({title, children}) {
 
     return (
-        <div className="row row-cols-3">
+        <div className="row row-cols-5">
             <div className="col-auto d-flex align-items-center">
                 <p className="h3">{title}</p>
             </div>

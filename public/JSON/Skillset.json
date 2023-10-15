@@ -17,6 +17,8 @@
         "vitejs",
         "sqlite",
         "python",
-        "flask"
+        "flask",
+        "deno",
+        "node"
     ]
 }
