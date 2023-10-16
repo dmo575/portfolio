@@ -44,6 +44,8 @@ function Skeleton() {
                         return response.text();
                     }
 
+                    Error("card description");
+
                 }).then(data => {
 
                     // set the card's description variable, previously a path to a .md file, to the 
@@ -60,13 +62,8 @@ function Skeleton() {
             });
 
             // once all fetch promises for all cards have been solved (card.description)
-            const results = await (Promise.allSettled(promises));
+            await (Promise.allSettled(promises));
 
-            results.forEach(el => {
-                if(el.status == "rejected") {
-                    Error("card descriptions");
-                }
-            });
 
             // set the cardsData state to be the array of cards
             setCardsArray(cardsData.cards);

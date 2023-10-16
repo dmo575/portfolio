@@ -5,6 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: "./../portfolio_backend/dist/",
+    outDir: "./../portfolio_bundle/dist/",
   },
 })

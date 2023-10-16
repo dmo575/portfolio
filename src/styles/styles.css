@@ -139,7 +139,35 @@ p, h1, h2, h3, h4, h5, h6, li  {
 
 .img-md {
 
-    margin: 0.5rem;
+    margin-right: 3rem;
+    margin-left: 3rem;
+}
+
+.img-w-s {
+    width: 15%;
+}
+
+.img-w-m {
+    width: 25%;
+}
+
+.img-w-l {
+    width: 40%;
+}
+
+@media screen and (max-width: 555px) {
+ 
+    .img-w-s {
+        width: 25%;
+    }
+    
+    .img-w-m {
+        width: 50%;
+    }
+    
+    .img-w-l {
+        width: 80%;
+    }
 }
 
 /* MARKDOWN STYLES */

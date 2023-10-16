@@ -5,22 +5,19 @@ This project was built with the objective of being a **easy to update and manage
 ### The big picture
 As I made the website I realized that if I was to manage its content over the coming months I needed a solution for data storage and creation.
 
-I started researching and the final solution that I came up with has to do with two main topics: data storage and data serving. I ended up going fairly deep for a first dive and wrote an entire post titled **$$$"Vitejs - Differences between import statements (ES6) and fetch/http requests within the public/ and src/ contexts"** [(Please check it out!)](./posts.html)
+I started researching and the final solution that I came up with has to do with two main topics: data storage and data serving. I ended up going fairly deep for a first dive and **$$$wrote an entire post all about import statements** [(Please check it out on my blog-post!)](./posts.html)
 
-
-**Data storage:** This meant extracting the data out of the components and saving it somewhere else. For this I needed to choose two things: the place to store the data at and the format to store it as. I chose JSON and Markdown as the formats and as for the location, after researching how Vitejs bundled its applications, the obvious solution were the `public/` and the `src/assets/` directories.
+![{"className": "img-md float-end img-w-s"}](./images/markdown/portfolio/folders.png)
+Long story short, I ended up using JSON and Markdown as the formats to save all component's granular data and chuncks of texts respectively and after researching how Vitejs bundled its applications, the obvious solution were the `public/` and the `src/assets/` directories.
 
 - **What went into the public/ directory:** Content that I knew I would want to modify some day in some form.
 
-- **What went into the drc/assets/ directory:** Content that I absolutely needed to send along in the initial request of the webpage. In my case this was only one thing that I just wanted to implement (I have this little error system for fetch requests that prompts a message and I wanted to have the message not be sent in a fetch request, that would beat its purpose)
+- **What went into the drc/assets/ directory:** Content that I absolutely needed to send along in the initial request of the webpage. In my case this was only one thing that I just wanted to implement (I have this little error system for fetch requests that prompts a message and I wanted to have the message not be sent in a separate fetch request since that would beat its purpose)
 
 - **Why JSON and Markdown:** JSON and Markdown compliment eachother very well in my opinion, I can have a JSON store all granular variables needed for a component and use Markdown for the large text parts, then store the Markdown paths inside the JSON as just another item.
 
-**Handling fetch errors:** With most of the content not being hardcoded onto the components anymore, the only solution to get it back is to fetch it, and fetching can go well or wrong, so we need to account for a failed fetch request:
-
-- If an error occurs, any component can call the Error function, which is sent as a context to them. The Error function then adds the new error to the list and opens a modal that shows all errors along a message to the user informing it of steps to take.
-
-    You should never see this if everything goes well, so I have attached a .gif showing what would it look like if the client were to get any fetch error anywhere in the site.
+### Handling fetch errors:
+Any fetch request that goes wrong will trigger an Error message to be sent to the user. You can test this feature by cloning the repo and running the deve server after modifying the name of any of the json or markdown files (with the exception of markdowns from the posts/ dierctory, those are for the blog-post.)
 
 **A note on the page:** I did not 100% separated all the data from the components. Being this a small portfolio webpage I only separated the things I thought I would ever want to change.
 
@@ -29,10 +26,9 @@ This is the final project structure:
 .root/
 ├── src/
 │   ├── assets/
-│   │   └── data I want to guarantee is sent in the initial request
+│   │   └── static data I need on to be sent on the initial http request
 │   ├── components/
 │   │   ├── comp1/
-│   │   ├── comp2/
 │   │   └── ...
 │   ├── js/
 │   │   └── utility js classes
@@ -63,14 +59,13 @@ Here is how you customize images:
 ![{"width": "50%", "someOtherAttribute": "someValue"}](./img/path.svg)
 
 Also, the code-block style is custom, I added the border and background color to it.
-
 ```
-
 ### React
 As I built the project, it became clear to me how good React was at helping me make re-husable, mantainable code by combining the idea of components with the paradigm of functional programming.
 
 It was a great experience for me to use React for this project as I was able to see first hand what React has to offer (Compartmentalization of code via components and the hability they have to react to any changes and send information to one another) and where it lacks (Bootstrap compatability, no Markdown support) and sticking to it and finding workarounds for its shortcomings as well as leveraging its best features gave me a real sense of what it feels like to build and mantain a real life project.
 
+![{"className": "img-md float-end img-w-s"}](./images/markdown/portfolio/tech.png)
 ### Bootstrap
 I have been able to get a firm grasp of bootstrap with this project and I loved it every step of the way. It is definitely a time saver, and it makes me eager to learn more about it. I'm also curious about other styling solutions out there like Tailwind, I'll be sure to check those out as soon as possible too!
 
@@ -84,7 +79,9 @@ I also wrote the back-end for this project. While I worked within the Node runti
 
 I also went trough the server renting and set up on Fedora Linux for this project and others.
 
+(And also, I ended up writting about what I learned about [I/O while using Deno](./posts.html))
+
 ### A comment on the blog-post:
 I have a [blog-post](./posts.html) where you can find me expanding on programming concepts that I learn as I build my projects. If that sounds like something interesting to you, please check it out !
 
-I made the blog-post as a separate page (same IP just different .html). I debated with myself whether to use my [React-router](https://github.com/dmo575/ReactRouter) component or not but I ended up deciding for having the portfolio be a multi-page app so I could make good use of my [server-side](https://github.com/dmo575/portfolio-backend) code.
+I made the blog-post as a separate page instead of using a [react router](https://github.com/dmo575/ReactRouter) because I wanted to test how [my server](https://github.com/dmo575/portfolio-backend) would do with serving a multi-page application.

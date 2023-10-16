@@ -56,8 +56,8 @@
             ],
             "content": "./markdown/mymovies.md",
             "links": [
-                {"name": "See video", "url": "/" },
-                {"name": "Check code", "url": "https://github.com/dmo575/portfolio" }
+                {"name": "See video", "url": "https://www.youtube.com/watch?v=HkbZu71cfN8" },
+                {"name": "Check code", "url": "https://github.com/dmo575/mymovies" }
             ]
         },
         {

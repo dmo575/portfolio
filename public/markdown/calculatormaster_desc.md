@@ -1,4 +1,5 @@
-Adictive calculator mini-game.
+Adictive calculator mini-game made in plain JS/CSS/HTML.
+
 - **$$$Global leaderboard** that displays not only username and score but country flag too!
 - Interacts with several APIs:
     -  **ipinfo.io** (*server-side*) : for info on the client's **direct** IP 

@@ -1,7 +1,7 @@
 {
     "posts": [
         {
-            "title": "Vitejs - Differences between import statements (ES6) and fetch/http requests within the public/ and src/ contexts.",
+            "title": "Vitejs - Differences between import statements and fetch/http requests within the public/ and src/ contexts.",
             "markdown": "./markdown/posts/t01.md"
         },
         {

@@ -3,13 +3,13 @@ import * as breakpoints from "./../../js/bsbp.js";
 import { appContext } from "../App";
 
 
-function NavbarButton({href, target, icon, name, iconOnSmall, nameOnSmall, style="secondary"}) {
+function NavbarButton({href, target, icon, name, iconOnSmall, nameOnSmall, style="btn-outline-secondary"}) {
 
     const {breakpointState} = useContext(appContext);
 
     return(
         <div className="col-auto">
-            <a href={href || ""} target={target} className={`btn rounded-5 btn-outline-${style}`}>
+            <a href={href || ""} target={target} className={`btn rounded-5 ${style}`}>
                 { breakpointState < breakpoints.md && !nameOnSmall ? "" : name }
                 {
                     (breakpointState < breakpoints.md && !iconOnSmall) || !icon  ? "" :
