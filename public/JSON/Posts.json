@@ -2,11 +2,11 @@
     "posts": [
         {
             "title": "Vitejs - Differences between import statements and fetch/http requests within the public/ and src/ contexts.",
-            "markdown": "./markdown/posts/t01.md"
+            "markdown": "./../markdown/posts/t01.md"
         },
         {
             "title": "I/O 101",
-            "markdown": "./markdown/posts/t02.md"
+            "markdown": "./../markdown/posts/t02.md"
         }
     ]
 }

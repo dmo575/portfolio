@@ -10,5 +10,5 @@ export const profileSectionJson = "./JSON/ProfileSection.json";
 // components JSON
 export const skillsetJson = "./JSON/Skillset.json";
 export const cardsJson = "./JSON/Cards.json";
-export const postsJson = "./JSON/Posts.json";
-export const postAlertJson = "./JSON/Alert.json";
+export const postsJson = "./../JSON/Posts.json";
+export const postAlertJson = "./../JSON/Alert.json";
