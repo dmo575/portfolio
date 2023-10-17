@@ -1,5 +1,5 @@
-/* import { useState, useEffect, useContext } from "react";
-import { Button } from "react-bootstrap";
+ import { useState, useEffect, useContext } from "react";
+/*import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import Markdown from "react-markdown";// a React component that allows me to use markdown in my jsx
 import remarkGfm from "remark-gfm";// translates the .md file following the GFM standard
@@ -143,7 +143,30 @@ function Test() {
 
 } */
 
+
+
 function Test() {
+
+/*     const [state, setState] = useState(null);
+
+    useEffect(() => {
+
+        const f = async () => {
+            const response = await fetch("./images/deno.svg");
+
+            console.log(response.status);
+
+        };
+
+    }, []); */
+
+    return(
+        <>
+            <img src="./../images/deno.svg"/>
+            <img src="./images/deno.svg"/>
+            <img src="./public/images/deno.svg"/>
+        </>
+    );
 
 }
 

@@ -1,5 +1,5 @@
-import PostsSkeleton from "./PostsSkeleton/PostsSkeleton";
-import PostAlert from "./PostAlert/PostAlert";
+import PostsSkeleton from "./PostsSkeleton/PostsSkeleton.jsx";
+import PostAlert from "./PostsAlert/PostAlert.jsx";
 
 function PostsApp() {
 

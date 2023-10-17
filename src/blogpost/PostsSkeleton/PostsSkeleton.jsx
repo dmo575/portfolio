@@ -8,7 +8,7 @@ import remarkGfm from "remark-gfm";// translates the .md file following the GFM 
 import rehyperaw from "rehype-raw";// allows the rendering of HTML code inside the .md file
 import components from "./../../markdownComponents.jsx";// custom components for Markdown
 
-import "./../Card/Card.css";
+import "./../../components/Card/Card.css";
 
 function PostsSkeleton() {
 
