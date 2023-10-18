@@ -4,22 +4,21 @@ My first ever full website. It was my final project for CS50x. I didn't knew a l
 ### User collections:
 Any user can mark any movie as "Seen", "Favorite" or "Pending".
 
-- Seen (SAW): Marking a movie as "Seen" unmarks it from "Pending".
-- Favorite (FAV): Marking a movie as "Favorite" unmarks it from "Pending" and marks it as "Saw" as well.
-- Pending (PEN): Marking a movie as "Pending" unmarks it from both "Favorite" and "Saw"
+- **Seen (SAW):** Marking a movie as "Seen" unmarks it from "Pending".
+- **Favorite (FAV):** Marking a movie as "Favorite" unmarks it from "Pending" and marks it as "Saw" as well.
+- **Pending (PEN):** Marking a movie as "Pending" unmarks it from both "Favorite" and "Saw".
 
 ### Searching for movies:
-There are two places you can search movies from, one is the iMDB database, the other one is the application's own server.
+There are two places you can search movies from; one is the iMDB database, the other one is the application's own server.
 
-**Searching for a movie:** Searching the iMDB works by first typing onto the search box and then hitting ENTER. This triggers the display of a placeholder for search results while the fetch takes place. Once the results come in the placeholders are taken down and the actual results displayed.
+- **Searching for a movie (iMDB):** Searching the iMDB works by first typing onto the search box and then hitting ENTER. This triggers the display of a placeholder for search results while the fetch takes place. Once the results come in the placeholders are taken down and the actual results displayed.
 
-**Searching your collection:** As a user, you can search your own collection of movies. When you do this you are fetching to mymovies' databse itself. This allows the application to implement **instant** AJAX searching, which updates the search results at every change in the search box instead of waiting for the user to press the ENTER key.
+- **Searching your collection:** As a user, you can search your own collection of movies. When you do this you are fetching to mymovies' databse itself. This allows the application to implement **instant** AJAX searching, which updates the search results at every change in the search box instead of waiting for the user to press the ENTER key.
 
 **Why two searching methods like that?:** I wanted to implement instant AJAX for both of them but when I noticed that fetching to the iMDN API took so long, I decided to leave the instant feedback part for my server added some placeholders and a search button for iMDB queries.
 
 ![{"className": "img-md img-w-l"}](./images/markdown/mymovies/ajax.gif)
 ![{"className": "img-md img-w-l"}](./images/markdown/mymovies/search.gif)
-
 
 ### Mixing user data with iMDB query results:
 I make sure to scan the results of any iMDB query and update each result items's status to match the user data. (If a user searches the iMDB for Spider-man, when I render the results I check if that user has Spider-man on any collection and make sure to display the item properly marked)
@@ -43,13 +42,13 @@ The webpage features a simple but functional chatroom availible to all its users
 
 
 ### User settings:
-Any user has the hability to clear the account's collections or delete the whole account from the server, its all in the user's setings.
+Any user has the hability to clear the account's collections or delete the whole account from the server via the user's setings.
 
 ### Client and server side checking:
-We do client and server side checking for when we want to log in or register
+We do client and server side checking for when we want to log in or register.
 
 ### Database structure:
-Here is the .schema:
+I used SQLite for the database. Here is the .schema:
 
 ```
 CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, hash TEXT);

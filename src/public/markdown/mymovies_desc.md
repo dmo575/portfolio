@@ -4,7 +4,7 @@ My final project for [CS50x](https://cs50.harvard.edu/x/2023/).
 - Registering and logging in/out (username and password, no email)
 - Restricted access to the webpage unless logged in
 - Hability to search movies and series (trough the imdb API)
-- Instant search results for searching your collection
+- Instant search results for searching your collection (AJAX)
 - Keep track of movies per user **and** collections in an efficient way
 - Users can assign movies to various collections and filter then out later
 - Placeholder images while fetching from the API

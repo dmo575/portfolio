@@ -13,7 +13,7 @@ Every time you complete an equation the calculator layout will change, and every
 The application handles all possible edge cases gracefully and matains the user informed of what is happening at all times; from fetching statuses to connection errors.
 
 ### Client and server data validation
-When sending data to the server, the client validates the data first to avoid overhead on the server. The data is however checked again in the server since the client side validation is just useful to avoid overhead when the user is interacting with the application in good faith (and because that is what happens most of the time, client side validation is actually important to not bother the server with wrong data sent in good faith).
+When sending data to the server, the client validates the data first to avoid overhead on the server. The data is however checked again in the server since the client side validation is only useful to avoid overhead when the user is interacting with the application in good faith (and because that is what happens most of the time, client side validation is actually important to not bother the server with wrong data sent in good faith).
 
 ### Global Leaderboard:
 The game features a global leaderboard where all players can record their score and compare how well they did with everyone else:
@@ -30,7 +30,7 @@ I use two APIs to render the user's country flag and also handle edge cases, plu
 
 **Custom API:** The server has several API endpoints to manage and access the leaderboard:
 - **/send_score** - **POST**:
-    - Body: { username: string, score: integer }
+    - Takes: { username: string, score: integer }
     - Returns: a stringyfied JSON containing data related to the user's score.
 - **/get_leaderboard?length=${ *leaderboardCapacity* }** - **GET**:
     - Returns: ordered data on the top players.
