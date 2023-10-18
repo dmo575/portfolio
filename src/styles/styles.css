@@ -64,11 +64,25 @@ p, h1, h2, h3, h4, h5, h6, li  {
 .icon.icon-navbar {
     width: 1rem;
     height: auto;
+    filter: invert(35%);
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.icon-navbar.spaced {
     margin-bottom: 0.2rem;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
-    filter: invert(35%);
 }
+
+.icon-navbar.alone {
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
 
 .card-logo {
     width: 2rem;

@@ -14,7 +14,7 @@ function Navbar() {
     return (
         <div id="navbar" className="container-fluid">
             <div className="row d-flex justify-content-center">
-                <div className="col-7 col-lg-7 col-xl-6 col-md-9 d-flex justify-content-around">
+                <div className="col-10 col-lg-7 col-xl-6 col-md-9 d-flex justify-content-around">
                     <NavbarButton href={contact?.cv} target="_blank" icon={icons?.download.grayscale} name="CV" iconOnSmall={false} nameOnSmall={true}/>
                     <NavbarButton href={"#works"} target="_blank" icon={icons?.hash.grayscale} name="Works" iconOnSmall={false} nameOnSmall={true}/>
                     <NavbarButton href={contact?.linkedin || ""} target="_blank" icon={icons?.linkedin.grayscale} name="Linkedin" iconOnSmall={true} nameOnSmall={false}/>
