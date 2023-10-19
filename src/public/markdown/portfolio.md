@@ -11,7 +11,7 @@ As I made the website I realized that if I was to manage its content over the co
 I started researching and the final solution that I came up with has to do with two main topics: data storage and data serving. I ended up going fairly deep for a first dive and **wrote an entire post all about import statements** [(Please check it out on my blog-post!)](./blogpost/blogpost.html)
 
 ![{"className": "img-md float-end img-w-s"}](./images/markdown/portfolio/folders.png)
-Long story short, I ended up using JSON and Markdown as the formats to save all component's granular data and chuncks of texts respectively and after researching how Vitejs bundled its applications, the obvious solution were the `public/` and the `src/assets/` directories.
+Long story short, I ended up using JSON and Markdown as the formats for saving my static data for my components and after researching how Vitejs bundled its applications, the obvious solution for where to save it to were the `public/` and the `src/assets/` directories.
 
 - **What went into the public/ directory:** Content that I knew I would want to modify some day in some form.
 
