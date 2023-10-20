@@ -1,6 +1,7 @@
 import PostsSkeleton from "./PostsSkeleton/PostsSkeleton.jsx";
 import PostAlert from "./PostsAlert/PostAlert.jsx";
 
+// defines the structure of the blog-post
 function PostsApp() {
 
 

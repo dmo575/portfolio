@@ -1,19 +1,7 @@
 const logoSizeLg = 2;
 const logoSizeSm = 1.8;
 
-/* 
-function Skill({src, name, size}) {
-
-    return(
-        <div className="skill-container mx-2" style={{...(size && {width: `${size}rem`, height:`${size}rem`}), ...{opacity: "1"}}}>
-        <div className="skill-object">
-            <p className="skill-name" style={{"--offset": `${size / 2}rem`}}>{name}</p>
-            <img className="skill-img" src={src} alt={name}/>
-        </div>
-    </div>
-    );
-} */
-
+// returns a skill component. These are the tech hoverable logos
 function Skill({src, name, size}) {
 
     const finalLogoSize = size == "lg" ? logoSizeLg : logoSizeSm;

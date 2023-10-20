@@ -124,16 +124,16 @@ function ProfileSection() {
                 const overlays = document.querySelectorAll(".logo-img-overlay");
 
                 // time I will wait for the opacity to go from one extreme to the other.
-                const time = 220;
+                const time = 1000;
 
                 // time that will transpire between element animations
-                const cd = 3540;
+                const cd = -500;
 
                 function overlayAnimation(el) {
-                    el.style.opacity = 100;
+                    el.style.opacity = "80%";
     
                     setTimeout(() => {
-                        el.style.opacity = 0;
+                        el.style.opacity = "0%";
                     }, time);
                 };
 

@@ -1,4 +1,5 @@
 
+// custom components for ReactMarkdown
 const components = {
 
     pre({node, ...rest}) {
@@ -28,8 +29,6 @@ const components = {
         // check if the first children is a text, which should be if we 
         // are using the $$$ syntax for spacial bold styling.
 
-        //console.log(rest);
-
         if(node.children[0].type == "text") {
 
             // get the first 3 characters of that text
@@ -44,20 +43,15 @@ const components = {
             // $$$ -> means you want to use profile-section-highlight-secondary class
             //      example: (**$$special bold text SMALL ver**)
     
-            //console.log(typeof(rest.children));
-            //console.log(rest.children);
-
             let toRemove = 0;
     
             // if we indeed have at least 3 characters and they are $$$:
             if (start.length == 3 && start == "$$$") {
                 toRemove = 3;
-                //rest.children = rest.children.substr(3,);
                 classes = "profile-section-highlight-secondary";
             }
             // else if we have at least two characters and they are $$
             else if(start.substring(0,2) == "$$") {
-                //rest.children = rest.children.substr(2,);
                 toRemove = 2;
                 classes = "profile-section-highlight";
             }

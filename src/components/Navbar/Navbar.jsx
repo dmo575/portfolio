@@ -7,6 +7,7 @@ import NavbarButton from "../NavbarButton/NavbarButton.jsx";
 
 import "./Navbar.css";
 
+// buttons that define the navbar of the portolio's webpage
 function Navbar() {
 
     const {breakpointState, icons, contact} = useContext(appContext);

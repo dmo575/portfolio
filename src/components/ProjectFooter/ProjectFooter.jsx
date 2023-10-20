@@ -5,7 +5,7 @@ import * as breakpoints from "./../../js/bsbp.js";
 
 import "./ProjectFooter.css";
 
-
+// a footer for the card section
 function ProjectFooter() {
 
     const { breakpointState, icons, contact } = useContext(appContext);

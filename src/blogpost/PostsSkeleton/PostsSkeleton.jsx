@@ -10,6 +10,8 @@ import components from "./../../markdownComponents.jsx";// custom components for
 
 import "./../../components/Card/Card.css";
 
+// defines how the list of posts get rendered
+// it also provides the modal that opens and loads the articles to the visitor.
 function PostsSkeleton() {
 
     const [state, setState] = useState(null);
@@ -39,8 +41,8 @@ function PostsSkeleton() {
     function loadPost(title, index) {
 
         return(
-            <li>
-                <ListGroup.Item key={`post-${title}`} className="rounded-2 my-1 box-shadow" variant="secondary" data-index={index} action onClick={openModal}>
+            <li key={`post-${title}`}>
+                <ListGroup.Item className="rounded-2 my-1 box-shadow" variant="secondary" data-index={index} action onClick={openModal}>
                     {title}
                 </ListGroup.Item>
             </li>

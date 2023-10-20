@@ -4,7 +4,7 @@ import { postAlertJson } from "../../js/paths";
 
 import { Alert } from "react-bootstrap";
 
-
+// returns an alert. Is used to inform the blog-post visitor about what the post-blog is.
 function PostAlert() {
 
     const [state, setState] = useState(null);

@@ -3,7 +3,7 @@ import { appContext } from "../App";
 
 import "./Footer.css";
 
-
+// wepage's footer
 function Footer() {
 
     const {icons, contact} = useContext(appContext);
