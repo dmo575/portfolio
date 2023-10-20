@@ -8,6 +8,7 @@
         "./images/lg_5.png",
         "./images/lg_6.png"
     ],
+    "rotator": "./images/lg_rotate.png",
     "pageContents": [
         "./markdown/greeting.md",
         "./markdown/greeting_2.md"

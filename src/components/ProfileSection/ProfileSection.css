@@ -58,3 +58,9 @@
         max-width: 100%;
     }
 }
+
+.logo-img-rotator {
+    --curr-rotation: 55;
+
+    transform: rotate(var(--curr-rotation));
+}

@@ -122,6 +122,19 @@ function ProfileSection() {
             const int = setInterval(() => {
 
                 const overlays = document.querySelectorAll(".logo-img-overlay");
+                const rotator = document.querySelector(".logo-img-rotator");
+
+                setInterval(() => {
+
+                    let val = parseFloat(window.getComputedStyle(rotator).getPropertyValue("--curr-rotation"));
+
+                    // keeps val between 0 and 360
+                    val = parseInt(val / 360) > 0 ? val - (360 * (val / 360)) : val;
+                    
+                    rotator.style.setProperty("--curr-rotation", val + 0.05);
+                    rotator.style.transform = `rotate(${val + 0.05}deg)`;
+
+                }, 10);
 
                 // time I will wait for the opacity to go from one extreme to the other.
                 const time = 1000;
@@ -235,6 +248,7 @@ function ProfileSection() {
                 <div className="col-auto p-0 d-flex justify-content-center align-items-center"> {/* IMAGE col */}
                     <div className="profile-logo-container">
                         <img className="img-fluid logo-img" style={{objectFit: "contain"}} src={state?.logo[0]}/>
+                        <img className="img-fluid logo-img logo-img-rotator" style={{objectFit: "contain"}} src={state?.rotator}/>
                         {
                             state?.logo.map((el, index) => {
 
