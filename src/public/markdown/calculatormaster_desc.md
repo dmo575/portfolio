@@ -1,4 +1,4 @@
-addictive calculator mini-game made in plain JS/CSS/HTML.
+Addictive calculator mini-game made in plain JS/CSS/HTML.
 
 - **$$$Global leader-board** that displays not only username and score but country flag too!
 - Interacts with several APIs:

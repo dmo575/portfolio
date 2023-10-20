@@ -6,6 +6,6 @@ My final project for [CS50x](https://cs50.harvard.edu/x/2023/).
 - Ability to search movies and series (trough the imdb API)
 - Instant search results for searching your collection (AJAX)
 - Keep track of movies per user **and** collections in an efficient way
-- Users can assign movies to various collections and filter then out later
+- Users can assign movies to various collections and filter them out later
 - Placeholder images while fetching from the API
 - Wrote both back-end and front-end
