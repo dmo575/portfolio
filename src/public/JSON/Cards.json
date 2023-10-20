@@ -61,7 +61,7 @@
             ]
         },
         {
-            "title": "My old game dev portfolio",
+            "title": "My game dev portfolio",
             "srcL": "./images/gameportfolio_L.jpg",
             "srcS": "./images/gameportfolio_S.jpg",
             "description": "./markdown/arc_desc.md",

@@ -15,8 +15,8 @@ The application handles all possible edge cases gracefully and maintains the use
 ### Client and server data validation
 When sending data to the server, the client validates the data first to avoid overhead on the server. The data is however checked again in the server since the client side validation is only useful to avoid overhead when the user is interacting with the application in good faith (and because that is what happens most of the time, client side validation is actually important to not bother the server with wrong data sent in good faith).
 
-### Global leader-board:
-The game features a global leader-board where all players can record their score and compare how well they did against everyone else:
+### Global leader-board
+The game features a global leader-board where all players can record their score and compare how well they did against everyone else.
 
 ![{"className": "img-md img-w-m"}](./images/markdown/calculatormaster/leaderboard.gif)
 
@@ -26,7 +26,7 @@ The application works on all screen ratios and it's filled with all kinds of ani
 ![{"className": "img-md img-w-m"}](./images/markdown/calculatormaster/responsive.gif)
 
 ### APIs
-I use two APIs to render the user's country flag and I also handle edge cases, plus my own API to send and get data related to the leader-board.
+I use two APIs to render the user's country flag plus my own API to send and get data related to the leader-board. I also handle edge cases.
 
 **Custom API:** The server has several API endpoints to manage and access the leader-board:
 - **/send_score** - **POST**:

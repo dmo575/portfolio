@@ -28,9 +28,9 @@ The data base stores users, their passwords (they are hashed with the `werkzeug`
 
 Each time a movie is added to any collection, the server checks if that movie is part of its own movies list. If not, it gets added to it. This is what allows users to get instant results when searching their collection.
 
-Since we add movies whenever a user interacts with them, we also remove them whenever they don't belong to anyone's collection anymore. This keeps the database clean of any "unmarked" movie.
+Since we add movies whenever a user interacts with them, we also remove them whenever they don't belong to anyone's collection anymore. This keeps the database clean of any "unmarked" movies.
 
-We make sure to store movies once, we assign them with an ID which is the one that links a movie to any amount of user collections.
+We make sure to store movies once, we assign them an ID which is the one that links a movie to any amount of user collections.
 
 ### Users only
 The website is only accessible to registered users, trying to access any of its routes without beign logged in will redirect you to the login screen.
