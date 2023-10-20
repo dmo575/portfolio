@@ -57,8 +57,6 @@ function Skillset() {
         return (state && icons) ? (
             state[stateArray].map( el => {
                 return (<Skill key={icons[el].name} src={icons[el].color} name={icons[el].name} size="lg"/>);
-                //return (<Test key={icons[el].name} logo={icons[el].color} name={icons[el].name} size={2} />)
-                //return (<Skill key={icons[el].name} src={icons[el].color} name={icons[el].name} size={2}/>);
             })
         ) : null
     };
@@ -69,7 +67,7 @@ function Skillset() {
 
                 <div className="row d-flex justify-content-md-between justify-content-center align-items-end my-4">
                     <div className="col-auto d-flex p-0">
-                        <p className={`${GetTitleSize(breakpointState)}`}>{state?.title || ""}</p>
+                        <p className={`${GetTitleSize(breakpointState)} ${breakpointState <= breakpoints.sm && "text-center"}`}>{state?.title || ""}</p>
                     </div>
                     {HoverText(breakpointState >= breakpoints.lg, state?.comment || "")}
                 </div>
@@ -112,10 +110,10 @@ function Skillset() {
                 }
                 <div className="row">
                     <div className="col d-flex justify-content-end">
+                        {/* This will render on smaller screens */}
                         {HoverText(breakpointState <= breakpoints.md, state?.comment || "")}
                     </div>
                 </div>
-                {/* This will render on smaller screens */}
             </div>
         </div>
     );

@@ -15,3 +15,46 @@
     color: rgb(46, 111, 196);
     color: rgb(35, 90, 163);
 }
+
+@media screen and (max-width: 555px) {
+
+    #profile-section {
+        margin-bottom: 0rem;
+    }
+}
+
+
+.profile-logo-container {
+    position: relative;
+    min-width: 300px;
+    min-height: 300px;
+}
+
+.logo-img {
+    position: absolute;
+    max-width: 300px;
+}
+
+.logo-img-overlay {
+    z-index: 1;
+    position: absolute;
+    max-width: 300px;
+    opacity: 0%;
+
+    transition: opacity 0.1s ease-in;
+}
+
+@media screen and (max-width: 555px) {
+
+    .profile-logo-container {
+        max-width: 50%;
+    }
+
+    .logo-img {
+        max-width: 100%;
+    }
+
+    .logo-img-overlay {
+        max-width: 100%;
+    }
+}

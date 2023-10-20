@@ -99,18 +99,23 @@ p, h1, h2, h3, h4, h5, h6, li  {
     top: 0;
     left: 0;
     transition: width 0.1s ease-in-out , top 0.1s ease-in-out, left 0.1s ease-in-out;
+    z-index: 0;
 }
 
 .logo:hover {
     width: calc(var(--size) * 2) !important;
     top: calc(var(--size) * -1) !important;
     left: calc(var(--size) / 2 * -1) !important;
+    z-index: 2;
+
 }
 
 .logo:active {
     width: calc(var(--size) * 2) !important;
     top: calc(var(--size) * -1) !important;
     left: calc(var(--size) / 2 * -1) !important;
+    z-index: 2;
+
 }
 
 .logo-container {

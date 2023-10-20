@@ -112,6 +112,63 @@ function ProfileSection() {
             }
         };
 
+        // a small hardcoded animation for the profile logo
+        function startLogoAnimation() {
+
+            // time it takes to change the opacity of each element
+            const loop = 100;
+
+
+            const int = setInterval(() => {
+
+                const overlays = document.querySelectorAll(".logo-img-overlay");
+
+                // time I will wait for the opacity to go from one extreme to the other.
+                const time = 220;
+
+                // time that will transpire between element animations
+                const cd = 3540;
+
+                function overlayAnimation(el) {
+                    el.style.opacity = 100;
+    
+                    setTimeout(() => {
+                        el.style.opacity = 0;
+                    }, time);
+                };
+
+
+                for(let i = 1; i < overlays.length; i++) {
+
+                    setTimeout(() => {
+
+                        setInterval(() => {
+
+                            overlayAnimation(overlays[i]);
+    
+                        }, ((time * 2) + cd) * (overlays.length - 1));
+
+                    }, ((i - 1) * time * 2) + ((i - 1) * cd));
+
+                }
+
+                if(overlays.length > 0) {
+
+                    for(let i = 1; i < overlays.length; i++) {
+                        setTimeout(() => {
+                            overlayAnimation(overlays[i]);
+                        }, ((i - 1) * time * 2) + ((i - 1) * cd));
+                    }
+
+
+                    clearInterval(int);
+                }
+
+            }, loop);
+        };
+
+        startLogoAnimation();
+
         getProfileData();
         window.addEventListener("resize", resizePages);
 
@@ -175,8 +232,20 @@ function ProfileSection() {
             <div className="row d-flex flex-column flex-md-row">
                 <div className="col-md p-0"></div>{/* SPACER col */}
 
-                <div className="col-auto p-0 d-flex justify-content-center"> {/* IMAGE col */}
-                    <img className="img-fluid" style={{objectFit: "contain"}} src={breakpointState >= breakpoints.md ? state?.srcL : state?.srcS} alt="Profile image" />
+                <div className="col-auto p-0 d-flex justify-content-center align-items-center"> {/* IMAGE col */}
+                    <div className="profile-logo-container">
+                        <img className="img-fluid logo-img" style={{objectFit: "contain"}} src={state?.logo[0]}/>
+                        {
+                            state?.logo.map((el, index) => {
+
+                                if(index == 0) return;
+
+                                return(
+                                    <img key={`$lg-${index}`} className="img-fluid logo-img-overlay" style={{objectFit: "contain"}} src={el} alt="Profile image" />
+                                );
+                            })
+                        }
+                    </div>
                 </div>
 
                 <div className="col-md p-0"></div>{/* SPACER col */}

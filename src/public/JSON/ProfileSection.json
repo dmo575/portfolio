@@ -1,6 +1,13 @@
 {
-    "srcL": "https://fastly.picsum.photos/id/893/300/400.jpg?hmac=Vy-UCZnBegnJLuZvrZtlgjA_xacW9xbYQsfq1SoLEbw",
-    "srcS": "https://fastly.picsum.photos/id/230/600/300.jpg?hmac=xaOtfLjlm4OwQVWYD4xcugIiy5Ebr_qNu7ymvmI2jv4",
+    "logo": [
+        "./images/lg_0.png",
+        "./images/lg_1.png",
+        "./images/lg_2.png",
+        "./images/lg_3.png",
+        "./images/lg_4.png",
+        "./images/lg_5.png",
+        "./images/lg_6.png"
+    ],
     "pageContents": [
         "./markdown/greeting.md",
         "./markdown/greeting_2.md"

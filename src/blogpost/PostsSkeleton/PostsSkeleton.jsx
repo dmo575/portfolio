@@ -40,7 +40,7 @@ function PostsSkeleton() {
 
         return(
             <li>
-                <ListGroup.Item key={`post-${title}`} className="rounded-2 my-1" variant="secondary" data-index={index} action onClick={openModal}>
+                <ListGroup.Item key={`post-${title}`} className="rounded-2 my-1 box-shadow" variant="secondary" data-index={index} action onClick={openModal}>
                     {title}
                 </ListGroup.Item>
             </li>

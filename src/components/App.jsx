@@ -31,7 +31,7 @@ export const appContext = createContext();
 // variables
 
 // defines a pivot on the screen, the value represents how far away from the bottom of the screen that pivot is, assuming the max is the top edge of the screen.
-const bottomPivotLocPer = 30;
+const bottomPivotLocPer = 35;
 
 // calculates the position in pixels of the bottom pivot
 function GetBottomPivotPos() {
@@ -71,10 +71,13 @@ function App() {
     // same for contact info
     const [contact, setContact] = useState(null);
 
-
     // handle the fetchin error modal
-    function showModal() {setmodalState(true)};
-    function hideModal() {setmodalState(false)};
+    function showModal() {
+        setmodalState(true);
+    };
+    function hideModal() {
+        setmodalState(false);
+    };
 
     // gets called every time a fetching error happens.
     function Error(context) {
