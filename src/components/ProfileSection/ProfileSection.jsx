@@ -121,7 +121,6 @@ function ProfileSection() {
 
             const int = setInterval(() => {
 
-                const overlays = document.querySelectorAll(".logo-img-overlay");
                 const rotator = document.querySelector(".logo-img-rotator");
 
                 setInterval(() => {
@@ -131,51 +130,12 @@ function ProfileSection() {
                     // keeps val between 0 and 360
                     val = parseInt(val / 360) > 0 ? val - (360 * (val / 360)) : val;
                     
-                    rotator.style.setProperty("--curr-rotation", val + 0.05);
-                    rotator.style.transform = `rotate(${val + 0.05}deg)`;
+                    rotator.style.setProperty("--curr-rotation", val + 0.025);
+                    rotator.style.transform = `rotate(${val + 0.025}deg)`;
 
                 }, 10);
 
-                // time I will wait for the opacity to go from one extreme to the other.
-                const time = 1000;
-
-                // time that will transpire between element animations
-                const cd = -500;
-
-                function overlayAnimation(el) {
-                    el.style.opacity = "80%";
-    
-                    setTimeout(() => {
-                        el.style.opacity = "0%";
-                    }, time);
-                };
-
-
-                for(let i = 1; i < overlays.length; i++) {
-
-                    setTimeout(() => {
-
-                        setInterval(() => {
-
-                            overlayAnimation(overlays[i]);
-    
-                        }, ((time * 2) + cd) * (overlays.length - 1));
-
-                    }, ((i - 1) * time * 2) + ((i - 1) * cd));
-
-                }
-
-                if(overlays.length > 0) {
-
-                    for(let i = 1; i < overlays.length; i++) {
-                        setTimeout(() => {
-                            overlayAnimation(overlays[i]);
-                        }, ((i - 1) * time * 2) + ((i - 1) * cd));
-                    }
-
-
-                    clearInterval(int);
-                }
+                if(rotator) { clearInterval(int); }
 
             }, loop);
         };
@@ -261,7 +221,7 @@ function ProfileSection() {
                         }
                     </div>
                 </div>
-
+                
                 <div className="col-md p-0"></div>{/* SPACER col */}
 
                 <div id="page-section" className="text-center text-md-start col-md-7 profile-page-container" style={{position: "relative"}}> {/* PAGE AERA col */}

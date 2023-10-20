@@ -44,7 +44,7 @@
     transition: opacity 0.9s ease-in;
 }
 
-@media screen and (max-width: 555px) {
+@media screen and (max-width: 600px) {
 
     .profile-logo-container {
         max-width: 50%;
