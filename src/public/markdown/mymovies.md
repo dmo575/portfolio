@@ -1,5 +1,5 @@
 # Introduction
-My first ever full website. It was my final project for CS50x. I didn't knew a lot of the things I know now and the code shows it but nevertheless the website has a bunch of really cool features.
+My first ever full website. It was my final project for CS50x. I didn't know a lot of the things I know now and the code shows it but, nevertheless, the website has a bunch of really mentionable features.
 
 ### User collections
 Any user can mark any movie as "Seen", "Favorite" or "Pending".
@@ -9,43 +9,42 @@ Any user can mark any movie as "Seen", "Favorite" or "Pending".
 - **Pending (PEN):** Marking a movie as "Pending" unmarks it from both "Favorite" and "Saw".
 
 ### Searching for movies
-There are two places you can search movies from; one is the iMDB database, the other one is the application's own server.
+There are two places you can search movies from: one is the iMDB database, the other one is the application's own server.
 
-- **Searching for a movie (iMDB):** Searching the iMDB works by first typing onto the search box and then hitting ENTER. This triggers the display of a placeholder for search results while the fetch takes place. Once the results come in the placeholders are taken down and the actual results displayed.
+- **Searching for a movie (iMDB):** Searching the iMDB works by first typing into the search box and then hitting ENTER. This triggers the display of a placeholder for search results while the fetch takes place. Once the results come in, the placeholders are taken down and the actual results display.
 
-- **Searching your collection:** As a user, you can search your own collection of movies. When you do this you are fetching to mymovies' database itself. This allows the application to implement **instant** AJAX searching, which updates the search results at every change in the search box instead of waiting for the user to press the ENTER key.
+- **Searching your collection:** As a user, you can search your own collection of movies. When you do this you are fetching from mymovies' database itself. This allows the application to implement **instant** AJAX searching, which updates the search results with every change in the search box, instead of waiting for the user to press the ENTER key.
 
-**Why two searching methods like that?:** I wanted to implement instant AJAX for both of them but when I noticed that fetching to the iMDN API took so long, I decided to leave the instant feedback part for my server added some placeholders and a search button for iMDB queries.
+**Why two searching methods like that?:** Getting a response from any fetch request from the iMBD API takes some time, so updating the results as the user types is not feasible. For this reason the application only uses instant AJAX for fetches done to the server and a more traditional form of search with placeholders for fetching from the iMDB.
 
 ![{"className": "img-md img-w-l"}](./images/markdown/mymovies/ajax.gif)
 ![{"className": "img-md img-w-l"}](./images/markdown/mymovies/search.gif)
 
 ### Mixing user data with iMDB query results
-I make sure to scan the results of any iMDB query and update each result items' status to match the user data. (If a user searches the iMDB for Spider-man, when I render the results I check if that user has Spider-man on any collection and make sure to display the item properly marked)
+Whenever search results come up, the application scans them and updates each result item with the user's data. (Apply the favorite status to any item that the user has selected as favorite, etc...)
 
 ### How the database works
-The data base stores users, their passwords (they are hashed with the `werkzeug` module before being stored), and data regarding their collections.
+The data base stores users, their passwords (they are hashed with the `werkzeug` module before being stored) and data regarding their collections.
 
-Each time a movie is added to any collection, the server checks if that movie is part of its own movies list. If not, it gets added to it. This is what allows users to get instant results when searching their collection.
+Each time a movie is added to any collection, the server checks if that movie is part of its own movies list. If not, it is added to it. This is what allows users to get instant results when searching their collection.
 
-Since we add movies whenever a user interacts with them, we also remove them whenever they don't belong to anyone's collection anymore. This keeps the database clean of any "unmarked" movies.
+The server add movies whenever a user interacts with them and removes them whenever they don't belong to anyone's collection anymore. This keeps the database clean of any "unmarked" movies.
 
-We make sure to store movies once, we assign them an ID which is the one that links a movie to any amount of user collections.
+The server makes sure to store movies once by assigning them an ID which is the one that links a movie to any amount of user collections.
 
 ### Users only
-The website is only accessible to registered users, trying to access any of its routes without beign logged in will redirect you to the login screen.
+The website is only accessible to registered users. Trying to access any of its routes without beign logged in will redirect you to the login screen.
 
 ### Global chatroom
 The web-page features a simple but functional chatroom available to all its users.
 
 ![{"className": "img-md img-w-l"}](./images/markdown/mymovies/chatroom.gif)
 
-
 ### User settings
-Any user has the ability to clear the account's collections or delete the whole account from the server via the user's settings.
+Any user can clear the account's collections or delete the whole account from the server via the user's settings.
 
 ### Client and server side checking
-We do client and server side checking for when we want to log in or register.
+We do client and server side data validation each time someone logs in or registers.
 
 ### Database structure
 I used SQLite for the database. Here is the .schema:

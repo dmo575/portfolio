@@ -8,7 +8,7 @@ I have a [blog-post](./blogpost/blogpost.html) where you can find me expanding o
 ### The big picture
 As I made the website, I realized that if I was to manage its content over the coming months I needed a solution for data storage and creation.
 
-I started researching and the final solution that I came up with has to do with two main topics: data storage and data serving. I ended up going fairly deep for a first dive and **wrote an entire post all about import statements** [(Please check it out on my blog-post!)](./blogpost/blogpost.html)
+I started researching and the final solution that I came up with has to do with two main topics: data storage and data serving. I ended up going fairly deep for a first dive on this topic and **wrote an entire post about how and when to use import statements and fetch with Vitejs** [(Please check it out on my blog-post!)](./blogpost/blogpost.html)
 
 ![{"className": "img-md float-end img-w-s"}](./images/markdown/portfolio/folders.png)
 Long story short, I ended up using JSON and Markdown as the formats for saving my static and components data and, after researching how Vitejs bundled its applications, the obvious solution for where to save the data were the `public/` and the `src/assets/` directories.
@@ -40,7 +40,7 @@ Here is how you customize images:
 Also, the code-block style is custom, I added the border and background color to it.
 ```
 ### Full-stack
-I wrote the back-end for this project. While I worked within the Node runtime environment for the front-end, I used Deno and its built-in server solutions for the back-end, so it's written in Typescript. I had the chance to refresh some I/O concepts and ended up [writing about them on my blog-post](./blogpost/blogpost.html)
+I wrote the back-end for this project. While I worked within the Node runtime environment for the front-end, I used Deno and its built-in server solutions for the back-end, so it's written in Typescript. Writting the back-end gave me the chance to refresh some I/O concepts and I ended up [writing about them on my blog-post](./blogpost/blogpost.html)
 
 I also went through the server renting and set up on Fedora Linux for this project and others.
 
