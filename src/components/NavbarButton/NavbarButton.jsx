@@ -9,8 +9,8 @@ function NavbarButton({href, target, icon, name, iconOnSmall, nameOnSmall, style
 
     return(
         <div className="col-auto">
-            <a href={href || ""} target={target} className={`btn rounded-5 ${style}`}>
-                { breakpointState < breakpoints.md && !nameOnSmall ? "" : `${name} ` }
+            <a href={href || ""} target={target} className={`${breakpointState >= breakpoints.md && "d-flex"} btn rounded-5 ${style}`}>
+                { breakpointState < breakpoints.md && !nameOnSmall ? "" : `${name}` }
                 {
                     (breakpointState < breakpoints.md && !iconOnSmall) || !icon  ? "" :
                     <img src={icon} alt={name} className="icon icon-navbar"/>

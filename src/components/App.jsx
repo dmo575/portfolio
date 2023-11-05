@@ -31,7 +31,7 @@ export const appContext = createContext();
 // variables
 
 // defines a pivot on the screen, the value represents how far away from the bottom of the screen that pivot is, assuming the max is the top edge of the screen.
-const bottomPivotLocPer = 35;
+const bottomPivotLocPer = 45;
 
 // calculates the position in pixels of the bottom pivot
 function GetBottomPivotPos() {
