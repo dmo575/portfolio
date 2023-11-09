@@ -4,6 +4,10 @@ p, h1, h2, h3, h4, h5, h6, li  {
     font-family: 'Comfortaa', cursive;
 }
 
+html, body {
+    overflow-x: hidden;
+}
+
 /* add to any component you want to give the fade-in animation on scroll to*/
 .fade-in-actor {
     opacity: 0;
