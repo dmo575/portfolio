@@ -91,7 +91,7 @@ function PostsSkeleton() {
                     </ListGroup>
                 </div>
             </div>
-            <Modal show={modal} fullscreen="sm-down" dialogClassName={window.outerWidth > breakpoints.sm && `modal-custom`} scrollable={true} centered={true} onHide={closeModal}>
+            <Modal show={modal} fullscreen={`md-down`} dialogClassName={`modal-custom`} scrollable={true} centered={true} onHide={closeModal}>
                 <Modal.Header closeButton/> {/* modal header, only used to show the close button, the title we will keep in in the markdown and let it be scrollable */}
                 <Modal.Body>
                     <div className="font-readable">

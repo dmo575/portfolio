@@ -194,7 +194,7 @@ function Card({card, imgOrder}) {
             </div>
         </div>
 
-        <Modal show={modal} fullscreen="sm-down" dialogClassName={breakpointState > breakpoints.sm && `modal-custom`} scrollable={true} centered={true} onHide={closeModal}>
+        <Modal show={modal} fullscreen="md-down" dialogClassName={`modal-custom`} scrollable={true} centered={true} onHide={closeModal}>
             <Modal.Header closeButton className={`${breakpointState >= breakpoints.lg ? "" : "py-1"}`}>
                 <div className={`col d-flex ${breakpointState >= breakpoints.lg ? "" : "flex-column justify-content-center align-items-center"}`}>
                     <div className="col-auto mx-2">
