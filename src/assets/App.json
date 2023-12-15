@@ -1,4 +1,4 @@
 {
     "errorHeader": "Oops, a fetch error just happened :/",
-    "errorBody": "<p>An error occured while fetching data from the server. <strong style={{fontSize:'1.5rem'}}>Please refresh the webpage</strong></p> <p>If the issue persists after refreshing. Dont worry, I promise the content was great, you can hire me at arco4@protonmail.com 😃</p>"
+    "errorBody": "<p>An error occured while fetching data from the server. <strong style={{fontSize:'1.5rem'}}>Please refresh the webpage</strong></p> <p>If the issue persists after refreshing, please try again after a few seconds, you might have caught me updating the server. 😃</p>"
 }
