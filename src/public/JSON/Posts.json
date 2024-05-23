@@ -1,6 +1,10 @@
 {
     "posts": [
         {
+            "title": "NEW! - Debuggin a server",
+            "markdown": "./../markdown/posts/t03.md"
+        },
+        {
             "title": "Vitejs - Differences between import statements and fetch/http requests within the public/ and src/ contexts.",
             "markdown": "./../markdown/posts/t01.md"
         },
