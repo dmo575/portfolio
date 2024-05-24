@@ -1,7 +1,7 @@
 {
     "posts": [
         {
-            "title": "NEW! - Debugging a server",
+            "title": "*NEW!* - Diagnosing a server error",
             "markdown": "./../markdown/posts/t03.md"
         },
         {
