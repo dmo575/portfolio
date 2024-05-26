@@ -1,11 +1,11 @@
 {
     "posts": [
         {
-            "title": "*WIP!* - Writting endpoints for your Spring Boot application (MVC, REST, HTTP)",
+            "title": "*NEW!* - Writting endpoints for your Spring Boot application (MVC, REST, HTTP)",
             "markdown": "./../markdown/posts/t04.md"
         },
         {
-            "title": "*WIP!* - Diagnosing a server error",
+            "title": "*NEW!* - Diagnosing a server error",
             "markdown": "./../markdown/posts/t03.md"
         },
         {
