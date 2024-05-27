@@ -1,20 +1,24 @@
 {
     "posts": [
         {
-            "title": "*NEW!* - Writting endpoints for your Spring Boot application (MVC, REST, HTTP)",
-            "markdown": "./../markdown/posts/t04.md"
+            "title": "*NEW!* - Writing endpoints for your Spring Boot application (MVC, REST, HTTP)",
+            "markdown": "./../markdown/posts/t04.md",
+            "postId": "t04"
         },
         {
             "title": "*NEW!* - Diagnosing a server error",
-            "markdown": "./../markdown/posts/t03.md"
+            "markdown": "./../markdown/posts/t03.md",
+            "postId": "t03"
         },
         {
             "title": "Vitejs - Differences between import statements and fetch/http requests within the public/ and src/ contexts.",
-            "markdown": "./../markdown/posts/t01.md"
+            "markdown": "./../markdown/posts/t01.md",
+            "postId": "t01"
         },
         {
             "title": "I/O 101",
-            "markdown": "./../markdown/posts/t02.md"
+            "markdown": "./../markdown/posts/t02.md",
+            "postId": "t02"
         }
     ]
 }

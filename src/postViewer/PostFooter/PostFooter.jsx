@@ -32,7 +32,7 @@ function PostFooter() {
                 </div>
                 <div className="row">
                     <div className="col px-0 d-flex justify-content-center">
-                        Thank you for visiting !
+                        Thank you for reading !
                     </div>
                 </div>
             </footer>

@@ -17,6 +17,7 @@ function PostsSkeleton() {
     const [state, setState] = useState(null);
     const [modal, setModal] = useState(false);
     const refModalContent = useRef(null);
+    const [clickedItem, setClickedItem] = useState(null);
 
     useEffect(() => {
 
@@ -37,12 +38,40 @@ function PostsSkeleton() {
 
     }, []);
 
-    // returns a ListGroup for a given post
-    function loadPost(title, index) {
+    function removeActive(event) {
+        // triggets the unclicking of the button
+        setClickedItem(event.target.id);
+    }
+
+    useEffect(() => {
+
+        // this checks when a clickedItem even occured. Ot gets the ID of the clicked item, removes its clicked status and unfocuses it
+        if(!clickedItem) return;
+
+        let element = document.getElementById(clickedItem);
+
+        element.classList.remove(`active`);
+        element.blur();
+    }, [clickedItem])
+
+    // returns a post as a MODAL.
+    function loadPost_asModal(title, index) {
 
         return(
             <li key={`post-${title}`}>
                 <ListGroup.Item className="rounded-2 my-1 box-shadow" variant="secondary" data-index={index} action onClick={openModal}>
+                    {title}
+                </ListGroup.Item>
+            </li>
+        );
+    }
+
+    // returns a post as a LINK.
+    function loadPost_asLink(title, index, id) {
+
+        return(
+            <li key={`post-${title}`}>
+                <ListGroup.Item id={id} className="rounded-2 my-1 box-shadow" variant="secondary" data-index={index} action onClick={removeActive} href={`/postViewer/postViewer.html?postId=${id}`}>
                     {title}
                 </ListGroup.Item>
             </li>
@@ -84,7 +113,7 @@ function PostsSkeleton() {
                         <ul>
                         {
                             state?.posts.map((el, index) => {
-                                return loadPost(el.title, index);
+                                return loadPost_asLink(el.title, index, el.postId);
                             })
                         }
                         </ul>

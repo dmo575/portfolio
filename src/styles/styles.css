@@ -236,3 +236,8 @@ html, body {
 .disable-click {
     pointer-events: none;
 }
+
+/*solves bug with class where mobiles using this had their width as 5 times the device width*/
+.font-readable {
+    max-width: 100%;
+}

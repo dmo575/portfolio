@@ -62,7 +62,7 @@ function PostViewerApp() {
 
 
     return(
-        <div>
+        <div style={{ maxWidth: '100%' }}>
             <div className="d-flex justify-content-around">
                 <div className="col-auto my-5">
                     <a href={"./../blogpost/blogpost.html"} className={`d-flex btn rounded-5 btn-warning`}>Back to blog-post.</a>
