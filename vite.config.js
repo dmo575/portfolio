@@ -14,7 +14,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(root, "index.html"),
-        blogpost: resolve(root, "blogpost", "blogpost.html")
+        blogpost: resolve(root, "blogpost", "blogpost.html"),
+        post: resolve(root, "postViewer", "postViewer.html")
       }
     }
   },
