@@ -7,18 +7,15 @@
         "javascript",
         "html",
         "css",
-        "react",
-        "bootstrap",
-        "git",
-        "github",
-        "lol"
+        "java",
+        "springboot"
+
     ],
     "secondarySkills": [
-        "vitejs",
+        "react",
+        "bootstrap",
         "sqlite",
-        "python",
-        "flask",
-        "deno",
+        "vitejs",
         "node"
     ]
 }

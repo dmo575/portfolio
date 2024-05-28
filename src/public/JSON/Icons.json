@@ -76,7 +76,14 @@
         "name": "#1",
         "color": "./images/lol.png"
     },
-
+    "java": {
+        "name": "Java",
+        "color": "./images/java.svg"
+    },
+    "springboot": {
+        "name": "Spring Boot",
+        "color": "./images/springboot.svg"
+    },
 
     "download": {
         "grayscale": "https://api.iconify.design/uiw:download.svg"
