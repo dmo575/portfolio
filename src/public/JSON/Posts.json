@@ -1,11 +1,6 @@
 {
     "posts": [
         {
-            "title": "*NEW!* - Writing endpoints for your Spring Boot application (MVC, REST, HTTP)",
-            "markdown": "./../markdown/posts/t04.md",
-            "postId": "t04"
-        },
-        {
             "title": "*NEW!* - Diagnosing a server error",
             "markdown": "./../markdown/posts/t03.md",
             "postId": "t03"

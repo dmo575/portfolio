@@ -6,13 +6,13 @@
             "srcS": "./images/portfolio_S.jpg",
             "description": "./markdown/portfolio_desc.md",
             "tech": [
+                "react",
+                "bootstrap",
+                "vitejs",
+                "deno",
                 "javascript",
                 "html",
-                "css",
-                "bootstrap",
-                "deno",
-                "git",
-                "github"
+                "css"
             ],
             "content": "./markdown/portfolio.md",
             "links": [
@@ -26,14 +26,12 @@
             "srcS": "./images/calculatormaster_S.jpg",
             "description": "./markdown/calculatormaster_desc.md",
             "tech": [
-                "javascript",
-                "html",
-                "css",
+                "sqlite",
                 "python",
                 "flask",
-                "sqlite",
-                "git",
-                "github"
+                "javascript",
+                "html",
+                "css"
             ],
             "content": "./markdown/calculatormaster.md",
             "links": [
@@ -47,12 +45,12 @@
             "srcS": "./images/mymovies_S.jpg",
             "description": "./markdown/mymovies_desc.md",
             "tech": [
-                "javascript",
-                "html",
-                "css",
+                "sqlite",
                 "python",
                 "flask",
-                "sqlite"
+                "javascript",
+                "html",
+                "css"
             ],
             "content": "./markdown/mymovies.md",
             "links": [

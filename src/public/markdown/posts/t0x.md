@@ -2,9 +2,7 @@
 
 This post focuses on understanding all the options that Spring Boot provides for you to create endpoints and build your API. If you are wondering how to create a REST API, or a MVC API, or just how to take complete control of the return HTTP when using Spring Boot, then this post should be of interest to you.
 
-We also cover how to read the request and how to properly handle exceptions.
-
-This post is meant to be read secuentially as new sections build on top of the previous ones.
+We also cover how to read the request and how to properly handle errors.
 
 Spring Boot comes with many tools that allow you to work with all those things, but you need to know how things work in order to properly understand how to write your endpoints. So let's do that.
 
@@ -35,11 +33,17 @@ Spring Boot comes with many tools that allow you to work with all those things, 
 
 ### **Prerequisites**
 
-You should know about REST, HTTP and MVC.
+You should know about REST, MVC and HTTP.
 
 We also won't talk about what the Spring Framework is or how to use it. We may mention a couple of things here and there but you should be somewhat familiar with the Spring framework; beans, factories, IoC and all the rest.
 
 What we aim to answer is how to go about when creating endpoints for a Spring Boot application. Getting to that starting point will mostly not be covered.
+
+- For **HTTP**, we will delve into how to take total control of the HTTP response; from the headers to the body.
+
+- For **REST**, we will cover how to set things up so that you can properly create a REST API that returns JSON.
+
+- For **MVC**, we will cover its theory and after that we will go right into implementing it.
 
 
 ### **Setting up your Spring Boot project.**
@@ -57,12 +61,11 @@ Spring Initializr is a tool that allows us to easily set up a Spring Boot projec
 - Fill in the project metadata as you wish
 - Select the packaging and then the Java version
 - Finally you will also want to select the dependencies. We will add the `Spring Web` dependency which is what we will work with.
-- OPTIONAL: You might want to add the `Spring Boot DevTools` dependency, it allows your server to automatically reload every time you change something inside `/resources`.
 
-Once you download the files from there and open them up you should be good to go.
+Now all that is left is to download the files from there and open them up. You should now have a Spring Boot project ready.
 
 
-**The Spring Web dependency**
+### **The Spring Web dependency**
 
 The reason we added the Spring Web dependency is because it brings a lot of new tools and functionality to our project, like:
 
@@ -71,32 +74,24 @@ The reason we added the Spring Web dependency is because it brings a lot of new 
 - Spring Web Annotations: Various useful annotations for when creating web applications with Spring Boot (`@Controller`, `@RESTController`, `@RequestMapping`, etc...)
 - And more...
 
+**Curious about servlets and servlet containers ?**
 
+When we create web applications with Java, we usually want to build something called a WAR (Web Application Archive), which contains all of our static files, our endpoints, our HTML/CSS/JS, all that. Now, our java code that contains our endpoints leverages what we call servlets, so you can think of our Java code as the servlet part of the WAR.
 
-### Understanding the final build
+Once we have the WAR, we need to pass that into a program that can serve all we have there via HTTP. Those are called servers.
 
-When we create web applications with Java, we usually want to build something called a WAR (Web Application Archive), which contains all of our static files, our endpoints, our HTML/CSS/JS, all that. Now, our java code that contains our HTTP logic leverages what we call servlets, so you can think of our Java code as the servlet part of the WAR.
+Not all servers accept WARs (note: WARs are called servlets some times for simplicity but as you know they are not the same thing), so when a server can take in a WAR we call them servlet containers. Tomcat is such a program; it is an application that can serve things via HTTP, including WAR files.
 
-Once we have a WAR, we need to pass that into a program that can serve all we have there via HTTP. Those are called servers.
+Now into the embedded part. You see, in a traditional setting, you would create your WAR file, then install a server compatible with WARs in your system, and then place the WAR in the proper directory for that server to see it so we can finally start the server. With Spring however we are not building a WAR, we are building a JAR, which is an application that we can execute. Most precisely we are building a Spring Boot application that contains an embedded Tomcat server inside, so all we have to do is execute the JAR and Spring takes care of using and managing that embedded Tomcat server.
 
-Not all servers accept servlet technology, so when a server can take in a WAR that uses servlets we call it a servlet container. Tomcat is such a program; it is an application that can serve things via HTTP, including WAR files that use servlet tech.
+So, to define them all again:
 
-Traditionally, once you have yourself a WAR and a server application, you would want to install and configure the server app, then place the WAR in its corresponding place for the server app to see it and then run the server app.
-
-Spring Boot does thing differently. With Spring Boot you are not building a WAR, you are building a JAR instead, which is an executable application (If it has an entry point defined). More specifically, Spring Boot builds an Uber JAR: An Uber JAR is a JAR that contains all of its dependencies inside it. This allows us to have all the code and tools we need under the same file.
-
-When an application includes another application inside, we call that included application and embedded application. Spring Boot contains a server application inside (Tomcat by default). This allows Spring Boot to do its run-time autoconfiguration, which means that we won't have to worry about setting anything up.
-
-The reason all of this matters is because it helps explain where many of the things we will work with come from: We will work with servlet code and we will be able to run a server without doing any configuration.
-
-Definitions:
-
-- Servlet: The tech we use in Java to create HTTP logic.
-- WAR: A package that contains our servlet code, our HTML/JS/CSS and other media/resources related to our website. It is basically a web application container.
-- Server: An application that is capable of handling HTTP requests/responses trough a network.
-- Servlet Container: Is a server that can work with servlet code.
-- JAR: A Java application (Assuming it has an entry point defined)
-- Embedded application: An application that is contained inside another application. In our example that application is a server.
+- Servlet: Is the tools we use in Java to create endpoints that are designed to take in HTTP requests and return HTTP responses.
+- WAR: Is a package that contains our servlet code, our static files, our HTML/JS/CSS and other resources related to our website. It is basically a web application container.
+- Server: Is an application that is capable of handling HTTP requests/responses trough a network.
+- Servlet Container: Is a server that can work with WAR files.
+- JAR: Is a standalone Java application
+- Embedded application: Is an application that is contained inside another application. In our example that application is a server.
 
 
 ### **The project structure**
@@ -104,20 +99,14 @@ Definitions:
 Just a quick mention: JS/HTML/CSS files and other media should go under `src/main/resources/static/` and templates (templated HTML for the MVC which we will explain later) should go under `src/main/resources/templates/`. I believe you can customize all this but by default that is where Spring will look for these things.
 
 
-### The machine
+### **Speaking the language**
 
-When we write our endpoints in a Spring Boot application, we write to a functioning system that not only provides some tools for us to use but also expects us to write them in a way that follows the system's rules. We are adding to an application that is already in place.
+At this point we have our Spring Boot project ready. Here is where we need to stop and think about what tools we have and how do they behave. Remember we are adding to this **existing** machine, so we need to learn the rules for which it operates.
 
-We will see the effect of this as we write our endpoints. Whenever the question of "How does that make sense?" comes up the answer needs to include the realization that we are not building anything from scratch here.
 
-### PLACE THIS SOMEWHER ELSE
-Spring Boot does an incredible job in setting things up so that writing endpoints is not only easy but also as granular as you can ask. The way it does it is by allowing us access to lower levels such as the servlets that our code acts upon. We will see this in detail later on.
+Let's say that we want and endpoint to index, and we want to return the string "Hello, World!" in the response body of the HTTP. With Spring, we would use a method to define an endpoint.
 
-### The basics
-
-We will start with the fundamentals. Let's say that we want **an endpoint to index**, and we want to return the string "Hello, World!" in the response body of the HTTP. With Spring, we would **use a method to define an endpoint**.
-
-Let's start typing:
+Let's start writing:
 
 ```
 public class MyClass {
@@ -130,7 +119,7 @@ public class MyClass {
 
 There we have a class with a method. We want that method to represent an endpoint to index (/). For that, the first thing we need to do is to tell Spring that the `MyClass` class will be storing endpoints, so we use the `@Controller` annotation.
 
-The `@Controller` annotation is a class level annotation that tells Spring that the annotated class should be scanned for endpoints:
+The `@Controller` annotation is a class level annotation that tells spring that the annotated class should be scanned for endpoints:
 
 ```
 @Controller
@@ -142,7 +131,7 @@ public class MyClass {
 }
 ```
 
-We are still missing things. Spring may detect the `@Controller` class, but right now it cannot possibly identify `index()` as an endpoint. For that we need to use the `@RequestMapping` annotation.
+We are still lacking. Spring may detect the `@Controller` class, but right now it cannot possibly identify index() as an endpoint. For that we need to use the `@RequestMapping` annotation.
 
 The `@RequestMapping` annotation, when used on a method, tells Spring that the method is to be treated as an endpoint.
 
@@ -157,48 +146,19 @@ public class MyClass {
 }
 ```
 
-As the code above shows, you can pass in the **path** and the **HTTP method** you want to work with to the `@RequestMapping` annotation.
+As the code shows, you can pass in the path and the HTTP method you want to work with to the `@RequestMapping` annotation.
 
-This may look like it is good enough, and it is, but not for what we want. The way Spring works is that unless specified, it will try to make sense of the code as if you were writing it with the MVC pattern in mind. So this is valid code for an MVC endpoint, but that is not what we are trying to do.
+You would think this is good enough, but we are lacking some stuff here. You see, when interpreting what the endpoint is trying to return, Spring follows a certain set of rules, and one of those is that if your endpoint is just a normal endpoint returning a `String`, then Spring will assume that you mean to return a `View` of an MVC. So if we run this (`mvn spring-boot:run` if you are using Maven), you will see that we get an error.
 
-This is how Spring reads that code:
-- The `@Controller` annotation signals to Spring that it should scan for endpoints inside of the labeled class.
-- The `@RequestMapping` annotation marks the `index` method as an ednpoint. It maps it to the path `/` and the HTTP method `GET`.
-- Spring now needs to figure out what kind of endpoint it is.
-- Seeing that we return a `String`, Spring knows that our intentions are either to return a `View` name or the body of the HTTP response.
-- Because Spring favors MVC unless specified otherview, Spring assumes we mean to return an MVC view.
-- Spring will return the string "Hello, World!" to the **View Resolver** (explained later on the MVC section), which will throw an error because the `View` doesn't exist.
+As it is right now, running this code will make Spring to try to locate a `View` named "Hello, World!", which doesn't exist.
 
+But how could you know that this set up would led to all that in the first place? You don't even want to use MVC, you just want to return a text back. Well that is why it is important to understand the **machine** we are using. Because it has rules like that all over the place that there's no way to know unless you sit down and start digging.
 
-In order for us to let Spring know that our return value is meant to be inside the HTTP response's body, we need to add the `@ResponseBody` annotation to our method:
-
-```
-@Controller
-public class MyClass {
-
-	@RequestMapping(path="/", method=RequestMethod.GET)
-	@ResponseBody
-	public String index() {
-		return "Hello, World!";
-	}
-}
-```
-
-Now it works. However you might have noticed that with these tools, we have little to no control over the HTTP data other than the body. That is what we will cover next.
-
-
-
-
-### TALK ABOUT OBJECTS IN BODY ONCE WE REACH HTTP <?>
-**Extra: Spring and Jackson**
-
-When writing into the HTTP body, Spring will automatically serialize whatever you ask it to. By default, it will paste any text and it will try to JSONify any object. You may customize this. For example you can tell spring to serialize things into XML instead of JSON. How to configure this is out of the scope of the post so we will leave it at a mention.
-
-
+We will now go into each of the following: HTTP, REST, MVC . And we will learn about different classes and annotations that Spring provides to us as we go. Keep in mind we will only go deep enough to get something running.
 
 ### **HTTP**
 
-Let's create a new endpoint. This time the objective is to create and send our own HTTP response message.
+We will start with the basics. Our objective here is to be able to create and send our own HTTP response.
 
 The first thing we need is a `@Controller`, because that tells Spring that the specified class holds endpoints.
 
@@ -208,9 +168,9 @@ After that, we need to tell Sping that we want to return an HTTP message object.
 
 `ResponseEntity<T>` is the class that represents your HTTP response. There you can handle the headers and the body of the response.
 
-The generic type in the `ResponseEntity<T>` defines the type of the body. If it is `String`, then you will pass a string into the body. If it is a class, then you can pass an instance of that type, and Spring will **serialize it into the response body**. By default, Spring will serialize objects to **JSON**, but this behavior can be customized. For example, you can configure Spring to serialize objects to XML instead of JSON.
+The generic type in the `ResponseEntity<T>` defines the type of the body. If it is a String, then you will pass a string. If it is a class, then you can pass an instance of that type, and Spring will serialize it into the response body. By default, Spring will serialize objects to JSON, but this behavior can be customized. For example, you can configure Spring to serialize objects to XML instead of JSON.
 
-With that we have all the pieces we need: We are telling Spring where to look for endpoints with `@Controller`, we are also telling it who the endpoints are with `@RequestMapping` and finally by using `ResponseEntity<T>` as the return type we are telling it that we want to return a whole HTTP message.
+So now we have all the pieces we need: We told Spring where to look for endpoints with `@Controller`, we also told it who the endpoints are with `@RequestMapping` and finally by using `ResponseEntity<T>` as the return type we told it that we wanted to return a whole HTTP message.
 
 Let's see it in code:
 
@@ -225,14 +185,9 @@ public class MyClass {
 }
 ```
 
-### TODO - CONFLICT RESOLUTiON: @ResponseBody VS ResponseEntity
-- @ResponseBody over return type, excluding: ModelAndView, ResponseEntity
-- OR
-- String/MVC > @ResponseBody > ResponseEntity/ModelAndView
-- What if you return an object, not a string, with no annotation of @ResponseBody
+Now all that is left is to actually create that HTTP response that we want to send out, and we have a couple of ways to do that.
 
-
-Now all that is left is to actually create that HTTP response that we want to send out. For that all we have to do is to create and fill our instance of `ResponseEntity<T>`:
+**First** we have the normal way, which consists of creating a new instance of `ResponseEntity<T>`, populating it and then returning it.
 
 ```
 @Controller
@@ -252,11 +207,21 @@ public class MyClass {
 ```
 
 Note that to deal with headers we create an instance of `HttpHeaders`, add the headers to the instance and then pass it to the ResponseEntity's constructor.
-
 Also note that you don't have to worry about generating all the boilerplate headers like Content-Length.
 
 
-Alternatively, we can use ResponseBody's static methods for common responses like 200 OK. The following code does exactly the same as the one above:
+**Secondly** we have the simple mode. Which is consists of making use of ResponseEntity's static methods for generating pre-defined HTTP responses.
+
+These pre-defined HTTP messages try to cover the most used cases. They take in an argument for the HTTP body. Lets take a look at some of them:
+
+```
+ResponseEntity.ok(body)
+ResponseEntity.notFound(body)
+ResponseEntity.created(body)
+(and more)
+```
+
+Here is what it looks like in code:
 
 ```
 @Controller
@@ -271,12 +236,9 @@ public class MyClass {
 }
 ```
 
-Other methods include `.notFound()`, `created()`, etc...
+As you can see, for common responses this is a quick way of getting the job done.
 
-
-### The lower levels
-
-Next we will cover doing the exact same thing, but this time we will not use Spring's ResponseEntity class. This time we will go below and directly access the response servlet.
+**Lastly** we can go low level (lower than ResponseEntity I mean) and directly deal with servlets:
 
 ```
 @RequestMapping(path = "/http_servlet", method = RequestMethod.GET)
@@ -289,71 +251,49 @@ public void http_servlet(HttpServletResponse response) throws IOException {
 }
 ```
 
-In Spring, you access the underline servlet by adding it to your endpoint's parameters.
+Note how much more cumbersome it becomes to manage the response when going to servlet level. You now have to deal with possible IOExceptions, you have to remember to add the HttpServletResponse argument in the endpoint signature, and it looks more cryptic overall. Also note that now the return type is void, unintuitive.
 
-Notice the following:
-- No need to return anything.
-- You have total control of the HTTP contents.
-- If you want to write to the body, you will have to handle an IOException.
-- A more cumbersome way of doing the same thing.
+It is good to know the option is there and that you can use it but I would recommend ResponseEntity over this method.
 
-If your endpoint is returning a `ResponseEntity<T>`, then I really don't see why you would use this approach. But if this isn't the case, then you might need to get a handle of the servlet. We will see examples of when you would need to do that later (MVC, REST).
+We now know how to return HTTP messages from our endpoints. Now all that is left is to go and further research the ResponseEntity class.
+
+Let's go over to REST.
 
 
-### The Twighlight zone
-
-When it comes to how to create and manage HTTP responses, what we are working with under the hood is servlets, and Spring's `ResponseEntity<T>` is our interface to them. But we just saw that we can also access the servlets themselves. This makes it so the endpoint's method becomes this space where we have two APIs for the same object. It is like two layers intertwining at this specific point (hence the name of the section).
-
-On top of that we also have annotations. Spring provides some annotations that also modify the response servlet, like `@ResponseStatus`.
-
-`@ResponseStatus` is an annotation that allows us to specify the default status code that the endpoint should return.
-
-I think it is unlikely that you would need to use all of these things on the same endpoint, I can't imagine a scenario right now. But because it is possible, I believe it is important to know how the precedence order between all these elements work.
-
-**To put it simply: ResponseEntity > annotation > servlet.**
-
-Let't look at an example:
+### **REST**
+Rest is really simple:
+- Use `@Controller`
+- Use `@RequestMapping`
+- Use `@ResponseBody` on the endpoind methods. This will let Spring know that whatever you return is to be placed in the body of the HTTP response.
+- In addition, we use the `@ResponseStatus` annotation to have control over the status code we return if everything goes well (we will cover what to do if everything doesn't go well at the end)
 
 ```
-@RequestMapping(path="/", method=RequestMethod.GET)
-@ResponseStatus(HttpStatus.ALREADY_REPORTED)
-@ResponseBody
-public ResponseEntity<String> index(HttpServletResponse res) throws IOException {
+@Controller
+public class MyClass {
 
-	res.getWriter().write("writting in servlet body");
-	res.setStatus(202);
-	
-	ResponseEntity<String> resEnt = new ResponseEntity<String>(HttpStatusCode.valueOf(201));
-	
-	return resEnt;
+	@RequestMapping(path="/", method=RequestMethod.GET)
+	@ResponseBody
+	@ResponseStatus(HttpStatus.CREATED)
+	public Animal index() {
+		Animal a = new Animal("Cow");
+		return a;
+	}
 }
 ```
 
-On that code we have the following:
-- A `@ResponseStatus` annotation setting the default status code to: 206-ALREADY_REPORTED
-- A reference to the servlet response that sets the status code to: 202-CREATED
-- An instance of `ResponseEntity` that sets the status code to: 201-IDK
-- A write operation to the response body via the servlet reference.
+Let's go over that code:
+- Spring knows about the Controller so it can scan for endpoints.
+- Spring can identify the endpoint because of the `@RequestMapping`.
+- Spring knows that the return value of that method is to be placed inside the response body because of `@ResponseBody`.
+- Spring also knows what status code to use if everything goes fine with the method because of `@ResponseStatus`.
+- Finally, we also know that Spring can JSONify the object we are returning, and that is exactly what it will do because that is what Spring is configured to do when serializing objects into an HTTP body.
 
-What do you think the status code will be?
+Knowing all that, it is time to introduce a new annotation: `@RESTController`
 
-It will be 201-IDK coming from `ResponseEntity`.
-
-As a curiosity: You cannot write to the response body twice. If you try to write to it with the servlet and then with the ResponseEntity, you will get an error (`getWriter() has already been called for this response`).
-
-
-
-### **A RESTful approach**
-
-With `ResponseEntity` and `HttpServletResponse` we are pretty much good to go, but Spring provides some extra tools for us that make writing REST APIs even easier.
-
-- Instead of `@Controller` we use `@RestController`, which combines both `@Controller` and `@ResponseBody`.
-- We use `@ResponseStatus` to define a default response status code.
-
-Let's see this in code:
+The `@RESTController` annotation combines both `@Controller` and `@ResponseBody` at a class level, which means that we no longer have to add `@ResponseBody` to every endpoint method:
 
 ```
-@RestController
+@RESTController
 public class MyClass {
 
 	@RequestMapping(path="/", method=RequestMethod.GET)
@@ -364,46 +304,6 @@ public class MyClass {
 	}
 }
 ```
-
-Let's go over what is happening:
-- By using `@RestController`, Spring knows that the class is a controller and that all its endpoints, unless specified otherwise (For example, returning a `ResponseBody` takes precedence over `@ResponseBody` for that method), are to return what is to be serialized into the body of the HTTP response.
-- Spring can identify the endpoint because of the `@RequestMapping`.
-- Spring knows what status code to use by default thanks to `@ResponseStatus`.
-
----
-**JSONification:**
-
-We already mentioned it when discussing `ResponseEntity<T>`, but allow me to expand on it.
-
-When we pass an object into the HTTP response's body, Spring automatically serializes it into a JSON.
-
-In the REST example code, the animal instance would get serialized into the body of the response HTTP. The same behavior happens when passing something into the body of a `ResponseEntity<T>`. In fact, the `T` type is there to define the type of object to be passed to the body.
-
-Spring uses the Jackson dependency for this.
-
----
-
-Now, what if we want to use that REST set up from earlier but also want to modify the response HTTP headers? Or what if we want to decide on the status code at run-time? Then we use servlets. Because they can be accessed as parameters and contrary to `ResponseEntity` there is no need to return them from the method in order to use then:
-
-```
-@RestController
-public class MyClass {
-
-	@RequestMapping(path="/", method=RequestMethod.GET)
-	public Animal index(HttpServletResponse response) {
-
-		response.setStatus(HttpServletResponse.SC_OK);
-		response.setHeader("my-header", "my-value");
-
-		Animal a = new Animal("Cow");
-		return a;
-	}
-}
-```
-
-Note the following:
-- In order for us to let the servlet have control over the status code, we removed the higher precedence `@ResponseStatus`.
-
 
 
 ### **MVC**
@@ -518,7 +418,7 @@ public class MyController {
 
 Let's explain that code:
 - Our endpoint is set to return a String. This string is to be the name of the view. Remember what we return here will go over to a View resolver, not the client.
-- We add a parameter to our endpoint. It is called `Model` but it is more like a model container; you can add any number of models you want to it as attributes. We do that with the `addAttribute` method.
+- We add a parameter to our endpoint. It is called `Model` but it is not really a model, it is an object into which you can put any models you want to provide to the View resolver. We do that with the `addAttribute` method.
 - The string in the `addAttribute` method defines the name to which we can refer to that `u` object in our templated HTML. This example is compatible with the templated HTML code we posted earlier (assuming we saved that tempalte as "viewName.html" inside the `src/main/resources/templates/` directory).
 
 
@@ -542,8 +442,10 @@ public class MyController {
 }
 ```
 
+I believe this is self explanatory.
+
 I personally like this approach the most. It is more lengthy to write but to me it makes the code clearer:
-- Instead of a `Model` parameter that you need to remember to, we have a `ModelAndView` object that we instantiate.
+- Instead of a `Model` parameter that you need to remember to add and that is not really a model contrary to its name, we have a `ModelAndView` object that we instantiate.
 - Instead of having to remember that we need to return a `String` that is to be the view name, we return the `ModelAndView` object we created.
 - We just need to remember `ModelAndView` and know its methods.
 
@@ -555,9 +457,46 @@ As a note, you can do `www.page.com/subfolder/index.html` on your browser and it
 There are security dependencies out there to prevent this from happening.
 
 
-### **Handling exceptions**
+### **When things go wrong**
+We know how to handle HTTP responses of any type. After all we have complete access to the status code in those cases. But what about REST? Do we know how to handle errors with REST? And MVC?
 
-Endpoints are not the only kind of methods that can go in a Controller class. We can also have exception handlers that return things back to the client.
+
+**The wrong approach**
+
+Let's start with REST. Maybe we could just use a `ResponseEntity<T>` with REST... You may be thinking "But I am using `@RESTController` which makes it so that my endpoints' return value cannot be a `ResponseEntity<T>` object, how could that work?" Well, even if you are using `@RESTController` for the class or a `@ResponseBody` for the method (Which you could just remove in such a case but anyways), if you return a `ResponseEntity<T>`, Spring will scrap the `@ResponseBody` annotation and will think that you want to return the whole HTTP response.
+
+Let's try it:
+
+```
+@RESTController
+public class MyClass {
+
+	@RequestMapping(path="/rest_wrong_2", method=RequestMethod.GET)
+	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseBody
+	public ResponseEntity<Animal> restWrong() {
+		try {
+			Animal a = new Animal("Cow");
+            //throw new Exception("ERROR");
+			return new ResponseEntity<Animal>(a, HttpStatus.CREATED);
+		}
+		catch(Exception e) {
+			return new ResponseEntity<Animal>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+}
+```
+
+Take a look at the controller annotation; it is a `@RESTController` annotation, which adds the `@ResponseBody` to all the class' endpoints. Not only that but we also added a `@ResponseBody` in there just for fun. Will we get an error now that we are returning `ResponseEntity<Animal>`? Will we return an HTML response inside an HTML response body? Nah, Spring will just omit that `@RESTController` and `@ResponseBody` and will assume you want to take over the whole HTTP response.
+
+However... if you take a look at that code, you will notice that there is no way for us to return anything but an `Animal` in that response body, even if things go wrong. This is because the return type of the method dictates that the body must contain an `Animal` instance, and we cannot change that. Then, what can we do? Do not despair my friend for I shall teach thee of the righteous path to error handling.
+
+
+**The right approach**
+
+When dealing with errors, exceptions, change in the status code of a response and all that, we have a way, and where we have a way, we have a Spring annotation.
+
+You see, endpoints are not the only kind of methods that can go in a Controller class. You can also have exception handlers who return things back to the client.
 
 ```
 @ExceptionHandler(SomeException.class)
@@ -574,7 +513,7 @@ Let's look at an example.
 Here is a RESTful API with one endpoint and one exception handler:
 
 ```
-@RestController
+@RESTController
 public class MyRestController {
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -597,22 +536,23 @@ public class MyRestController {
 }
 ```
 
-Starting with the endpoint, we see that it is a RESTful endpoint; It is trying to return a newly created animal object back to the client as a JSON. At the end of the method you can see we check if the animal is null or not. If it is not null we go our merry way but if it is, we throw an exception. The moment we throw that exception we move onto the exception handler.
+Starting with the endpoint, we see that it is a RESTful endpoint; It is trying to return a newly created animal object back to the client as a JSON. At the end of the method you can see we check if the animal is null or not. If it is not null we go our merry way but if it is, we throw an exception. The moment we throw that exception we are done with the endpoint, but the client is still waiting, so let's move to the exception handler.
 
-Over to the exception handler we can see that it takes care of the exception type that our endpoint can throw. We also see that this exception is a bit different than the previous one we showed, this is to show you that you can construct these however you like. They are just another endpoint that just so happens to act as a catcher from when other endpoints throw the exception they handle.
+Over to the exception handler we can see that it takes care of the exception type that our endpoint can throw. We also see that this exception is a bit different than the previous one we showed, this is to show you that you can construct these however you like. Once you know the rules you can do whatever you want.
 
-In this example we can see that the exception is to return the body of the response and the status code is to be 500 (INTERNAL_SERVER_ERROR). We also use the `ex` argument to get that error message text, we will return that in the response body. This is to my understanding a way of dealing with status code changes in your endpoints; Throwing custom exceptions.
+We see that the exception is to return the body of the response and the status code is to be 500 (INTERNAL_SERVER_ERROR). We also use the `ex` argument to get that error message text, we will return that in the response body.
+
+This is to my understanding the normal way of dealing with errors, exceptions and status code changes in your endpoints; Throwing custom exceptions.
 
 
 ### **Accessing the request HTTP**
 
-This is the last stop. There is only one more thing we need to cover: How to retrieve data from the request HTTP message.
+This is the last stop. There is only one last thing we need to cover: How to retrieve data from the request HTTP message.
 
-There are many ways to do this. We will divide them into four sections:
+There are many ways to do this. We will divide them into three sections:
 - Reading from the URL: We will see how to retrieve **path variables** and **query parameters** from the URL.
 - RequestEntity: We will cover how to retrieve the request headers and body using `RequestEntity<T>`.
 - @RequestBody and @RequestHeader: We will also show how to use these to retrieve just the body or the header.
-- Servlet level: Just like we can reference the response servlet, we can also reference the request servlet.
 
 
 **Reading from the URL**
@@ -693,24 +633,12 @@ public String test2(@RequestHeader("My-Header") String header) {
 }
 ```
 
-**Servlet level**
-
-We do this the exact same way we did to ge the `HttpServletResponse` object. We add it to our endpoint parameters:
-
-```
-@RequestMapping(path="/", method=RequestMethod.GET)
-@ResponseStatus(HttpStatus.OK)
-public String test2(HttpServletRequest request) {
-    ...
-}
-```
-
 ### **Conclusion**
-Below is a list of all the elements we have covered in this post.
+You now should know how to properly create endpoints for your Spring Boot application. Let's quickly mention all the elements covered.
 
 **Annotations**
 - `@Controller`: Class-level. Tells Spring the class is a controller
-- `@RestController`: Class-level. Combines `@Controller` and `@ResponseBody`
+- `@RESTController`: Class-level. Combines `@Controller` and `@ResponseBody`
 - `@RequestMapping`: Class/Method-level (we only covered method-level). Lets Spring know the path and HTTP verb the designated endpoint is to work with.
 - `@RequestBody`: Field-level. Tells Spring to try to deserialize the request body into the designated variable.
 - `@RequestHeader`: Field-level. Tells Spring to populate designated variable with value of specified header.
@@ -726,8 +654,6 @@ Below is a list of all the elements we have covered in this post.
 - `ModelAndView`: Allows you to manage models and set the view all in one place.
 - `Model`: Allows you to manage models.
 - `HttpHeaders`: Represents a collection of headers.
-- `HttpServletRequest`: Represents the servlet request object.
-- `HttpServletResponse`: Represents the servlet response object.
 
 **Exceptions**
 - `MissingServletRequestParameterException`: Thrown if a required query parameter is not provided.
