@@ -1,5 +1,5 @@
 # Introduction
-My first ever full website. It was my final project for CS50x. I didn't know a lot of the things I know now and the code shows it but, nevertheless, the website has a bunch of really mentionable features.
+My final project for CS50x.
 
 ### User collections
 Any user can mark any movie as "Seen", "Favorite" or "Pending".

@@ -1,7 +1,7 @@
 # Introduction
 A purely JS/CSS/HTML application with no extra libraries.
 
-### Rules of the game !
+### Rules of the game
 In this mini-game, your task is to input the given equation in the calculator, but the one you are using is not a simple calculator: it keeps on morphing before your very own eyes, and to top it all, any mistake resets your console!
 
 Every time you complete an equation the calculator layout will change, and every time it will get weirder. The equation will also get harder at each new iteration.
@@ -13,7 +13,7 @@ Every time you complete an equation the calculator layout will change, and every
 The application handles all possible edge cases gracefully and maintains the user informed of what is happening at all times; from fetching statuses to connection errors.
 
 ### Client and server data validation
-When sending data to the server, the client validates the data first to avoid overhead on the server. The data is however checked again in the server since the client side validation is only useful to avoid overhead when the user is interacting with the application in good faith (and because that is what happens most of the time, client side validation is actually important to not bother the server with wrong data sent in good faith).
+When sending data to the server, the client validates the data first to avoid unecessary overhead on the server.
 
 ### Global leader-board
 The game features a global leader-board where all players can record their score and compare how well they did against everyone else.
@@ -41,7 +41,7 @@ I use two APIs to render the user's country flag plus my own API to send and get
 
 **Flagsapi.com API (used on the client):** I provide a country code to the **flagsapi** API in order to get a country flag. I handle edge cases when displaying the flags by providing a world icon whenever an error occurs, like:
 
-- Providing "Unknown" as the country code (which happens for IP's that are not associated with a country like 127.0.0.1)
+- Receiving "Unknown" as the country code from the server.
 - Attempting to retrieve a flag that is not yet supported by the API
 - A failed fetch for any other reason (connection issues with the API, etc...)
 
