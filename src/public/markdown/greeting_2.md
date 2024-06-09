@@ -1,5 +1,5 @@
-I got introduced to programming while doing my BFA in Game Development (focus on design) in the form of C# scripts for the Unity3D engine.
-
-After graduating I started working at a game company as a Loc Tester with the initial idea of grinding my way up to the design team, but instead of that, I started studying programming after work.
-
-I did that for over half a year before deciding that I wanted to pursue this path full time.
+- Bachelor in Game Design & Development
+- [Certified ISTQB Software Tester](https://atsqa.org/certified-testers/profile/edf6e5561de048fcab62dc460c62fcce)
+- Successfully completed [Revature's](https://start.revature.com/companies) PEP training
+- Several projects that involve both frontend and backend
+- [HarvardX's CS50](https://courses.edx.org/certificates/88e622a6b2bb4996bccef6707cc9b10a) - Certificate
